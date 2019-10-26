@@ -1,0 +1,176 @@
+page-edit-voicing {
+ion-spinner * {
+    stroke: #ff0000;
+    fill: #8b0000;
+    position: fixed;
+    z-index: 999;
+    height: 5em;
+    width: em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+.spinnerCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+}
+.fab[big] {
+margin: 8px;
+width: 80px;
+height: 40px;
+line-height: 40px;
+
+}
+
+
+.bar .title {
+	font-size:20px;
+}
+
+.div-item-inner {
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+  margin-right:0px;
+  padding-right:0px;
+  border-radius: 3px;
+  //border:1px solid green;
+
+}
+
+
+div.conteneur {
+//width:50%;
+//line-height:100px;
+//text-align:center; /* centrage horizontal */
+ }
+
+div.bloc {
+  //width:50%; /* largeur du bloc */
+  padding:10px; /* aération interne du bloc */
+color:#f53d3d; 
+  width: 50%; 
+  display: block; /* or inline-block, at least its a block element */
+  height: auto; /* height cannot be defined */
+  // word-break: break-all; /*  */
+  //word-wrap: break-word; /* if you want to cut the complete word */
+  white-space: normal; /* be sure its not 'nowrap'! ! ! :/ */
+
+ }
+
+.cookieRed { 
+  font-family: $cookie;
+  font-size: 15px;
+  color:#f53d3d; 
+}
+
+.errorMsg {
+	width:60%;	
+  font: bold 10px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 14px;
+  height:100%;
+  margin: 0px;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0px;
+  //word-wrap: break-word;
+ 
+}
+
+.myCanvas {
+width:50%;
+padding-left: auto; 
+padding-left: right; 
+float:right;
+text-align:center;
+
+}
+
+#ChordEdit{
+  margin: auto; 
+  text-align: center;
+  width:50%;
+ 
+}
+
+
+#IdGuiding {
+	margin-top: -10px; 
+  padding-left: 0px; 
+  max-width:30%;
+  float:left;
+}
+ 
+#iconTrash {
+	width:40px;
+  font-size: 40px; 
+}
+
+
+
+#type {
+  padding-top: 15px;
+  }
+
+#ChordName {
+
+	color: #3D3C3A;
+	float:left;
+	text-align:left;  
+	padding-left: 0px;
+	padding-top: 0px;
+	
+  width:30px;
+	
+}
+
+
+#type {
+  //position: absolute;
+  margin-top: 5px;
+  
+  margin-left: 10px;
+
+  
+  float: left;
+}
+#key {
+//position: absolute;
+	float: left;
+	width: auto;
+	margin-left: 0%; 
+	height: auto;
+	margin: auto; 
+}
+
+#sharp {
+	//position: absolute;
+	margin-top: 0px;
+	margin-left: 35px; 
+
+}
+
+
+.centered {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  
+}
+
+#centeredDiag {
+	width:60%;
+	margin:auto;
+}
+
+
+}

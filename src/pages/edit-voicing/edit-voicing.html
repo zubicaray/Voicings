@@ -1,0 +1,116 @@
+
+<ion-header >
+	<ion-navbar >
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title >{{songName}}</ion-title>
+		
+		<ion-buttons end>		
+
+			<button ion-fab mini icon-only (click)="openGuidingLineSetUp($event,chord)">				
+				<i class="fa fa-sliders fa-2x" ></i>
+			</button>
+		</ion-buttons>
+		
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	
+	<ion-fab bottom center >
+		
+		<button ion-fab><ion-icon name="md-list"></ion-icon></button>
+
+		<ion-fab-list side="right">				
+			<button ion-fab style="background-color:orange;color:white"  (click)="playVoicings()"><ion-icon name="play"></ion-icon></button>	
+			<button ion-fab   style="background-color:orange;color:white"   (click)="changeView()" >
+				<ion-icon [name]="!editView ? 'ios-build' : 'md-eye'"></ion-icon>
+			</button>
+		</ion-fab-list>
+
+		<ion-fab-list side="top"  >
+			<button ion-fab  style="background-color:orange;color:white"   (click)="setPlayer()"><i class="fa fa-music fa-1x" ></i></button>			
+		</ion-fab-list>
+
+		<ion-fab-list side="left"  >
+			<button ion-fab  style="background-color:orange;color:white"   (click)="add($event)"><ion-icon name="add"></ion-icon></button>
+			<button ion-fab  style="background-color:orange;color:white"   (click)="order()" ><i class="fa fa-sort fa-2x" ></i></button>						
+		</ion-fab-list>
+		
+	</ion-fab>
+
+	<ion-grid *ngIf="!editView">
+		<ion-row  >
+			<ion-col class="div-item-inner "  style="width: 20%" col-3 *ngFor="let chord of chords" 	 >												
+				<div class="cookie20"  style="text-align: center ; "  (click)="itemTapped($event, chord)">
+					{{chord.getKey() + chord.getSharp() +' '+ chord.getType().name}}
+				</div>            								
+				
+				<div  style = "text-align:center;" (click)="showDiagrams(chord)">
+					<chord-canvas   [diagram]="chord.canvas" [width]=85  [typeDisplay]=2 ></chord-canvas>	
+				</div>	
+				
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	<ion-list *ngIf="editView" [reorder]="showReOrder" (ionItemReorder)="reorderItems($event)">
+
+		<ion-item-sliding  *ngFor="let chord of chords" >
+			<ion-item  >
+				<div class="container">
+					<div class="div-item row">
+						<div class="col-xs-2 centered "   (click)="itemTapped($event, chord)">
+							
+							
+							<div class=" row" style="width:100px; min-height: 55px">
+
+								<div id="ChordName"  class="cookie30">
+									<div id="key" class="cookie50">{{chord.getKey()}}</div>            
+									<div id="sharp" class="cookie30purple">{{chord.getSharp() }}</div>
+								</div>
+								
+								<div  id="type" class="cookie30"> {{chord.getType().name}}</div>
+								
+							</div> 
+
+							<div id="IdGuiding"  style="color:black;" class="cookie20">
+								{{ 'Guiding note:' | translate }} 
+								<span style="color:green" class="cookie20" >{{chord.printGuidingPitch()}}</span>
+							</div>
+							
+						</div>
+
+						<div  *ngIf="chord.canvas!=undefined" class="col-xs-2 myCanvas"  (click)="showDiagrams(chord)">				
+							<chord-canvas  [diagram]="chord.canvas" [width]=150 [typeDisplay]=1 ></chord-canvas>
+						</div>
+						
+						
+						<div *ngIf="chord.canvas==undefined"   class="bloc ">
+							<div class="cookieRed" >
+								{{ chord.errorMsg | translate }} 
+							</div> 							
+						</div>
+						
+
+
+					</div>
+				</div>
+
+			</ion-item>
+			<ion-item-options side="left" >
+				<button maxi danger (click)="removeItem(chord)"><ion-icon id="iconTrash" large name="ios-trash"></ion-icon></button>
+			</ion-item-options>
+			<ion-item-options side="right" >
+				<button maxi danger  (click)="goLeft(chord)">
+					<ion-icon id="iconTrash" large name="arrow-back"></ion-icon></button>
+					<button maxi danger  (click)="goRight(chord)">
+				<ion-icon id="iconTrash" large name="arrow-forward"></ion-icon></button>
+			</ion-item-options>
+		</ion-item-sliding>
+
+	</ion-list>
+
+</ion-content>

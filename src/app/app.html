@@ -1,1 +1,49 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-header  class="toolbar-background2" id="menu">
+    <ion-toolbar   >
+      <ion-title  class="barprofile">
+       <div style="width:100%; height:260px"  class="cookie50white">
+          <div  ><img class="profile-picture" src="assets/imgs/selmer.jpg"></div>
+          <div class="center" style="margin: -50px 0px 0px 0px">{{ 'Jazz Guitar' | translate }}</div>
+          <div style="margin: -10px 0px 0px 0px">{{ 'Voicings' | translate }}</div>
+       </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="has-expanded-header" style="margin:0 0 0 0">
+    <ion-list  >
+   
+      <ion-item class="cookie30 " menuClose   (click)="openVoicingsList()">
+        <i class="fa fa-list-alt fa-1x" ></i>
+        <span style=" margin: 0 15px;">{{ 'Voicings list' | translate }}</span>
+      </ion-item >
+     
+      <ion-item  class="cookie30 " menuClose (click)="openChordagePage()">
+      <div>
+        <i class="fa fa-sliders fa-1x" ></i>
+        <span style=" margin: 0 15px;">{{ 'Guitar tuning' | translate }}</span>
+      </div>
+       
+      </ion-item>
+      <ion-item class="cookie30 " menuClose (click)="openPurchasePage()">
+         <i class="fa fa-shopping-cart fa-1x" ></i>
+        <span style=" margin: 0 15px;">{{ 'Purchase' | translate }}</span>
+      </ion-item>
+      <ion-item class="cookie30 " menuClose (click)="openHomePage()">
+        <i class="fa fa-leanpub fa-1x" ></i>
+        <span style=" margin: 0 15px;">{{ 'Tutorials' | translate }}</span>
+      </ion-item>
+      
+      <ion-item class="cookie30 " menuClose (click)="exit()" >
+        <ion-icon name="exit"></ion-icon>
+        <span style=" margin: 0 15px;">{{ 'Exit' | translate }}</span>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

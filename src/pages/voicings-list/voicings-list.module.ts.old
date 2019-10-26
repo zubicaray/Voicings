@@ -1,0 +1,13 @@
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
+import { VoicingsListPage } from './voicings-list';
+
+@NgModule({
+  declarations: [
+    VoicingsListPage,
+  ],
+  imports: [
+    IonicPageModule.forChild(VoicingsListPage),
+  ],
+})
+export class VoicingsListPageModule {}

@@ -1,6 +1,7 @@
 // http://ionicframework.com/docs/theming/
 
 
+
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +15,307 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.alertCustomCss {
+    // text color for basic alerts
+    color: white; 
+
+    // alert modal page bg color. Warning this will remove the alert transparency
+    background-color:#ffc900; 
+
+    button {
+        color: white !important; // button text color
+        background-color: color($colors, secondary, base) !important;
+       
+            //button bg color
+    }
+
+    input {
+        color: white !important; // button text color
+     
+            //button bg color
+    }
+
+    .alert-message {
+        color: white; // text color for confirm alerts
+    }
+
+    .alert-wrapper {
+        background-color: color($colors, dark, base); // bg color of alert content
+    }
+  }
+
+ion-label{
+  font-family: $cookie;
+font-size: 30px;
+}
+.small{
+  font-family: $cookie;
+font-size: 20px;
+}
+
+ .toolbar-title {
+font-family: $cookie;
+font-size: 30px;
+
+
+ }
+.my-loading {
+    ion-backdrop {
+        top: 15%;
+        height: 70%; 
+    }
+}
+
+ .toolbar-background{
+  background:#ffc900;
+
+ }
+
+.toolbar-background2{
+  background:#000000;
+
+ }
+
+.myModal {  
+     width: 90%; 
+     height: 80%; 
+     top: 5%; 
+     left: 5%; 
+     right: 5%; 
+     bottom: 5%;
+   
+  }
+
+.modalItem{
+   background-color:#ffc000; 
+
+}
+
+.diag{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+}
+
+.div-item {
+  margin-top:2px;
+  border-radius: 5px;
+  border:1px solid green;
+}
+
+.div-item-inner {
+  margin-top:1px;
+  margin-bottom:2px;
+  margin-left:5px;
+  margin-right:5px;
+  border-radius: 3px;
+  border:1px solid green;
+}
+
+.div-item-inner-blue {
+  margin-top:5px;
+  margin-bottom:5px;
+  margin-left:5px;
+  margin-right:5px;
+  border-radius: 3px;
+  border:2px solid blue;
+}
+.div-item-inner-red {
+
+  border-radius: 10px;
+  border:3px solid red;
+}
+
+
+
+
+body, .ionic-body {
+    position: static;
+}
+
+h3{
+	
+  font-family: $cookie;
+  font-size: 25px;
+  color:#444 ;
+  width: 100%;
+  margin: auto;
+  padding-top:6px;
+
+
+}
+h2{	
+  font-family: $cookie; heigth: 100%;
+}
+
+//------------------------------ITEM------------------------------------------------------
+
+
+//------------------------------  FONT ------------------------------------------------------
+.cookie50 { 
+  font-family: $cookie;
+  font-size: 50px;
+  color:$purple;
+}
+
+
+.cookie50white {
+  font-family: "CookieRegular";
+  font-size: 50px;
+  color: white; }
+
+
+
+
+.cookie30purple { 
+  font-family: $cookie;
+  font-size: 25px;
+  color:$purple; 
+}
+
+.cookie40 { 
+  font-family: $cookie;
+  font-size: 30px;
+  color:$grey;
+  text-align:center;
+}
+
+.cookie30 { 
+  font-family: $cookie;
+  font-size: 25px;
+  color:$dark; 
+}
+
+.cookie40center { 
+  font-family: $cookie;
+  font-size: 35px;
+  color:$dark; 
+  text-align:center
+}
+.cookie30center { 
+  font-family: $cookie;
+  font-size: 25px;
+  color:$dark; 
+  text-align:center
+}
+
+.cookie20center { 
+  font-family: $cookie;
+  font-size: 20px;
+  color:$dark; 
+  text-align:center
+}
+
+.cookie20 { 
+  font-family: $cookie;
+  font-size: 20px;
+  color:$grey; 
+}
+
+.cookie25 { 
+  font-family: $cookie;
+  font-size: 25px;
+  color:$grey; 
+}
+
+
+.cookie30black { 
+
+  font-family: $cookie;
+  font-size: 25px;
+  color:$dark;
+ 
+}
+.cookie20black { 
+
+  font-family: $cookie;
+  font-size: 20px;
+  color:$dark;
+ 
+}
+
+
+.cookie20 { 
+
+  font-family: $cookie;
+  font-size: 20px;
+ 
+}
+
+.berkshire { 
+
+  font-family: $berkshire;
+  font-size: 17px;
+}
+//--------------------------------- ALIGNMENT --------------------------------------------
+.vertical{
+	
+	margin: auto 5px;
+	padding-left: 15%;
+	float:right;
+}
+
+
+
+.center{
+	width: 100%;
+  margin: auto;
+}
+
+//--------------------------------- STYLE 
+
+
+
+
+.abarprofile {
+    background-color: $dark;
+    height: 33%;
+    width:100%;
+}
+
+//.bar
+.barprofile {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    background-color: $dark;
+    height: 33%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.profile .name {
+    color: #FFFFFF;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.profile-picture {
+    border-radius: 55%;
+    --background: url('../img/selmer3.png')  center center ;
+    background-size: cover;
+    width: 45% ;
+    height:55% !important ;
+    margin-left:0%;
+    max-width: 100% !important;  //any size
+    max-height: 100% !important; //any size 
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    object-position: center; 
+
+}
+
+.menu .has-header
+{
+    top: 33%;
+}

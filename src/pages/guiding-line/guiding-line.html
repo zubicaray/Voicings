@@ -1,0 +1,137 @@
+
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{ 'Set guiding line' | translate }}</ion-title>
+		<ion-buttons end>		
+
+			<button ion-fab mini icon-only (click)="openChooseLine()">				
+				<i class="fa fa-sliders fa-2x" ></i>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+	
+
+	<ion-slides pager="true" style="height: 100%; align-items: flex-start">
+		<ion-slide style=" font-size:20px">
+
+			<ion-item  style="text-align: center  ">
+				<ion-label  color="black" style=" margin-left: 15px">{{ 'Beginning chord:' | translate }}</ion-label>
+				<ion-select  id="select21"  [(ngModel)]="beginIndex" interface="popover"  >
+					<ion-option  *ngFor="let chord  of possibleBeginningChords;let j=index" [value] = "j"  (ionSelect)="selectChordForLine(true)">
+						{{chord.getFullName()}}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+		
+	
+		
+			<ion-item style="text-align: center">
+				<ion-label  color="black"  style=" margin-left: 15px">{{ 'Ending chord:' | translate }}</ion-label>
+				<ion-select id="select1" [(ngModel)]="endIndex" interface="popover" >
+					<ion-option  *ngFor="let chord2  of possibleEndingChords;let l=index" [value] = "l" (ionSelect)="selectChordForLine(false)" >
+						{{chord2.getFullName()}}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+		
+			
+				
+						
+			<div class="div-item-inner "  >
+
+				<ion-label style="text-align: center">{{ 'Set the guiding melody place:' | translate }}</ion-label>
+				<ion-list radio-group [(ngModel)]="settings.melodyType"   >
+					<ion-item>
+						<ion-label>{{ 'on top' | translate }}</ion-label>
+						<ion-radio value=1 checked (ionSelect)="resetGuidingLine()"></ion-radio>
+					</ion-item>
+					<ion-item>
+						<ion-label>{{ 'at the bass' | translate }}</ion-label>
+						<ion-radio value=2 checked (ionSelect)="resetGuidingLine()"></ion-radio>
+					</ion-item>
+					<ion-item>
+						<ion-label>{{ 'anywhere in chords' | translate }}</ion-label>
+						<ion-radio value=3 checked (ionSelect)="resetGuidingLine()"></ion-radio>
+					</ion-item>
+				</ion-list>
+
+				
+				<ion-item *ngIf="settings.toneStep>0">
+					<ion-label>{{ 'Ascending melody' | translate }}</ion-label>
+					<ion-toggle  [(ngModel)]="settings.ascendingMelody "  (ionChange)="resetGuidingLine()"></ion-toggle>
+				</ion-item>
+			
+				<ion-item >
+					<ion-label>{{ 'max tone step for line:' | translate }} {{settings.toneStep}}</ion-label>
+					<ion-range min="0" max="4" [(ngModel)]="settings.toneStep"  (ionChange)="resetGuidingLine()" color="secondary">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>4</ion-label>
+					</ion-range>
+				</ion-item>
+
+			</div>
+		</ion-slide>
+		<ion-slide style="text-align:center; font-size:25px">
+			
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'Use open strings' | translate }}</ion-label>
+				<ion-toggle  [(ngModel)]="settings.openStrings "></ion-toggle>
+			</ion-item>
+			<ion-item >
+					<ion-label style="text-align:center">{{ 'allow octaves in chords' | translate }}</ion-label>
+					<ion-toggle  [(ngModel)]="settings.allowOctaves"  (ionChange)="consoleLog('change')"></ion-toggle>
+			</ion-item>
+
+			<ion-item>
+				<ion-label>{{ 'set max chord stretch:' | translate }} {{settings.chordStretch}}</ion-label>
+				<ion-range min="0" max="7" [(ngModel)]="settings.chordStretch"  color="secondary">
+					<ion-label range-left>0</ion-label>
+					<ion-label range-right>7</ion-label>
+				</ion-range>
+			</ion-item>
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use sixth string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string6 "></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use fifth string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string5 "></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use fourth string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string4 "></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use third string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string3 "></ion-toggle>
+			</ion-item>
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use second string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string2 "></ion-toggle>
+			</ion-item>
+			
+			<ion-item>
+				<ion-label style="text-align:center">{{ 'use first string' | translate }} </ion-label>
+				<ion-toggle  [(ngModel)]="settings.string1 "></ion-toggle>
+			</ion-item>
+	
+		</ion-slide>
+
+
+	</ion-slides>
+				
+
+
+	
+
+	
+
+
+
+
+</ion-content>  

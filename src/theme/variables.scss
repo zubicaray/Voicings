@@ -12,6 +12,7 @@ $font-path: "../assets/fonts";
 $app-direction: ltr;
 
 
+
 @import "ionic.globals";
 
 
@@ -33,22 +34,23 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
-);
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+ $colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  twitter:    #55acee,
+  black:  #000000
+);
 
-
-
+    $toolbar-ios-title-font-size:12px;
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
@@ -73,6 +75,14 @@ $colors: (
 @import "ionic.theme.default";
 
 
+
+
+
+   
+  
+
+  
+
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
@@ -81,8 +91,50 @@ $colors: (
 @import "ionic.ionicons";
 
 
+
+
 // Fonts
 // --------------------------------------------------
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+    font-family: 'CookieRegular';
+    src: url('../assets/fonts/CookieRegular.eot');
+    src: url('../assets/fonts/CookieRegular.eot') format('embedded-opentype'),
+         url('../assets/fonts/CookieRegular.woff2') format('woff2'),
+         url('../assets/fonts/CookieRegular.woff') format('woff'),
+         url('../assets/fonts/CookieRegular.ttf') format('truetype'),
+         url('../assets/fonts/CookieRegular.svg#CookieRegular') format('svg');
+}
+@font-face {
+    font-family: 'BerkshireSwashRegular';
+    src: url('../assets/fonts/BerkshireSwashRegular.eot');
+    src: url('../assets/fonts/BerkshireSwashRegular.eot') format('embedded-opentype'),
+         url('../assets/fonts/BerkshireSwashRegular.woff2') format('woff2'),
+         url('../assets/fonts/BerkshireSwashRegular.woff') format('woff'),
+         url('../assets/fonts/BerkshireSwashRegular.ttf') format('truetype'),
+         url('../assets/fonts/BerkshireSwashRegular.svg#BerkshireSwashRegular') format('svg');
+}
+
+
+// --------------------------------------------------
+// MY VAR
+// --------------------------------------------------
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+$stable:                          #ffc900 !default;
+
+$item-font-size:             	  25px !default;
+$menu-bg: 				grey;
+
+$dark: #444;
+$grey: #3D3C3A;
+// #2C3539;
+
+$black:#000000;
+$purple:#2AC9FF;
+
+$cookie: "CookieRegular";
+$berkshire:"BerkshireSwashRegular";

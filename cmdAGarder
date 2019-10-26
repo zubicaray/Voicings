@@ -1,0 +1,17 @@
+  827  npm install -g ionic@3.9.2
+  829  npm install -g ionic@3.9.2
+  830  sudo npm install -g ionic@3.9.2
+  884  npm install @ionic-native/globalization
+  887  npm install @ionic-native/background-mode
+  888  npm install @ionic-native/in-app-purchase-2
+  889  npm install @ionic-native/background-mode
+  890  ionic add platform android
+  891  ionic cordova build android --prod --minify -
+  892  npm install @ionic-native/globalization 
+  894  ionic cordova plugin add cordova-plugin-globalization
+  895  npm install @ionic-native/globalization
+  89  897  ionic cordova plugin add cc.fovea.cordova.purchase
+  905  npm install @ionic-native/globalization
+  907  npm install @ionic-native/in-app-purchase-2
+  919  ionic cordova plugin add cordova-plugin-background-mode
+  

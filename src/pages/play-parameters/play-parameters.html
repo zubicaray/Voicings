@@ -1,0 +1,83 @@
+<!--
+  Generated template for the PlayParametersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>{{ 'Player settings' | translate }}</ion-title>
+
+		<ion-buttons end>		
+
+			<button ion-fab mini icon-only (click)="playSound()">				
+				<i class="fa fa-play fa-1x" ></i>
+			</button>
+		</ion-buttons>
+		
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="cookie15 ">
+	
+
+	<ion-item >
+		<ion-label>{{ 'tempo:' | translate }} {{ player.tempo }}</ion-label>
+		<ion-range min="30" max="400" [(ngModel)]="player.tempo"  color="secondary">
+			<ion-label range-left>30</ion-label>
+			<ion-label range-right>400</ion-label>
+		</ion-range>
+	</ion-item>
+
+
+	<ion-label style="text-align: center"> {{ 'beat per chord:' | translate }} {{ player.beatPerChord }}</ion-label>
+	<ion-list   class="beat" radio-group [(ngModel)]="player.beatPerChord"   >
+
+		<ion-item >
+			<ion-label>{{ '1' | translate }}</ion-label>
+			<ion-radio [value]=1 checked ></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>{{ '2' | translate }}</ion-label>
+			<ion-radio [value]=2 checked ></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>{{ '4' | translate }}</ion-label>
+			<ion-radio [value]=4 checked ></ion-radio>
+		</ion-item>
+	</ion-list>
+
+	
+
+
+	<ion-label style="text-align: center">{{ 'Comping:' | translate }}</ion-label>
+	<ion-list  radio-group [(ngModel)]="player.rhythmType"   >
+		<ion-item >
+			<ion-label>{{ 'arpegios' | translate }}</ion-label>
+			<ion-radio [value]=1 checked ></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>{{ 'swing' | translate }}</ion-label>
+			<ion-radio [value]=2 checked ></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>{{ 'tremolo' | translate }}</ion-label>
+			<ion-radio [value]=3 checked ></ion-radio>
+		</ion-item>
+	</ion-list>
+	<!--
+	<ion-item >	
+		<ion-label>{{ 'Add bass player' | translate }}</ion-label>
+		<ion-toggle  [(ngModel)]="player.bassPlayer "  ></ion-toggle>
+	</ion-item>
+	!-->
+
+	
+
+</ion-content>

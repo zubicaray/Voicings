@@ -1,7 +1,7 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
-  "start_url": "index.html",
+  "name": "Jazz Guitar Voicings",
+  "short_name": "GuitarVoicings",
+  "start_url": "GuitarVoicings",
   "display": "standalone",
   "icons": [{
     "src": "assets/imgs/logo.png",

@@ -1,0 +1,23 @@
+Bonjour à tous,
+je poste une petite vidéo pour vous présenter très rapidemment le fonctionnement de l'application.
+
+Son but est de vous aider à trouver de belle suites d'acccord, bien entendu elle ne fait pas le café car c'est vraiment vous et votre oreille qui, in finé, feront en sorte 
+que cela sonne bien.
+Pour ce faire, on va se servir d'une ligne directrice, d'une suite de notes "guide", qui vont permettre de garder une certaine logique musicale tout le long de la progression.
+Dans cet exemple, sur There will never ne another you", sur les 8 premiers accords si on regarde les notes rouges on voit que l'on a dans les aïgues la suite:
+
+Eb,D,C,B,Bb,A,G
+
+un descente quasi chromatique qui donc suivre la trame harmonique et c'est là que se trouve le nerf de la guerre si je puis dire.
+
+Pour les accords qui vont du G# au C-7 on a une ligne cette fois-ci montante et dans les basses: de Bb à F.
+
+La recherche de ces lignes est semi-automatisée mais vous pouvez très aussi une ligne en la construisant "manuellement" accord par accord.
+Encore une fois c'est votre oreille qui fera le travail vraiment musical.
+
+Voilà il a encore pas mal de petite chose à corriger, notamment l'affichage, comme Mister Posglov me l'a déjà fait remarquer, comme le morceau est en Eb,
+il ne faut pas écrire G# mais Ab.
+
+Faites moi part de vos remarques dans les commentaires si vous le voulez.
+
+Merci.

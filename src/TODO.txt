@@ -1,0 +1,16 @@
+
+A CREER:
+
+* thread pour midi
+* sus 2 et 4 chords
+* accordage par chanson
+
+A AMELIORER:
+
+* les dépendances NODE
+* message sur accords infaisables
+* module tools, fourre tout et voir pour la fct clone
+
+
+BUG A CORRIGER !!!!!!!!!!!!!!!!!!!!!:
+ * cas du G sus 4 au lieu de G major
