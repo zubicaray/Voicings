@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,AlertController, NavParams ,LoadingController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel'; 
 import { ComputationProvider}  from    '../../providers/computations/computations'
-import { settings}  from    '../../providers/configuration/configuration'
+import { Settings}  from    '../../providers/configuration/configuration'
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { ChooseGuidingLinePage}  from    '../choose-guiding-line/choose-guiding-line';
 import { TranslationProvider } from '../../providers/translation/translation';
@@ -19,7 +19,7 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
   possibleBeginningChords: ChordModel[];  
   possibleEndingChords: ChordModel[];  
   selectedChords: ChordModel[];  
-  settings:settings;
+  settings:Settings;
 
   beginIndex:number=0;
   endIndex:number=0;

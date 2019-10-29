@@ -3,19 +3,16 @@ import { NavController,AlertController, NavParams , LoadingController,ToastContr
 import { ModalController } from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
 import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { settings  as SETTINGS,DEFAULT_SETTINGS,ConfigurationProvider} from    '../../providers/configuration/configuration'
+import { Settings  ,SongType,DEFAULT_SETTINGS,ConfigurationProvider} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
-import { AddingChordPage }from    '../adding-chord/adding-chord';
+
 import { TranslationProvider } from '../../providers/translation/translation';
 
-import * as cloneDeep from 'lodash/cloneDeep';
 
-export type SongType = { 
-	songName:string,
-	chords:ChordModel[],
-	settings:SETTINGS
-};
+import * as cloneDeep from 'lodash/cloneDeep';
+import { ChooseTonePage } from '../choose-tone/choose-tone';
+
 
 
 @Component({
@@ -26,12 +23,9 @@ export type SongType = {
 
 export class VoicingsListPage extends LoadingCtrlPage{
 
-
 	VoicingsList:SongType[];
 
-	loading:any;
-
-	
+	loading:any;	
 
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
@@ -49,19 +43,20 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	}
 
-	static fromJSON(inSong:any)
+	static fromJSON(inSong:SongType)
 	{
-		var song:{songName:string,chords:ChordModel[],settings:SETTINGS}
+		var song:SongType
 		inSong.chords.forEach(function(element) {
 
 			song=
-			{songName:inSong.songName,chords:[],settings:inSong.settings};
+			{songName:inSong.songName,chords:[],scaleNotesId:inSong.scaleNotesId,scaleNotes:inSong.scaleNotes,settings:inSong.settings};
 
 			inSong.chords.forEach(function(element) {
 
 				var chord:ChordModel= new ChordModel(
 					element.Id, 
-					element.keyid,						        
+					element.keyid,
+					element.scaleNotes,						        
 					element.idFamily,
 					element.idtype,
 					element.idDiag, element.idDiag_Y,
@@ -106,14 +101,15 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					var lVL:any=[];
 					list.forEach(songRes=> {
 
-						var song:{songName:string,chords:ChordModel[],settings:SETTINGS}=
+						var song:{songName:string,chords:ChordModel[],settings:Settings}=
 						{songName:songRes.songName,chords:[],settings:songRes.settings};
 
 						songRes.chords.forEach(function(element) {
 
 							var chord:ChordModel= new ChordModel(
 								element.Id, 
-								element.keyid,						        
+								element.keyid,
+								element.ScaleNotes,					        
 								element.idFamily,
 								element.idtype,
 								element.idDiag, 
@@ -187,14 +183,25 @@ export class VoicingsListPage extends LoadingCtrlPage{
 			{
 				text: this.TP.tr('New'),
 				handler: data => {
-					var newSong :SongType= {songName:"",chords:[],settings:DEFAULT_SETTINGS};
+				
+					
+					var newSong :SongType= {songName:"",chords:[],scaleNotes:[],scaleNotesId:0,settings:DEFAULT_SETTINGS};
+
+					
 					if(this.validation(data.Name,newSong)){
+						this.navCtrl.push(ChooseTonePage, {
+							songVoicings: newSong,ScaleNotes:[]
+						});
+						
+						/*
 						this.navCtrl.push(EditVoicingPage, {
 							songVoicings: newSong
 						});
 
-						this.navCtrl.push(AddingChordPage, { chords: newSong.chords	 });
+						this.navCtrl.push(AddingChordPage, { chords: newSong.chords,ScaleNotes: scaleNotes	 });
+						*/
 					}
+					
 				}
 			}
 			]
@@ -202,6 +209,11 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		alert.present();	
 	}
 
+	setKey(song){
+		this.navCtrl.push(ChooseTonePage, {
+			songVoicings: song
+		});
+	}	
 	presentToast(msg:string) {
 		let toast = this.toastCtrl.create({
 			message: msg,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {  NavController, NavParams ,ModalController,LoadingController,ToastController} from 'ionic-angular';
 import { ComputationProvider,GuidingLineStrengthMap}  from    '../../providers/computations/computations'
 import { ModalChooseOctavePage} from '../modal-choose-octave/modal-choose-octave';
-import { ConfigurationProvider,Keys,settings}  from    '../../providers/configuration/configuration' ;
+import { ConfigurationProvider,Keys,Settings}  from    '../../providers/configuration/configuration' ;
 import { ChordModel} from '../../models/chordModel'; 
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { TranslationProvider } from '../../providers/translation/translation';
@@ -16,7 +16,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 export class ChooseGuidingLinePage extends LoadingCtrlPage {
 
   chords: ChordModel[];	
-  settings:settings;
+  settings:Settings;
 
   DescendingLines:GuidingLineStrengthMap;
 
@@ -158,7 +158,7 @@ export class ChooseGuidingLinePage extends LoadingCtrlPage {
 
   /**
     * prints first and last notes of guiding line
-    * based on the keys of th emap
+    * based on the keys of the map
   */
   printKey(key:number):string{ 		
     return Keys[~~(key/1000)]+ " -> " + Keys[key%1000];

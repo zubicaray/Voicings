@@ -88,6 +88,7 @@ cordova clean android
 console.log({objName}) -> avec les {} l'objet sera nommé dans les logs
 console.trace           -> dit ou est déclaré et utilisé la méthode
 
+***********************************************************************************************
 function print(chordModel:ChordModel){
     console.log(chordModel.name1,chordModel.name2, ...)
 }

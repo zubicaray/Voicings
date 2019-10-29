@@ -21,6 +21,7 @@ import { GuidingLinePage} from '../pages/guiding-line/guiding-line';
 import { RegisterPage} from '../pages/register/register';
 
 import { ModalChooseOctavePage} from '../pages/modal-choose-octave/modal-choose-octave';
+import { ChooseTonePage} from '../pages/choose-tone/choose-tone';
 import { DiagramsPage} from '../pages/diagrams/diagrams';
 import { AddingChordPage} from '../pages/adding-chord/adding-chord';
 import { ChordagePage } from '../pages/chordage/chordage';
@@ -55,7 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage, 
     VoicingsListPage,EditVoicingPage,ChordPage,
     GuidingLinePage,
-    ChordCanvas,DiagramsPage,AddingChordPage,ChordagePage,LoadingCtrlPage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
+    ChordCanvas,DiagramsPage,AddingChordPage,ChordagePage,LoadingCtrlPage,ChooseTonePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +78,7 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage,
     VoicingsListPage,EditVoicingPage,ChordPage,
     GuidingLinePage,DiagramsPage,
-    AddingChordPage,ChordagePage,LoadingCtrlPage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
+    AddingChordPage,ChordagePage,LoadingCtrlPage,ChooseTonePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   providers: [
     StatusBar,

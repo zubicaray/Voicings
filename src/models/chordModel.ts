@@ -36,6 +36,8 @@ export class ChordModel {
   /** all "sometimes not so good", as regard harmony, notes of the chord  */
   modern:number[]=[];
   pitch:number=0;
+  /** notes of the tune scale */
+  private ScaleNotes:string[]; // ""
 
   private errorMsg:string;
   
@@ -44,16 +46,19 @@ export class ChordModel {
 
   chordage:GuitarString[]=ChordModel.configurationProvider.getOrderedChordage();
 
-  static new():ChordModel{//ChordModel.newEmptyDiagram()
-    return new ChordModel(1,0,0,0,0,0,[ ], false, false, 5, 1,0,true,[true,true,true,true,true,true],false);
+
+  static new(ScaleNotes:string[]):ChordModel{//ChordModel.newEmptyDiagram()
+    return new ChordModel(1,0,ScaleNotes,0,0,0,0,[ ], false, false, 5, 1,0,true,[true,true,true,true,true,true],false);
   }
 
+  
   /**
   * inner recursive function
   *
 
   * @param { number}  Id index of the chord in the song
   * @param { number}  keyid  key oh thre chord
+  * @param { string[]}ScaleNotes  key of the tune scale
   * @param { number}  idFamily chord family type: major, minor, dominant ...
   * @param { number}  idtype type of chord: major 69, 5b, -75b
   * @param { number}  idDiag id og the chosen DiagramType
@@ -71,6 +76,7 @@ export class ChordModel {
   constructor(    
     public Id:number, 
     public keyid:number,
+    public scaleNotes:string[],
     public idFamily:number,
     public idtype:number,
     public idDiag:number,
@@ -90,6 +96,7 @@ export class ChordModel {
     this.maxStretch= maxStretch== null ? 4 :maxStretch;
     this.allowOctaves= allowOctaves== null ? false :allowOctaves;
     idDiag_Y=0;
+    this.ScaleNotes=scaleNotes
     this.init();  
 
   }
@@ -115,6 +122,10 @@ export class ChordModel {
       this.setNaturalNotes();
       this.setMandatoryNotes();
     }
+  }
+
+  public setScaleNotes(scaleN:string[]){
+    this.ScaleNotes=scaleN
   }
 
   public getError():string{
@@ -299,20 +310,23 @@ export class ChordModel {
   /**
   * @ignore
   */
-  getSharp():string  {
-    if(OctavesNotes[this.keyid].sharp)           
-      return "#";
-    else return "";
+  getSharpOrFlat():string  {
+    var key:string=this.ScaleNotes[mod(this.keyid,12)];
+    if(key.length==1) return "";
+    else{           
+        return key[1];     
+    }
+    
   }
   /**
   * @ignore
   */
   getKey():string {
-    return OctavesNotes[this.keyid].key;
+    return this.ScaleNotes[mod(this.keyid,12)][0];
   }
 
   getFullName():string{
-    return this.getKey()+this.getSharp()+" "+this.getType().name;
+    return this.getKey()+this.getSharpOrFlat()+" "+this.getType().name;
   }
   /**
   * @ignore

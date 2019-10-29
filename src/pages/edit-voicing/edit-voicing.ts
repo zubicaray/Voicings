@@ -5,7 +5,7 @@ import { ChordPage} from '../chord/chord';
 import { GuidingLinePage} from '../guiding-line/guiding-line';
 import { PlayParametersPage}  from    '../play-parameters/play-parameters';
 
-import { settings  as SETTINGS } from    '../../providers/configuration/configuration';
+import { Settings, SongType } from    '../../providers/configuration/configuration';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 
 import { AddingChordPage }from    '../adding-chord/adding-chord';
@@ -21,7 +21,8 @@ export class EditVoicingPage extends LoadingCtrlPage {
 
 	songName:string;
 	chords:ChordModel[];
-	settings:SETTINGS;
+	settings:Settings;
+	ScaleNotes:string[];
 
 	showReOrder:boolean=false;
 	editView:boolean=true;
@@ -32,10 +33,11 @@ export class EditVoicingPage extends LoadingCtrlPage {
 
 		super(loadingCtrl);
 
-		var Voicings:{ songName:string,chords:ChordModel[],settings:SETTINGS} = navParams.get('songVoicings');
+		var Voicings:SongType = navParams.get('songVoicings');
 		this.songName=Voicings.songName;
 		this.chords=Voicings.chords;
 		this.settings=Voicings.settings; 
+		this.ScaleNotes=Voicings.scaleNotes;
 
 	}
 
@@ -101,10 +103,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 		*/
 	}	
 
-	save(){
-
-	}
-
+	
 	order(){
 		this.showReOrder=!this.showReOrder;
 	}
@@ -168,7 +167,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 	}
 
 	add(event){		
-		this.navCtrl.push(AddingChordPage, { chords: this.chords });
+		this.navCtrl.push(AddingChordPage, { chords: this.chords ,ScaleNotes: this.ScaleNotes});
 	}
 	
 

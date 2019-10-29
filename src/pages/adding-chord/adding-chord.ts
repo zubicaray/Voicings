@@ -11,7 +11,8 @@ import { TranslationProvider } from '../../providers/translation/translation';
  })
  export class AddingChordPage extends ChordPage {
 
- 	chords:ChordModel[];
+	 chords:ChordModel[];
+	 ScaleNotes:string[];
 
  	constructor(public navCtrl: NavController, public navParams: NavParams,
  		public toastCtrl: ToastController,public loadingCtrl: LoadingController,
@@ -21,8 +22,8 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		super(navCtrl, navParams,loadingCtrl,toastCtrl,alertCtrl,configurationProvider,TP); 
 
  		this.chords=navParams.get('chords');
- 		
-		this.chord=ChordModel.new();
+ 		this.ScaleNotes=navParams.get('ScaleNotes');
+		this.chord=ChordModel.new(this.ScaleNotes);
 		this.init();
  	}
 
@@ -48,7 +49,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 		var idtype=this.chord.idtype;
 		var idKey=this.chord.keyid;
 		
-		this.chord=ChordModel.new();
+		this.chord=ChordModel.new(this.ScaleNotes);;
 		this.chord.idFamily=idfam;
 		this.chord.idtype=idtype;
 		this.chord.keyid=idKey;

@@ -31,15 +31,19 @@
 
       <ion-item-options side="right" >
         <button maxi danger (click)="remove(song)">
-          <ion-icon id="iconTrash" large name="ios-trash">            
+          <ion-icon large name="ios-trash">            
           </ion-icon>
         </button>
          <button maxi danger (click)="rename(song)">
-          <ion-icon id="iconTrash" large name="md-text">            
+          <ion-icon large name="md-text">            
           </ion-icon>
+         </button>
+         <button maxi danger (click)="setKey(song)">
+            <ion-icon large name="key">            
+            </ion-icon>
         </button>
         <button maxi danger (click)="presentCopyPrompt(song)">
-          <ion-icon id="iconTrash" large name="copy">            
+          <ion-icon  large name="copy">            
           </ion-icon>
         </button>
       </ion-item-options>

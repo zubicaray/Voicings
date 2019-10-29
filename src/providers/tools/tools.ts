@@ -697,7 +697,7 @@ export class ToolsProvider {
 
         Tone.Buffer.on('load', function() {
             this.loaded=true;
-            console.log('constructor: LOADED !!!')
+            console.log('Tone.Buffer loaded !')
         });   
 
 

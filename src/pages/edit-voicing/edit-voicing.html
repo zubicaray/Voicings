@@ -45,7 +45,7 @@
 		<ion-row  >
 			<ion-col class="div-item-inner "  style="width: 20%" col-3 *ngFor="let chord of chords" 	 >												
 				<div class="cookie20"  style="text-align: center ; "  (click)="itemTapped($event, chord)">
-					{{chord.getKey() + chord.getSharp() +' '+ chord.getType().name}}
+					{{chord.getKey() + chord.getSharpOrFlat() +' '+ chord.getType().name}}
 				</div>            								
 				
 				<div  style = "text-align:center;" (click)="showDiagrams(chord)">
@@ -69,7 +69,7 @@
 
 								<div id="ChordName"  class="cookie30">
 									<div id="key" class="cookie50">{{chord.getKey()}}</div>            
-									<div id="sharp" class="cookie30purple">{{chord.getSharp() }}</div>
+									<div id="sharp" class="cookie30purple">{{chord.getSharpOrFlat() }}</div>
 								</div>
 								
 								<div  id="type" class="cookie30"> {{chord.getType().name}}</div>
