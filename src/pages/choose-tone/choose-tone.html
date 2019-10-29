@@ -1,0 +1,29 @@
+<ion-header>
+
+		<ion-navbar>
+		  <ion-title>{{ 'Set tune scale' | translate }}</ion-title>			  
+		</ion-navbar>
+	  
+	  
+	  </ion-header>
+	  
+	  
+	  <ion-content padding style="text-align:center; font-size:25px">
+	
+	<div class="div-item">
+		<ion-label>{{ 'Scale key:' | translate }}</ion-label>
+		<ion-grid>
+			<ion-row>
+				<ion-col col-3 *ngFor="let note of Keys;  let i = index" 	 (click)="closeModal(i)" >
+						<div  [ngStyle]="{'background-color': ScaleKeyId==i? 'orange' : 'green','border-radius': ScaleKeyId==i? '5px':'10px'}">
+						{{note}}
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>		
+	
+
+
+
+</ion-content>
