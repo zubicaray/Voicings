@@ -56,10 +56,7 @@ page-chord-frame {
     #ChordName {
     
         color: #3D3C3A;
-        float:left;
-        text-align:left;  
-        padding-left: 0px;
-        padding-top: 0px;
+      
         
       width:30px;
         
@@ -68,9 +65,9 @@ page-chord-frame {
     
     #type {
       //position: absolute;
-      margin-top: 5px;
+      margin-top: auto;
       
-      margin-left: 10px;
+      margin-left: auto;
     
       
       float: left;
@@ -80,19 +77,26 @@ page-chord-frame {
     color: #3D3C3A;
         float: left;
         width: auto;
-        margin-left: 0%; 
+        margin-left: auto; 
         height: auto;
         margin: auto; 
     }
     
     #sharp {
         //position: absolute;
-        margin-top: 0px;
-        margin-left: 35px; 
+        margin-top: auto;
+        margin-left: auto; 
     
     }
     
+    #ChordCell {
+      float: left;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: auto;
+      margin-bottom: auto;
     
+  }
     .centered {
         padding-left: 0;
         padding-right: 0;

@@ -3,21 +3,14 @@
 
     <ion-grid >
         <ion-row  >
-          <ion-col class="div-item-inner"  style="width: 20%" col-3 *ngFor="let chord of chords;  let i = index" 	 >												
-              <div class="row" 
-                [ngStyle]="{'background-color': (i>=settings.chordRangeForLine.begin && i<= settings.chordRangeForLine.end)? 'orange' : 'white'}"
-                style="min-height: 55px" 
-                (click)="setIndex(i)"
-                >
-
-                  <div id="ChordName"  class="cookie30">
-                    <div id="key" class="cookie50">{{chord.getKey()}}</div>            
-                    <div id="sharp" class="cookie30">{{chord.getSharpOrFlat() }}</div>
-                  </div>
-                  
-                  <div  id="type" class="cookie30"> {{chord.getType().name}}</div>
-                  
-                </div>          								
+          <ion-col class="div-item-inner"   col-3 *ngFor="let chord of chords;  let i = index" 	 
+            [ngStyle]="{'background-color': (i>=settings.chordRangeForLine.begin && i<= settings.chordRangeForLine.end)? 'orange' : 'white'}"
+            style="min-height: 55px;min-width : 55px" 
+            (click)="setIndex(i)"
+          >												
+              <div id="ChordCell"  class="row">
+                <div id="key" class="cookie30">{{chord.getKey()}} {{chord.getSharpOrFlat() }} {{chord.getType().name}}</div>            
+              </div>          								
                       
           </ion-col>
         </ion-row>
