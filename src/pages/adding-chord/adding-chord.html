@@ -16,7 +16,7 @@
 		<ion-label>{{ 'Key:' | translate }}</ion-label>
 		<ion-grid>
 			<ion-row>
-				<ion-col col-3 *ngFor="let note of Keys;  let i = index" 	 (click)="setKey(i)" >
+				<ion-col col-3 *ngFor="let note of ScaleNotes;  let i = index" 	 (click)="setKey(i)" >
 					<div  [ngStyle]="{'background-color': chord.keyid==i? 'orange' : 'green','border-radius': chord.keyid==i? '5px':'10px'}">
 					{{note}}</div>
 				</ion-col>

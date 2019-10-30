@@ -11,3 +11,4 @@ run.sh
 vscodeJGV.code-workspace
 src/*/*/*.js*
 src/assets/midi/npm-debug.log
+JazzGuitarVoicings.apk

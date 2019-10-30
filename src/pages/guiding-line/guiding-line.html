@@ -21,25 +21,17 @@
 
 			<ion-item  style="text-align: center  ">
 				<ion-label  color="black" style=" margin-left: 15px">{{ 'Beginning chord:' | translate }}</ion-label>
-				<ion-select  id="select21"  [(ngModel)]="beginIndex" interface="popover"  >
-					<ion-option  *ngFor="let chord  of possibleBeginningChords;let j=index" [value] = "j"  (ionSelect)="selectChordForLine(true)">
-						{{chord.getFullName()}}
-					</ion-option>
-				</ion-select>
-			</ion-item>
-		
-	
+				<ion-label  color="black" style=" margin-left: 15px" (click)="openModal(true)">
+					{{ chords[settings.chordRangeForLine.begin].getFullName() }}
+				</ion-label>				
+			</ion-item>	
 		
 			<ion-item style="text-align: center">
 				<ion-label  color="black"  style=" margin-left: 15px">{{ 'Ending chord:' | translate }}</ion-label>
-				<ion-select id="select1" [(ngModel)]="endIndex" interface="popover" >
-					<ion-option  *ngFor="let chord2  of possibleEndingChords;let l=index" [value] = "l" (ionSelect)="selectChordForLine(false)" >
-						{{chord2.getFullName()}}
-					</ion-option>
-				</ion-select>
-			</ion-item>
-		
-			
+				<ion-label  color="black" style=" margin-left: 15px" (click)="openModal(false)">
+						{{ chords[settings.chordRangeForLine.end].getFullName() }}
+				</ion-label>					
+			</ion-item>	
 				
 						
 			<div class="div-item-inner "  >

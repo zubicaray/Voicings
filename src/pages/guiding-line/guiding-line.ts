@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController, NavParams ,LoadingController} from 'ionic-angular';
+import { NavController,AlertController, NavParams ,ModalController,LoadingController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel'; 
 import { ComputationProvider}  from    '../../providers/computations/computations'
 import { Settings}  from    '../../providers/configuration/configuration'
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { ChooseGuidingLinePage}  from    '../choose-guiding-line/choose-guiding-line';
 import { TranslationProvider } from '../../providers/translation/translation';
+import { ChordFramePage } from '../chord-frame/chord-frame';
 /**
 * component from choosing the desired guiding line
 */
@@ -16,13 +17,10 @@ import { TranslationProvider } from '../../providers/translation/translation';
 export class GuidingLinePage  extends LoadingCtrlPage  {
 
   chords: ChordModel[];	
-  possibleBeginningChords: ChordModel[];  
-  possibleEndingChords: ChordModel[];  
+ 
   selectedChords: ChordModel[];  
   settings:Settings;
 
-  beginIndex:number=0;
-  endIndex:number=0;
 
   canLeave:boolean;
 
@@ -30,7 +28,7 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
   constructor(  public navCtrl: NavController, public navParams: NavParams,
                 public computationProvider:ComputationProvider,
                 public alertCtrl: AlertController,public loadingCtrl: LoadingController,
-                private TP: TranslationProvider
+                private TP: TranslationProvider , public modalCtrl : ModalController
   ) 
   {
 
@@ -51,63 +49,33 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
       this.settings.chordRangeForLine.begin=0;
     }
    
-    this.beginIndex=this.settings.chordRangeForLine.begin;
-    this.endIndex=this.settings.chordRangeForLine.end-this.settings.chordRangeForLine.begin-1;
-
-
+  
     this.selectedChords=[];  
-    this.possibleBeginningChords=[];  
-    this.possibleEndingChords=[]; 
+    
 
     for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
     {
       this.selectedChords.push(this.chords[i]);
     }
 
-    for(var j:number =0;j<this.settings.chordRangeForLine.end;j++)
-    {
-      this.possibleBeginningChords.push(this.chords[j]);
-    }
-
-    for(i =this.settings.chordRangeForLine.begin+1;i<this.chords.length;i++)
-    {
-      this.possibleEndingChords.push(this.chords[i]);
-    }
-
+    
     this.configureComputation();
 
     
   }
 
-  selectChordForLine(isBegin:boolean){
+  selectChordForLine(){
 
     this.selectedChords=[];  
-    this.possibleBeginningChords=[];  
-    this.possibleEndingChords=[]; 
+  
     this.resetGuidingLine();
 
-    if(isBegin){
-      this.endIndex+=this.settings.chordRangeForLine.begin-this.beginIndex;
-      this.settings.chordRangeForLine.begin=this.beginIndex;
-    }
-    else {     
-        this.settings.chordRangeForLine.end=this.beginIndex+this.endIndex+1;
-    }
- 
+    
     for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
     {
       this.selectedChords.push(this.chords[i]);
     }
 
-    for(var j:number =0;j<this.settings.chordRangeForLine.end;j++)
-    {
-      this.possibleBeginningChords.push(this.chords[j]);
-    }
-
-    for(i =this.settings.chordRangeForLine.begin+1;i<this.chords.length;i++)
-    {
-      this.possibleEndingChords.push(this.chords[i]);
-    }
    
 
   }
@@ -302,6 +270,31 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     
     return canLeave
   }
+
+   async openModal(){
+
+      this.presentModal();     
+      this.selectedChords=[];  
+    
+     
+   
+      for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
+      {
+        this.selectedChords.push(this.chords[i]);
+      }
+    
+  }
+ 
+
+  presentModal(): Promise<boolean>{
+    
+    var data = { settings : this.settings,chords: this.chords};
+
+    var modalPage = this.modalCtrl.create(ChordFramePage,data,{enableBackdropDismiss:false});
+    return modalPage.present(); 
+  }
+
+
 }
 
 

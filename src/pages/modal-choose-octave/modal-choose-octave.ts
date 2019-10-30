@@ -60,10 +60,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
 	}
 
- 	ionViewDidLoad() {
-
- 	}
-
+ 
  	printOctaves(desc:number[]):string{
 
 
