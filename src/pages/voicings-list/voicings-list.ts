@@ -64,7 +64,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					element.HasRoot,
 					element.HasFifth,
 					element.maxStretch,
-					1,
+					element.melodyType,
 					element.guidingPitch,
 					element.openStrings,
 					element.stringDispo,element.allowOctaves
@@ -84,18 +84,19 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		//debugger
 		
 		//console.log(this.storage)
-
+		//this.storage.remove("VoicingsList");
 		this.storage.get("VoicingsList").then( 
 
 			list => {
 				//console.log(list)
 
 				if(  list == null  || list===[] || list.length==0){
-					this.VoicingsList=[VoicingsListPage.fromJSON(
-					this.configurationProvider.Djangologie()),
-					VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
-					VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
-					VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())];
+					this.VoicingsList=[
+						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
+						VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
+						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
+						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())
+					];
 				}
 				else{
 					var lVL:any=[];
@@ -125,6 +126,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 								element.allowOctaves
 								);
 
+							
 							song.chords.push(chord);
 
 						});

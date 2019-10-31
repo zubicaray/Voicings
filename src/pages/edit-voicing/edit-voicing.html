@@ -43,7 +43,7 @@
 
 	<ion-grid *ngIf="!editView">
 		<ion-row  >
-			<ion-col class="div-item-inner "  style="width: 20%" col-3 *ngFor="let chord of chords" 	 >												
+			<ion-col class="div-item-inner "  style="width: 20%" col-3 *ngFor="let chord of chords;  let i = index" [ngStyle]="{'background-color': isSelectedChord(i) }"	 >												
 				<div class="cookie20"  style="text-align: center ; "  (click)="itemTapped($event, chord)">
 					{{chord.getKey() + chord.getSharpOrFlat() +' '+ chord.getType().name}}
 				</div>            								
@@ -58,10 +58,10 @@
 	
 	<ion-list *ngIf="editView" [reorder]="showReOrder" (ionItemReorder)="reorderItems($event)">
 
-		<ion-item-sliding  *ngFor="let chord of chords" >
+		<ion-item-sliding  *ngFor="let chord of chords;  let i = index" >
 			<ion-item  >
-				<div class="container">
-					<div class="div-item row">
+				<div class="container" >
+					<div class="div-item row" [ngStyle]="{'background-color': isSelectedChord(i) }">
 						<div class="col-xs-2 centered "   (click)="itemTapped($event, chord)">
 							
 							
@@ -97,6 +97,7 @@
 
 
 					</div>
+				
 				</div>
 
 			</ion-item>

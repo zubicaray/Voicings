@@ -13,12 +13,13 @@ export class ChordFramePage {
 
   chords: ChordModel[];	
   settings:Settings;
- 
+  selectedChords:ChordModel[];	
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl : ViewController) {
     this.chords = navParams.get('chords');
     this.settings=navParams.get('settings');
+    this.selectedChords=navParams.get('selectedChords');
   
    
   }
@@ -28,6 +29,14 @@ export class ChordFramePage {
     let begin=this.settings.chordRangeForLine.begin;
     let end=this.settings.chordRangeForLine.end;
 
+    if(index==begin && index <=end){
+      this.settings.chordRangeForLine.begin++
+      return 
+    }
+    if(index==end && index >=begin){
+      this.settings.chordRangeForLine.end--
+      return 
+    }
 
     if(index<begin){
       this.settings.chordRangeForLine.begin=index
@@ -54,6 +63,15 @@ export class ChordFramePage {
   }
  
   public closeModal(index:number){
+
+    this.selectedChords=[];  
+    
+     
+   
+    for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
+    {
+      this.selectedChords.push(this.chords[i]);
+    }
     this.viewCtrl.dismiss();
 
 	}

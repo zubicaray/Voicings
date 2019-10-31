@@ -5,7 +5,7 @@
         <ion-row  >
           <ion-col class="div-item-inner"   col-3 *ngFor="let chord of chords;  let i = index" 	 
             [ngStyle]="{'background-color': (i>=settings.chordRangeForLine.begin && i<= settings.chordRangeForLine.end)? 'orange' : 'white'}"
-            style="min-height: 55px;min-width : 55px" 
+           
             (click)="setIndex(i)"
           >												
               <div id="ChordCell"  class="row">

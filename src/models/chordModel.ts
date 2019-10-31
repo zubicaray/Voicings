@@ -153,7 +153,7 @@ export class ChordModel {
   /**
   * when changing chord setting the guiding note previously set
   * may not be possible anymore
-  * if so, we'll have to rease it
+  * if so, we'll have to remove it
   */
   isGuidingNoteStillOk():boolean{
      if(this.mandatory.some(n => mod(this.guidingPitch,12)==n)) return true;  
@@ -516,7 +516,7 @@ export class ChordModel {
   }
 
   /**
-  * checks if minor chord has the two seventh
+  * checks if minor chord has the two Thirteenth
   */
   willHaveBothThirteenth(currentNote:number,currentDiag:DiagramType):boolean{
 
@@ -531,6 +531,23 @@ export class ChordModel {
     else 
       return false;
   }
+
+  /**
+  * checks if minor chord has major seventthe two Thirteenth
+  */
+ willHaveBothSeventhThirteenth(currentNote:number,currentDiag:DiagramType):boolean{
+
+  var isMajorSeventh:boolean=mod(currentNote-this.keyid,12)==11;
+  var isMinorThirteeth:boolean=mod(currentNote-this.keyid,12)==8;
+  //check i
+  var hasMajorSeventh:boolean=currentDiag.notes.some(e=> mod(e.note-this.keyid,12)==11);
+  var hasMinorThirteeth:boolean=currentDiag.notes.some(e=> mod(e.note-this.keyid,12)==8);
+
+  if( (isMajorSeventh && hasMinorThirteeth) || (isMinorThirteeth &&hasMajorSeventh) )
+    return true
+  else 
+    return false;
+}
 
    /**
   * checks if the stretch is not too high
@@ -570,7 +587,6 @@ export class ChordModel {
   */
   innerFindChorDiagrams(mandatory:Array<number>,possible:Array<number>,itString:number,currentDiag:DiagramType,result:DiagramType[]){
 
-
     var startfrette:number=this.openStrings?0:1;
 
     if(this.stringDispo[this.chordage[itString].Id])
@@ -608,7 +624,7 @@ export class ChordModel {
 
         if(indexP != -1 && this.willHaveBothSeventh(currentNote,currentDiag)) continue ;
         if(indexP != -1 && this.willHaveBothThirteenth(currentNote,currentDiag)) continue ;
-
+        if(indexP != -1 && this.willHaveBothSeventhThirteenth(currentNote,currentDiag)) continue ;
 
         if(indexM>-1 || indexP>-1 )// la note peut faire partie de l'accord en construction
         { 

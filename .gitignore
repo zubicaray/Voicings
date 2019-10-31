@@ -6,10 +6,10 @@ node_modules/
 platforms/
 plugins/
 www/
-run.sh
 .sourcemaps/
 vscodeJGV.code-workspace
 src/*/*/*.js*
 src/assets/midi/npm-debug.log
 JazzGuitarVoicings.apk
-my-release-key.keystore
+documentation
+keystore.jks

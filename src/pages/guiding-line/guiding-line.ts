@@ -271,7 +271,9 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     return canLeave
   }
 
-   async openModal(){
+  // remove the " async openModal(){"
+  // otherwise selected chordds are not updated"
+  openModal(){
 
       this.presentModal();     
       this.selectedChords=[];  
@@ -288,7 +290,7 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
 
   presentModal(): Promise<boolean>{
     
-    var data = { settings : this.settings,chords: this.chords};
+    var data = { settings : this.settings,chords: this.chords,selectedChords:this.selectedChords};
 
     var modalPage = this.modalCtrl.create(ChordFramePage,data,{enableBackdropDismiss:false});
     return modalPage.present(); 

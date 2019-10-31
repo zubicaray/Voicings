@@ -58,6 +58,14 @@ export class EditVoicingPage extends LoadingCtrlPage {
      alertPopup.present();
   }
 
+
+
+	isSelectedChord(i:number):string{
+
+		if( i>=this.settings.chordRangeForLine.begin && i<=this.settings.chordRangeForLine.end)
+		return  '#F0E68C'; else return 'white';
+
+	} 
 	changeView(){
 		this.editView=!this.editView;
 	}

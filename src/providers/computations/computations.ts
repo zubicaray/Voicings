@@ -182,7 +182,7 @@ export class ComputationProvider {
 
 		var beginningNote:number;	
 
-		var oNoteList:{pitch:number,key:string,sharp:boolean,label:string}[]=OctavesNotes;
+		var oNoteList:{pitch:number,key:string,label:string}[]=OctavesNotes;
 
 
 		let sortedStrings=Chordage.sort();

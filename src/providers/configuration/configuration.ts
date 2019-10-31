@@ -84,42 +84,42 @@ export const Chordage:number[]=[52,57,62,67,71,76];
 /**
 * all notes with their corresponding pitch
 */
-export const OctavesNotes:{pitch:number,key:string,sharp:boolean,label:string}[]=[
+export const OctavesNotes:{pitch:number,key:string,label:string}[]=[
 
-	{pitch:48,key:'C',sharp:false, label:'C3'},{pitch:49,key:'C',sharp:true, label:'Db3'},
-	{pitch:50,key:'D',sharp:false, label:'D3'},{pitch:51,key:'D',sharp:true, label:'Eb3'},
-	{pitch:52,key:'E',sharp:false, label:'E3'},{pitch:53,key:'F',sharp:false, label:'F3'},
-	{pitch:54,key:'F',sharp:true, label:'Gb3'},{pitch:55,key:'G',sharp:false, label:'G3'},
-	{pitch:56,key:'G',sharp:true, label:'Ab3'},{pitch:57,key:'A',sharp:false, label:'A3'},
-	{pitch:58,key:'A',sharp:true, label:'Bb3'},{pitch:59,key:'B',sharp:false, label:'B3'},
+	{pitch:48,key:'C', label:'C3'},{pitch:49,key:'C', label:'Db3'},
+	{pitch:50,key:'D', label:'D3'},{pitch:51,key:'D', label:'Eb3'},
+	{pitch:52,key:'E', label:'E3'},{pitch:53,key:'F', label:'F3'},
+	{pitch:54,key:'F', label:'Gb3'},{pitch:55,key:'G', label:'G3'},
+	{pitch:56,key:'G', label:'Ab3'},{pitch:57,key:'A', label:'A3'},
+	{pitch:58,key:'A', label:'Bb3'},{pitch:59,key:'B', label:'B3'},
 
-	{pitch:60,key:'C',sharp:false, label:'C4'},{pitch:61,key:'C',sharp:true, label:'Db4'},
-	{pitch:62,key:'D',sharp:false, label:'D4'},{pitch:63,key:'D',sharp:true, label:'Eb4'},
-	{pitch:64,key:'E',sharp:false, label:'E4'},{pitch:65,key:'F',sharp:false, label:'F4'},
-	{pitch:66,key:'F',sharp:true, label:'Gb4'},{pitch:67,key:'G',sharp:false, label:'G4'},
-	{pitch:68,key:'G',sharp:true, label:'Ab4'},{pitch:69,key:'A',sharp:false, label:'A4'},
-	{pitch:70,key:'A',sharp:true, label:'Bb4'},{pitch:71,key:'B',sharp:false, label:'B4'},
+	{pitch:60,key:'C', label:'C4'},{pitch:61,key:'C', label:'Db4'},
+	{pitch:62,key:'D', label:'D4'},{pitch:63,key:'D', label:'Eb4'},
+	{pitch:64,key:'E', label:'E4'},{pitch:65,key:'F', label:'F4'},
+	{pitch:66,key:'F', label:'Gb4'},{pitch:67,key:'G', label:'G4'},
+	{pitch:68,key:'G', label:'Ab4'},{pitch:69,key:'A', label:'A4'},
+	{pitch:70,key:'A', label:'Bb4'},{pitch:71,key:'B', label:'B4'},
 	
-	{pitch:72,key:'C',sharp:false, label:'C5'},{pitch:73,key:'C',sharp:true, label:'Db5'},
-	{pitch:74,key:'D',sharp:false, label:'D5'},{pitch:75,key:'D',sharp:true, label:'Eb5'},
-	{pitch:76,key:'E',sharp:false, label:'E5'},{pitch:77,key:'F',sharp:false, label:'F5'},
-	{pitch:78,key:'F',sharp:true, label:'Gb5'},{pitch:79,key:'G',sharp:false, label:'G5'},
-	{pitch:80,key:'G',sharp:true, label:'Ab5'},{pitch:81,key:'A',sharp:false, label:'A5'},
-	{pitch:82,key:'A',sharp:true, label:'Bb5'},{pitch:83,key:'B',sharp:false, label:'B5'},
+	{pitch:72,key:'C', label:'C5'},{pitch:73,key:'C', label:'Db5'},
+	{pitch:74,key:'D', label:'D5'},{pitch:75,key:'D', label:'Eb5'},
+	{pitch:76,key:'E', label:'E5'},{pitch:77,key:'F', label:'F5'},
+	{pitch:78,key:'F', label:'Gb5'},{pitch:79,key:'G', label:'G5'},
+	{pitch:80,key:'G', label:'Ab5'},{pitch:81,key:'A', label:'A5'},
+	{pitch:82,key:'A', label:'Bb5'},{pitch:83,key:'B', label:'B5'},
 	
-	{pitch:84,key:'C',sharp:false, label:'C6'},{pitch:85,key:'C',sharp:true, label:'Db6'},
-	{pitch:86,key:'D',sharp:false, label:'D6'},{pitch:87,key:'D',sharp:true, label:'Eb6'},
-	{pitch:88,key:'E',sharp:false, label:'E6'},{pitch:89,key:'F',sharp:false, label:'F6'},
-	{pitch:90,key:'F',sharp:true, label:'Gb6'},{pitch:91,key:'G',sharp:false, label:'G6'},
-	{pitch:92,key:'G',sharp:true, label:'Ab6'},{pitch:93,key:'A',sharp:false, label:'A6'},
-	{pitch:94,key:'A',sharp:true, label:'Bb6'},{pitch:95,key:'B',sharp:false, label:'B6'},
+	{pitch:84,key:'C', label:'C6'},{pitch:85,key:'C', label:'Db6'},
+	{pitch:86,key:'D', label:'D6'},{pitch:87,key:'D', label:'Eb6'},
+	{pitch:88,key:'E', label:'E6'},{pitch:89,key:'F', label:'F6'},
+	{pitch:90,key:'F', label:'Gb6'},{pitch:91,key:'G', label:'G6'},
+	{pitch:92,key:'G', label:'Ab6'},{pitch:93,key:'A', label:'A6'},
+	{pitch:94,key:'A', label:'Bb6'},{pitch:95,key:'B', label:'B6'},
 	
-	{pitch:96,key:'C',sharp:false, label:'C7'},{pitch:97,key:'C',sharp:true, label:'Db7'},
-	{pitch:98,key:'D',sharp:false, label:'D7'},{pitch:99,key:'D',sharp:true, label:'Eb7'},
-	{pitch:100,key:'E',sharp:false, label:'E7'},{pitch:101,key:'F',sharp:false, label:'F7'},
-	{pitch:102,key:'F',sharp:true, label:'Gb7'},{pitch:103,key:'G',sharp:false, label:'G7'},
-	{pitch:104,key:'G',sharp:true, label:'Ab7'},{pitch:105,key:'A',sharp:false, label:'A7'},
-	{pitch:106,key:'A',sharp:true, label:'Bb7'},{pitch:107,key:'B',sharp:false, label:'B7'}
+	{pitch:96,key:'C', label:'C7'},{pitch:97,key:'C', label:'Db7'},
+	{pitch:98,key:'D', label:'D7'},{pitch:99,key:'D', label:'Eb7'},
+	{pitch:100,key:'E', label:'E7'},{pitch:101,key:'F', label:'F7'},
+	{pitch:102,key:'F', label:'Gb7'},{pitch:103,key:'G', label:'G7'},
+	{pitch:104,key:'G', label:'Ab7'},{pitch:105,key:'A', label:'A7'},
+	{pitch:106,key:'A', label:'Bb7'},{pitch:107,key:'B', label:'B7'}
 ];	
 /**
 * type for chord settings
@@ -175,8 +175,8 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 	{
 		name:"diminished",
 		chords:[
-			{ name:"dim",   mandatory:[3,6,9],  natural:[],      modern:[]},
-			{ name:"min75b",mandatory:[3,6,10], natural:[1,8],   modern:[]}         
+			{ name:"dim",   mandatory:[3,6,9],  natural:[0],      modern:[]},
+			{ name:"min75b",mandatory:[3,6,10], natural:[0,1,8],   modern:[]}         
 		]
 	}
 ];
