@@ -49,14 +49,14 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		inSong.chords.forEach(function(element) {
 
 			song=
-			{songName:inSong.songName,chords:[],scaleNotesId:inSong.scaleNotesId,scaleNotes:inSong.scaleNotes,settings:inSong.settings};
+			{songName:inSong.songName,chords:[],ScaleNotesId:inSong.ScaleNotesId,ScaleNotes:inSong.ScaleNotes,settings:inSong.settings};
 
 			inSong.chords.forEach(function(element) {
 
 				var chord:ChordModel= new ChordModel(
 					element.Id, 
 					element.keyid,
-					element.scaleNotes,						        
+					element.ScaleNotes,						        
 					element.idFamily,
 					element.idtype,
 					element.idDiag, element.idDiag_Y,
@@ -84,7 +84,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		//debugger
 		
 		//console.log(this.storage)
-		//this.storage.remove("VoicingsList");
+		this.storage.remove("VoicingsList");
 		this.storage.get("VoicingsList").then( 
 
 			list => {
@@ -101,9 +101,9 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				else{
 					var lVL:any=[];
 					list.forEach(songRes=> {
-
-						var song:{songName:string,chords:ChordModel[],settings:Settings}=
-						{songName:songRes.songName,chords:[],settings:songRes.settings};
+						//debugger
+						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:number[],settings:Settings}=
+						{songName:songRes.songName,chords:[],ScaleNotesId:songRes.ScaleNotesId,ScaleNotes:songRes.ScaleNotes,settings:songRes.settings};
 
 						songRes.chords.forEach(function(element) {
 
@@ -187,7 +187,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				handler: data => {
 				
 					
-					var newSong :SongType= {songName:"",chords:[],scaleNotes:[],scaleNotesId:0,settings:DEFAULT_SETTINGS};
+					var newSong :SongType= {songName:"",chords:[],ScaleNotes:[],ScaleNotesId:0,settings:DEFAULT_SETTINGS};
 
 					
 					if(this.validation(data.Name,newSong)){
@@ -200,7 +200,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 							songVoicings: newSong
 						});
 
-						this.navCtrl.push(AddingChordPage, { chords: newSong.chords,ScaleNotes: scaleNotes	 });
+						this.navCtrl.push(AddingChordPage, { chords: newSong.chords,ScaleNotes: ScaleNotes	 });
 						*/
 					}
 					

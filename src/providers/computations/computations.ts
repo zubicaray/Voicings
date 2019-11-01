@@ -172,7 +172,7 @@ export class ComputationProvider {
 
 
 	/**
-	*   complexe algorith:
+	*   complex algorithm:
 	*	find all octaves possible of the guiding pitches
 	*	according to each chord settings 
 	*/

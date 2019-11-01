@@ -37,7 +37,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 		this.songName=Voicings.songName;
 		this.chords=Voicings.chords;
 		this.settings=Voicings.settings; 
-		this.ScaleNotes=Voicings.scaleNotes;
+		this.ScaleNotes=Voicings.ScaleNotes;
 
 	}
 
@@ -124,6 +124,12 @@ export class EditVoicingPage extends LoadingCtrlPage {
 
 		for(var i:number = 0; i < this.chords.length; i++) {
 			if(this.chords[i] == chord){
+
+
+				if( i>=this.settings.chordRangeForLine.begin && i<=this.settings.chordRangeForLine.end)
+				{
+					this.settings.chordRangeForLine.end--
+				}
 				this.chords.splice(i, 1);
 			}
 		}

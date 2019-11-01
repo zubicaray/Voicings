@@ -37,7 +37,7 @@ export class ChordModel {
   modern:number[]=[];
   pitch:number=0;
   /** notes of the tune scale */
-  private ScaleNotes:string[]; // ""
+  //private ScaleNotes:string[]; // ""
 
   private errorMsg:string;
   
@@ -76,7 +76,7 @@ export class ChordModel {
   constructor(    
     public Id:number, 
     public keyid:number,
-    public scaleNotes:string[],
+    public ScaleNotes:string[],
     public idFamily:number,
     public idtype:number,
     public idDiag:number,
@@ -96,7 +96,7 @@ export class ChordModel {
     this.maxStretch= maxStretch== null ? 4 :maxStretch;
     this.allowOctaves= allowOctaves== null ? false :allowOctaves;
     idDiag_Y=0;
-    this.ScaleNotes=scaleNotes
+    
     this.init();  
 
   }
@@ -485,6 +485,11 @@ export class ChordModel {
   * Tells if diagrams seeking  has to stop
   */
   hasToStop(currentDiag:DiagramType,itString:number,mandatory:number[],currentPitch:number):boolean{
+
+    if(currentDiag.notes.length==4){
+     
+      return true;
+    }
 
     if(currentDiag.guidingString==-1 && this.guidingPitch>currentPitch){
       // comme les cordes suivantes sont encore plus graves

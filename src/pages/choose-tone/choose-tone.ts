@@ -21,8 +21,8 @@ import { EditVoicingPage}  from    '../edit-voicing/edit-voicing'
 
       this.Keys=Keys;
       this.Voicings = navParams.get('songVoicings');
-      this.ScaleNotes = this.Voicings.scaleNotes;
-      this.ScaleKeyId = this.Voicings.scaleNotesId;
+      this.ScaleNotes = this.Voicings.ScaleNotes;
+      this.ScaleKeyId = this.Voicings.ScaleNotesId;
       if(this.ScaleNotes.length>0) this.isNew=false;
       
 
@@ -30,14 +30,14 @@ import { EditVoicingPage}  from    '../edit-voicing/edit-voicing'
  	public closeModal(key:number){
 
     if(isBemol(key)){
-      this.Voicings.scaleNotes=Keys;
+      this.Voicings.ScaleNotes=Keys;
     }
     else
     {
-      this.Voicings.scaleNotes=SharpKeys;
+      this.Voicings.ScaleNotes=SharpKeys;
     }
-    this.Voicings.scaleNotesId=key;
-    this.Voicings.chords.forEach(c=>c.setScaleNotes(this.Voicings.scaleNotes))
+    this.Voicings.ScaleNotesId=key;
+    this.Voicings.chords.forEach(c=>c.setScaleNotes(this.Voicings.ScaleNotes))
 
     this.viewCtrl.dismiss();
     this.navCtrl.push(EditVoicingPage, {
@@ -45,7 +45,7 @@ import { EditVoicingPage}  from    '../edit-voicing/edit-voicing'
     });
 
     if(this.isNew) 
-      this.navCtrl.push(AddingChordPage, { chords: this.Voicings.chords,ScaleNotes: this.Voicings.scaleNotes	 });
+      this.navCtrl.push(AddingChordPage, { chords: this.Voicings.chords,ScaleNotes: this.Voicings.ScaleNotes	 });
 	}
 
  	ionViewDidLoad() {

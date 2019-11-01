@@ -19,6 +19,15 @@
 	<ion-slides pager="true" style="height: 100%; align-items: flex-start">
 		<ion-slide style=" font-size:20px">
 
+			<ion-item >
+					<ion-label>{{ 'Chord size:' | translate }} {{settings.chordSize}}</ion-label>
+					<ion-range min="3" max="6" [(ngModel)]="settings.chordSize" color="secondary">
+						<ion-label range-left>3</ion-label>
+						<ion-label range-right>6</ion-label>
+					</ion-range>
+			</ion-item>
+					
+
 			<ion-item  style="text-align: center  ">
 				<ion-label  color="black" style=" margin-left: 15px">{{ 'Beginning chord:' | translate }}</ion-label>
 				<ion-label  color="black" style=" margin-left: 15px" (click)="openModal(true)">
@@ -32,7 +41,7 @@
 						{{ chords[settings.chordRangeForLine.end].getFullName() }}
 				</ion-label>					
 			</ion-item>	
-				
+		
 						
 			<div class="div-item-inner "  >
 

@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 export class ChordagePage {
 
 	Chordage:number[]=[];
-	OctavesNotes:{pitch:number,key:string,sharp:boolean,label:string}[]=OctavesNotes;
+	OctavesNotes:{pitch:number,key:string,label:string}[]=OctavesNotes;
   	constructor(
   		public navCtrl: NavController, private storage: Storage,public navParams: NavParams/*,
 		private TP: TranslationProvider*/) {
