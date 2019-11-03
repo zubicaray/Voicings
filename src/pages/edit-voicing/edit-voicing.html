@@ -25,16 +25,19 @@
 
 		<ion-fab-list side="right">				
 			<button ion-fab style="background-color:orange;color:white"  (click)="playVoicings()"><ion-icon name="play"></ion-icon></button>	
-			<button ion-fab   style="background-color:orange;color:white"   (click)="changeView()" >
-				<ion-icon [name]="!editView ? 'ios-build' : 'md-eye'"></ion-icon>
-			</button>
+			<button ion-fab style="background-color:#c4b852;color:white"  (click)="playSelectedVoicings()"><ion-icon name="play"></ion-icon></button>	
+			
 		</ion-fab-list>
 
 		<ion-fab-list side="top"  >
+			<button ion-fab   style="background-color:orange;color:white"   (click)="changeView()" >
+					<ion-icon [name]="!editView ? 'ios-build' : 'md-eye'"></ion-icon>
+			</button>
 			<button ion-fab  style="background-color:orange;color:white"   (click)="setPlayer()"><i class="fa fa-music fa-1x" ></i></button>			
 		</ion-fab-list>
 
 		<ion-fab-list side="left"  >
+			
 			<button ion-fab  style="background-color:orange;color:white"   (click)="add($event)"><ion-icon name="add"></ion-icon></button>
 			<button ion-fab  style="background-color:orange;color:white"   (click)="order()" ><i class="fa fa-sort fa-2x" ></i></button>						
 		</ion-fab-list>
@@ -78,7 +81,7 @@
 
 							<div id="IdGuiding"  style="color:black;" class="cookie20">
 								{{ 'Guiding note:' | translate }} 
-								<span style="color:green" class="cookie20" >{{chord.printGuidingPitch()}}</span>
+								<span style="color:red" class="cookie20" >{{chord.printGuidingPitch()}}</span>
 							</div>
 							
 						</div>

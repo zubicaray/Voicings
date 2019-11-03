@@ -134,20 +134,20 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 
 	{	name:"major",
 		chords:[
-			{ name:"maj",    mandatory:[4],      natural:[0,7,2,9,11], modern:[5,6,8]},
+			{ name:"major",    mandatory:[4],      natural:[0,7,2,9,11], modern:[5,6,8]},
 			{ name:"6",      mandatory:[4,9],    natural:[0,7,2,11],   modern:[5,6,8]},
 			{ name:"69",     mandatory:[2,4,9],  natural:[0,7,11],     modern:[5,6,8]},
-			{ name:"maj7",   mandatory:[4,11],   natural:[0,7,2,9],    modern:[5,6,8]}
+			{ name:"Δ",   mandatory:[4,11],   natural:[0,7,2,9],    modern:[5,6,8]}
 	]},
 	{
 		name:"minor",
 		chords:[
 			
-			{ name:"min",    mandatory:[3],      natural:[0,2,7,5,8,9,10,11], modern:[6]},
-			{ name:"min6",   mandatory:[3,9],    natural:[0,7,2,10],     modern:[5,6,8]},
-			{ name:"min69",  mandatory:[2,3,9],  natural:[0,7,10],       modern:[5,6,8]},
-			{ name:"min7",   mandatory:[3,10],   natural:[0,7,2,5,9],    modern:[6,8]},
-			{ name:"min maj7",   mandatory:[3,11],   natural:[0,7,2,5,9],    modern:[6,8]}
+			{ name:"-",    mandatory:[3],      natural:[0,2,7,5,8,9,10,11], modern:[6]},
+			{ name:"-6",   mandatory:[3,9],    natural:[0,7,2,10],     modern:[5,6,8]},
+			{ name:"-69",  mandatory:[2,3,9],  natural:[0,7,10],       modern:[5,6,8]},
+			{ name:"-7",   mandatory:[3,10],   natural:[0,7,2,5,9],    modern:[6,8]},
+			{ name:"- Δ",   mandatory:[3,11],   natural:[0,7,2,5,9],    modern:[6,8]}
 		]
 	},
 	
@@ -155,7 +155,7 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 		name:"dominant",
 		chords:[
 			{ name:"7",     mandatory:[4,10],   natural:[0,2,5,7,9],   	modern:[1,3,6,8]},
-			{ name:"7(min)",mandatory:[4,10],   natural:[0,1,5,7,8],   	modern:[3,6]},
+			{ name:"7(-)",mandatory:[4,10],   natural:[0,1,5,7,8],   	modern:[3,6]},
 			{ name:"13",    mandatory:[4,9,10], natural:[0,2,5,7],   		modern:[1,3,6,8]},
 			{ name:"9",     mandatory:[2,4,10], natural:[0,5,7],     		modern:[1,3,6,8]},
 			{ name:"9,13",  mandatory:[2,4,9,10],natural:[0,2,5,7],   	modern:[1,3,6,8]},
@@ -177,8 +177,8 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 	{
 		name:"diminished",
 		chords:[
-			{ name:"dim",   mandatory:[3,6,9],  natural:[0],      modern:[]},
-			{ name:"min75b",mandatory:[3,6,10], natural:[0,1,8],   modern:[]}         
+			{ name:"◯",   mandatory:[3,6,9],  natural:[0],      modern:[]},
+			{ name:"Ø",mandatory:[3,6,10], natural:[0,1,8],   modern:[]}         
 		]
 	}
 ];

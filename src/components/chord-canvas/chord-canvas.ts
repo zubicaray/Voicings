@@ -135,7 +135,11 @@ export class ChordCanvas implements OnChanges{
 		var stringOffset=intervalW*coeffStringOffset;
 		var noteOffset=intervalH*1.5;
 		context.font = fontSize+'pt Calibri';
-		context.fillText(this.AtoR(lowerFret), 0, intervalH*1.8);
+		var romanNumber=this.AtoR(lowerFret)
+		context.fillText(romanNumber, 0, intervalH*1.8);
+		var romanOffset=0
+		if(romanNumber.length>3)
+			romanOffset=4;
 
 		var X,Y:number;
 		var radius=intervalW*0.4;
@@ -145,8 +149,8 @@ export class ChordCanvas implements OnChanges{
 		var i:number; 
 		for (i = 0; i < nbFret; i++) {
 			Y = intervalH+i*intervalH;
-			context.moveTo(stringOffset, Y);
-			context.lineTo(intervalW*coeffIntervalW, Y);
+			context.moveTo(stringOffset+romanOffset, Y);
+			context.lineTo(intervalW*coeffIntervalW+romanOffset, Y);
 			context.lineWidth = 3;
 			context.lineCap = 'round';
 			context.strokeStyle = '#C0C0C0';
@@ -157,7 +161,7 @@ export class ChordCanvas implements OnChanges{
 		context.beginPath();
 		// draw strings
 		for (i = 0; i < 6; i++) {
-			X = stringOffset+i*intervalW;     
+			X = stringOffset+romanOffset+i*intervalW;     
 			context.moveTo(X, intervalH-5);
 			context.lineTo(X, canvas.height);
 			context.lineWidth = 1;
@@ -173,7 +177,7 @@ export class ChordCanvas implements OnChanges{
 		for (i = 0; i < 6; i++) {
 			if( this.diagram.frets[i] != null){
 				context.beginPath();
-				X = stringOffset+i*intervalW; 
+				X = stringOffset+romanOffset+i*intervalW; 
 
 				Y = noteOffset + (this.diagram.frets[i]-lowerFret )*intervalH;
 

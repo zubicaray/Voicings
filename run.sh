@@ -11,12 +11,12 @@ function build {
 }
 
 echo '**************************************************************************************'
-echo "Choisissez l'opération"
+echo "Choose operation"
 echo '**************************************************************************************'
 select objet in "CLEAN" "BUILD" "RUN";
 do
     case $objet in 
-        "CLEAN")  cordova build android 	break;;
+        "CLEAN")  cordova clean android ;	break;;
         "BUILD")  build	break;;
         "RUN")  ionic serve --no-interactive -v   break;;			            
     esac

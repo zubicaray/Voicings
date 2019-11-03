@@ -84,7 +84,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		//debugger
 		
 		//console.log(this.storage)
-		this.storage.remove("VoicingsList");
+		//this.storage.remove("VoicingsList");
 		this.storage.get("VoicingsList").then( 
 
 			list => {

@@ -91,7 +91,34 @@ export class EditVoicingPage extends LoadingCtrlPage {
 
 
 	}
+	playSelectedVoicings(){
 
+		if(!this.toolsProvider.isLoaded)
+	      	this.alert(this.TP.tr('Instruments are loading'),this.TP.tr("Wait few seconds and try again."));
+		else
+		if ( this.settings.chordRangeForLine.begin== -1){
+			
+			this.alert(this.TP.tr('No chords selected'),this.TP.tr("Set a guiding line first."));
+		}
+		else{	
+			let selectedChords=[];  
+   
+			for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
+			{
+			  selectedChords.push(this.chords[i]);
+			}
+		
+			var ptiches:string[][]=selectedChords.map(chord=>chord.getCanvasPitches());
+			this.toolsProvider.playProgression(ptiches,this.settings.player);
+
+		}
+		/*
+		if(this.chords.some(c=>c.diagrams.length==0)){
+			this.presentToast(this.TP.tr("No diagram found for some chord."));
+			return;
+		}
+		*/
+	}	
 
 	playVoicings(){
 
@@ -129,6 +156,11 @@ export class EditVoicingPage extends LoadingCtrlPage {
 				if( i>=this.settings.chordRangeForLine.begin && i<=this.settings.chordRangeForLine.end)
 				{
 					this.settings.chordRangeForLine.end--
+					if(this.settings.chordRangeForLine.end<this.settings.chordRangeForLine.begin)
+					{ // no more selected chords for guiding line
+						this.settings.chordRangeForLine.end=-1;
+						this.settings.chordRangeForLine.begin=-1;
+					}
 				}
 				this.chords.splice(i, 1);
 			}

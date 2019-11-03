@@ -38,8 +38,11 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
 
     this.settings=navParams.get('settings');
 
-    if(this.settings.chordRangeForLine.end == -1)
+    if(this.settings.chordRangeForLine.end == -1){
       this.settings.chordRangeForLine.end=this.chords.length-1;
+      this.settings.chordRangeForLine.begin=0;
+    }
+     
 
     if(isNaN(this.settings.chordRangeForLine.end)){
       this.settings.chordRangeForLine.end=this.chords.length-1;
@@ -156,6 +159,7 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     settings.string1,settings.string2,settings.string3,
     settings.string4,settings.string5,settings.string6];
     
+    this.updateSelected();
   
     // paramètre mélodique
     this.selectedChords.forEach(c =>{
@@ -271,19 +275,22 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     return canLeave
   }
 
+  private updateSelected(){
+    this.selectedChords=[];  
+   
+    for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
+    {
+      this.selectedChords.push(this.chords[i]);
+    }
+  }
+
   // remove the " async openModal(){"
   // otherwise selected chordds are not updated"
   openModal(){
 
       this.presentModal();     
-      this.selectedChords=[];  
-    
+      this.updateSelected();
      
-   
-      for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
-      {
-        this.selectedChords.push(this.chords[i]);
-      }
     
   }
  
