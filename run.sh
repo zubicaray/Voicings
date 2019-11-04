@@ -18,7 +18,7 @@ do
     case $objet in 
         "CLEAN")  cordova clean android ;	break;;
         "BUILD")  build	break;;
-        "RUN")  ionic serve --no-interactive -v   break;;			            
+        "RUN")  ionic serve --lab --no-interactive -v   break;;			            
     esac
     break    
 done

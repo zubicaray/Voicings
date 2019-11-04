@@ -1,6 +1,6 @@
 
 A CREER:
-
+* utiliser le champ "chord size" dan guiding line page
 * thread pour midi
 * sus 2 et 4 chords
 * accordage par chanson

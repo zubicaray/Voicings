@@ -17,35 +17,30 @@
 	
 
 	<ion-slides pager="true" style="height: 100%; align-items: flex-start">
-		<ion-slide style=" font-size:20px">
+		<ion-slide style=" font-size:15px">
 
-			<ion-item >
-					<ion-label>{{ 'Chord size:' | translate }} {{settings.chordSize}}</ion-label>
-					<ion-range min="3" max="6" [(ngModel)]="settings.chordSize" color="secondary">
-						<ion-label range-left>3</ion-label>
-						<ion-label range-right>6</ion-label>
-					</ion-range>
-			</ion-item>
+		
 					
-
-			<ion-item  style="text-align: center  ">
-				<ion-label  color="black" style=" margin-left: 15px">{{ 'Beginning chord:' | translate }}</ion-label>
-				<ion-label  color="black" style=" margin-left: 15px" (click)="openModal(true)">
-					{{ chords[settings.chordRangeForLine.begin].getFullName() }}
-				</ion-label>				
-			</ion-item>	
+			<div class="div-item-inner "  >
+				<ion-label style="text-align: center;color:crimson">{{ 'Select chords set:' | translate }}</ion-label>
+				<ion-item  style="text-align: center  "  (click)="openModal()">
+					<ion-label  color="black" style=" margin-left: 0px">{{ 'Starts at:' | translate }}</ion-label>
+					<ion-label  style=" margin-left: 0px">
+							<span style="color:rgb(4, 0, 255)" class="cookie30" >{{ chords[settings.chordRangeForLine.begin].getFullName() }}</span>
+					</ion-label>
+					<ion-label  color="black"  style=" margin-left: 0px">{{ 'Ends at:' | translate }}</ion-label>
+					<ion-label   style=" margin-left: 0px">
+							<span style="color:rgb(4, 0, 255)" class="cookie30" >{{ chords[settings.chordRangeForLine.end].getFullName() }}</span>
+					</ion-label>					
+				</ion-item>	
+			</div>
+			
 		
-			<ion-item style="text-align: center">
-				<ion-label  color="black"  style=" margin-left: 15px">{{ 'Ending chord:' | translate }}</ion-label>
-				<ion-label  color="black" style=" margin-left: 15px" (click)="openModal(false)">
-						{{ chords[settings.chordRangeForLine.end].getFullName() }}
-				</ion-label>					
-			</ion-item>	
-		
+			
 						
 			<div class="div-item-inner "  >
 
-				<ion-label style="text-align: center">{{ 'Set the guiding melody place:' | translate }}</ion-label>
+				<ion-label style="text-align: center;color:crimson">{{ 'Set the guiding melody place:' | translate }}</ion-label>
 				<ion-list radio-group [(ngModel)]="settings.melodyType"   >
 					<ion-item>
 						<ion-label>{{ 'on top' | translate }}</ion-label>
@@ -68,7 +63,7 @@
 				</ion-item>
 			
 				<ion-item >
-					<ion-label>{{ 'max tone step for line:' | translate }} {{settings.toneStep}}</ion-label>
+					<ion-label style="color:crimson">{{ 'max number of hald-tone between notes:' | translate }} {{settings.toneStep}}</ion-label>
 					<ion-range min="0" max="4" [(ngModel)]="settings.toneStep"  (ionChange)="resetGuidingLine()" color="secondary">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>4</ion-label>
@@ -77,24 +72,34 @@
 
 			</div>
 		</ion-slide>
-		<ion-slide style="text-align:center; font-size:25px">
+		<ion-slide style="text-align:center; font-size:25px;color:crimson">
 			
 			<ion-item>
 				<ion-label style="text-align:center">{{ 'Use open strings' | translate }}</ion-label>
 				<ion-toggle  [(ngModel)]="settings.openStrings "></ion-toggle>
 			</ion-item>
 			<ion-item >
-					<ion-label style="text-align:center">{{ 'allow octaves in chords' | translate }}</ion-label>
-					<ion-toggle  [(ngModel)]="settings.allowOctaves"  (ionChange)="consoleLog('change')"></ion-toggle>
+				<ion-label style="text-align:center">{{ 'allow octaves in chords' | translate }}</ion-label>
+				<ion-toggle  [(ngModel)]="settings.allowOctaves"  (ionChange)="consoleLog('change')"></ion-toggle>
+						
+			</ion-item>
+			<ion-item>
+					<ion-label style="text-align:center" color="black" >{{ 'set finger max stretch' | translate }}</ion-label>
+					<ion-select [(ngModel)]="settings.chordStretch" interface="popover" >
+						<ion-option style="width:50% " *ngFor="let strech  of [0,1,2,3,4,5,6,7]" [value] = "strech" >{{strech}}</ion-option>
+					</ion-select>
+			</ion-item>
+			<ion-item >
+					<ion-label style="text-align:center" color="black" >
+						{{ "chord's number of notes" | translate }}
+					</ion-label>
+					<ion-select [(ngModel)]="settings.chordSize" interface="popover" >
+						<ion-option style="width:50% " *ngFor="let size  of [3,4,5,6]" [value] = "size" >{{size}}</ion-option>
+					</ion-select>
 			</ion-item>
 
-			<ion-item>
-				<ion-label>{{ 'set max chord stretch:' | translate }} {{settings.chordStretch}}</ion-label>
-				<ion-range min="0" max="7" [(ngModel)]="settings.chordStretch"  color="secondary">
-					<ion-label range-left>0</ion-label>
-					<ion-label range-right>7</ion-label>
-				</ion-range>
-			</ion-item>
+		
+
 			<ion-item>
 				<ion-label style="text-align:center">{{ 'use sixth string' | translate }} </ion-label>
 				<ion-toggle  [(ngModel)]="settings.string6 "></ion-toggle>
