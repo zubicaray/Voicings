@@ -48,7 +48,7 @@ export class ChordModel {
 
 
   static new(ScaleNotes:string[]):ChordModel{//ChordModel.newEmptyDiagram()
-    return new ChordModel(1,0,ScaleNotes,0,0,0,0,[ ], false, false, 5, 1,0,true,[true,true,true,true,true,true],false);
+    return new ChordModel(1,0,ScaleNotes,0,0,0,0,[ ], false, false, 5, 1,0,true,[true,true,true,true,true,true],false,4);
   }
 
   
@@ -71,6 +71,7 @@ export class ChordModel {
   * @param { number}  guidingPitch pitch of the guiding key 
   * @param { boolean} openStrings if chord can use open strings ( 0 fret)
   * @param { boolean[]} stringDispo  allows to (un)mute strings
+  * @param { number}  chordSize chord's number of notes
   
   */
   constructor(    
@@ -90,6 +91,7 @@ export class ChordModel {
     public openStrings:boolean,
     public stringDispo:boolean[],
     public allowOctaves:boolean,
+    public chordSize:number,
     )
   {
     this.canvas =diagrams.length>0 ?diagrams[idDiag]:undefined;   
@@ -486,7 +488,7 @@ export class ChordModel {
   */
   hasToStop(currentDiag:DiagramType,itString:number,mandatory:number[],currentPitch:number):boolean{
 
-    if(currentDiag.notes.length==4){
+    if(currentDiag.notes.length==this.chordSize){
      
       return true;
     }

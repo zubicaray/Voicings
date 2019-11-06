@@ -129,18 +129,20 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
       settings.string1,settings.string2,settings.string3,
       settings.string4,settings.string5,settings.string6];
 
-      for( let c in chords){
 
-        chords[c].maxStretch=settings.chordStretch;
-        chords[c].openStrings=settings.openStrings;     
-        chords[c].allowOctaves=settings.allowOctaves; 
 
+      this.selectedChords.forEach(c =>{
+        c.melodyType=settings.melodyType
+        c.maxStretch=settings.chordStretch;
+        c.openStrings=settings.openStrings;      
+        c.allowOctaves=settings.allowOctaves; 
+        c.chordSize=settings.chordSize;
+  
         for(let i in activeStrings){
-          chords[c].stringDispo[i]=activeStrings[i];
+          c.stringDispo[i]=activeStrings[i];
         }
-
-
-      }
+  
+      });
     }
       
    }
@@ -167,6 +169,7 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
       c.maxStretch=settings.chordStretch;
       c.openStrings=settings.openStrings;      
       c.allowOctaves=settings.allowOctaves; 
+      c.chordSize=settings.chordSize;
 
       for(let i in activeStrings){
         c.stringDispo[i]=activeStrings[i];

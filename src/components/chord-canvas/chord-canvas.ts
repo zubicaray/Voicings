@@ -24,6 +24,7 @@ export class ChordCanvas implements OnChanges{
 
 	text: string;
 	nativeCanvas:any;
+	height:number;
 
 	constructor() {
 		
@@ -131,6 +132,7 @@ export class ChordCanvas implements OnChanges{
 		// space between two frets
 		var intervalH = canvas.width/nbFret;
 		canvas.height=(Math.max(4,2+stretch))*intervalH;
+		this.height=canvas.height
 
 		var stringOffset=intervalW*coeffStringOffset;
 		var noteOffset=intervalH*1.5;
@@ -139,7 +141,7 @@ export class ChordCanvas implements OnChanges{
 		context.fillText(romanNumber, 0, intervalH*1.8);
 		var romanOffset=0
 		if(romanNumber.length>3)
-			romanOffset=4;
+			romanOffset=5;
 
 		var X,Y:number;
 		var radius=intervalW*0.4;

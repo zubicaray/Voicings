@@ -4,12 +4,14 @@ import { ChordModel} from '../../models/chordModel';
 import { ChordPage}  from    '../chord/chord';
 import { ConfigurationProvider} from    '../../providers/configuration/configuration'
 import { TranslationProvider } from '../../providers/translation/translation';
+import * as cloneDeep from 'lodash/cloneDeep';
 
  @Component({
  	selector: 'page-adding-chord',
  	templateUrl: 'adding-chord.html',
  })
  export class AddingChordPage extends ChordPage {
+
 
 	 chords:ChordModel[];
 	 ScaleNotes:string[];
@@ -49,12 +51,13 @@ import { TranslationProvider } from '../../providers/translation/translation';
 		var idtype=this.chord.idtype;
 		var idKey=this.chord.keyid;
 		
-		this.chord=ChordModel.new(this.ScaleNotes);;
-		this.chord.idFamily=idfam;
-		this.chord.idtype=idtype;
-		this.chord.keyid=idKey;
+		var clone = cloneDeep(this.chord);
+		this.chord=clone;
+		//this.chord.idFamily=idfam;
+		//this.chord.idtype=idtype;
+		//this.chord.keyid=idKey;
 		//debugger
-		this.init();
+		//this.init();
 		this.presentToast();
 
 	}

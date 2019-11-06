@@ -3,8 +3,12 @@ page-chord {
 		max-width: 70% !important;
 	}
 
-ion-slide.swiper-slide {
-    align-items: flex-start;
-}
-	
+	ion-slide.swiper-slide {
+		align-items: flex-start;
+	}
+
+	ion-range {
+		max-height: 20px;
+	}
+
 }

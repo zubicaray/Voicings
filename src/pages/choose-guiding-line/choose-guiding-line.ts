@@ -45,7 +45,9 @@ export class ChooseGuidingLinePage extends LoadingCtrlPage {
 
     this.DescendingLines=new Map<number,Map<number,number[][]>>();
   	this.chords = navParams.get('chords');
-  	this.settings=navParams.get('settings');
+    this.settings=navParams.get('settings');
+    
+    
 
     computationProvider.toneStep=this.settings.toneStep;
     this.showLoader(this.TP.tr("Searching for guiding lines ..."));

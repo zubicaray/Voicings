@@ -67,7 +67,9 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					element.melodyType,
 					element.guidingPitch,
 					element.openStrings,
-					element.stringDispo,element.allowOctaves
+					element.stringDispo,
+					element.allowOctaves,
+					element.chordSize
 					);
 
 				song.chords.push(chord);
@@ -95,7 +97,8 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
-						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())
+						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())	,
+						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_triad())
 					];
 				}
 				else{
@@ -123,7 +126,8 @@ export class VoicingsListPage extends LoadingCtrlPage{
 								element.guidingPitch,
 								element.openStrings,
 								element.stringDispo,
-								element.allowOctaves
+								element.allowOctaves,
+								element.chordSize
 								);
 
 							

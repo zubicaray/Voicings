@@ -22,7 +22,7 @@
 
 	<ion-slides style="height: 100%; align-items: flex-start" pager=true>
 				
-		<ion-slide style="text-align:center; font-size:25px">
+		<ion-slide style="text-align:center; font-size:20px">
 			<div class="div-item">
 				<ion-label>{{ 'Key:' | translate }}</ion-label>
 				<ion-grid>
@@ -113,7 +113,7 @@
 
 		<ion-slide style="align-items: flex-start">
 			
-			<div  class="div-item">
+		
 				<ion-item>
 					<ion-label class="small">{{ 'Use open strings:' | translate }}</ion-label>
 					<ion-toggle  [(ngModel)]="chord.openStrings"  ></ion-toggle>
@@ -121,8 +121,16 @@
 				<ion-item >
 					<ion-label class="small">{{ 'allow octaves in chords' | translate }}</ion-label>
 					<ion-toggle  [(ngModel)]="chord.allowOctaves"  ></ion-toggle>
-			</ion-item>
-			</div>
+				</ion-item>
+				<ion-item >
+					<ion-label class="small" color="black" >
+						{{ "chord number of notes" | translate }}
+					</ion-label>
+					<ion-select [(ngModel)]="chord.chordSize" interface="popover" >
+						<ion-option style="width:50% " *ngFor="let size  of [3,4,5,6]" [value] = "size" >{{size}}</ion-option>
+					</ion-select>
+				</ion-item>
+			
 
 			
 
@@ -154,17 +162,15 @@
 				</ion-item>	
 			</div>
 
-
-
-			<div class="div-item">
-				<ion-item>
-					<ion-label class="small">{{ 'set max chord stretch:' | translate }} {{chord.maxStretch}}</ion-label>
-					<ion-range min="0" max="7" [(ngModel)]="chord.maxStretch"  color="secondary">
-						<ion-label class="small"range-left>0</ion-label>
-						<ion-label class="small"range-right>7</ion-label>
-					</ion-range>
-				</ion-item>
-			</div>
+		
+			<ion-item>
+				<ion-label class="small">{{ 'set max chord stretch:' | translate }} {{chord.maxStretch}}</ion-label>
+				<ion-range min="0" max="7" [(ngModel)]="chord.maxStretch"  color="secondary">
+					<ion-label class="small"range-left>0</ion-label>
+					<ion-label class="small"range-right>7</ion-label>
+				</ion-range>
+			</ion-item>
+			
 		</ion-slide>
 
 	</ion-slides>
