@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="zubicaray.music.jgv" version="0.2.24" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="zubicaray.music.jgv" version="0.2.26" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Jazz Guitar Voicings</name>
     <description>An app for building beautifull jazz voicings.</description>
     <author email="zubicaray@gmail.com" href="http://ionicframework.com/">Samuel Zubicaray Perez</author>

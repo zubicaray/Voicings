@@ -156,7 +156,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 				if( i>=this.settings.chordRangeForLine.begin && i<=this.settings.chordRangeForLine.end)
 				{
 					this.settings.chordRangeForLine.end--
-					if(this.settings.chordRangeForLine.end<this.settings.chordRangeForLine.begin)
+					if(this.settings.chordRangeForLine.end<=this.settings.chordRangeForLine.begin)
 					{ // no more selected chords for guiding line
 						this.settings.chordRangeForLine.end=-1;
 						this.settings.chordRangeForLine.begin=-1;

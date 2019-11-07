@@ -44,11 +44,13 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     }
      
 
-    if(isNaN(this.settings.chordRangeForLine.end)){
+    if(isNaN(this.settings.chordRangeForLine.end) || isNaN(this.settings.chordRangeForLine.begin) ){
       this.settings.chordRangeForLine.end=this.chords.length-1;
+      this.settings.chordRangeForLine.begin=0;
     }
     
-    if(isNaN(this.settings.chordRangeForLine.begin)){
+    if(this.settings.chordRangeForLine.begin>=this.chords.length || this.settings.chordRangeForLine.end>=this.chords.length){
+      this.settings.chordRangeForLine.end=this.chords.length-1;
       this.settings.chordRangeForLine.begin=0;
     }
    

@@ -31,8 +31,7 @@
 			<ion-item   *virtualItem="let diag;  let i = index" (click)="chooseDiag($event,i)"  
 			[ngStyle]="{'background-color': chord.idDiag==i? 'orange' : 'white'}"
 			 >
-			 <!-- id="{{ 'diag-' + i }}" !-->
-			
+						
 			<div  class="myCanvas" >				
 				<chord-canvas  [diagram]="diag" [width]=150  ></chord-canvas> 
 			</div>

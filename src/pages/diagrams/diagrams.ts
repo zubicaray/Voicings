@@ -26,10 +26,8 @@ import { ToolsProvider}   from    '../../providers/tools/tools';
  		super(loadingCtrl);
  		this.chord=navParams.get('chord');
 
-		var nbFret=7;
-		var canvasWidth=150
-		var intervalH = canvasWidth/nbFret;
 		
+		//TODO: store this in model
 		this.chord.diagrams.forEach(  (d,idx) =>
 			{
 			
@@ -44,9 +42,7 @@ import { ToolsProvider}   from    '../../providers/tools/tools';
 				
 			}
 		);
-			//205-73= 132
-			//
-		console.log('toto')
+		
  	}
 
  	ionViewDidEnter() {
@@ -71,7 +67,7 @@ import { ToolsProvider}   from    '../../providers/tools/tools';
 		//console.log("this.chord.idDiag_Y:"+this.chord.idDiag_Y)
 
 		 
- 		//this.content.scrollTo(0, event.y+this.chord.idDiag_Y-decalage, 10);
+ 		//this.content.scrollTo(0, this.chord.idDiag_Y-400, 100);
  		this.chord.canvas=this.chord.diagrams[idDiag];
  		var ptiches:string[]=this.chord.getCanvasPitches();
 		this.toolsProvider.playChord(ptiches);

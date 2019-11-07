@@ -15,6 +15,8 @@ export type DiagramType ={
   stretch:number,
   /** stores key id and pitch of all chord notes */
   notes:{note:number,pitch:number}[]
+
+ 
 }
 
 export const GUIDING_NOTE_ON_TOP=1;
@@ -418,7 +420,7 @@ export class ChordModel {
   /** 
   * remove diagrams if a new guiding note has been set
   */
-  checkPossible(){
+  checkPossible():boolean{
     if(this.possibleGuidingNote(this.guidingPitch) ==false)
     {
       delete this.diagrams;
@@ -429,6 +431,26 @@ export class ChordModel {
     }
     return true;
   } 
+  // a corriger
+  private doubledMuted(d:DiagramType):number{
+    // cas exemle 3xx555 A-/G
+    for(var i=0;i<3;i++){
+      if ( 
+        (d.frets[i]!=null && d.frets[i+1]==null && d.frets[i+2]==null)  || 
+        (d.frets[i+1]==null && d.frets[i+2]==null && d.frets[i+3]!=null)  )
+        return 0
+    }
+    //cas exemple  5x5x55 A-7 ou x3x5x5 ou xx5x5x
+    for(var i=0;i<3;i++){
+      if ( 
+        (d.frets[i]!=null && d.frets[i+1]==null && d.frets[i+2]!=null && d.frets[i+3]==null)  
+      )
+        return 1
+    }
+
+  
+      return 2;
+  }
   /** 
   * find chord diagrams
   */
@@ -444,7 +466,8 @@ export class ChordModel {
     {
 
       this.innerFindChorDiagrams(mandatories,this.getNotes(), 0,ChordModel.newEmptyDiagram(),res);
-      res.sort( (a,b) => { return b.notes.length-a.notes.length})
+      //res.sort( (a,b) => { return b.notes.length-a.notes.length})
+      res.sort( (a,b) => { return this.doubledMuted(b)-  this.doubledMuted(a)        } )
 
       if(res.length==0){
         this.errorMsg="Chords undoable, stretch too high. Unmute one string at least.";
@@ -488,8 +511,7 @@ export class ChordModel {
   */
   hasToStop(currentDiag:DiagramType,itString:number,mandatory:number[],currentPitch:number):boolean{
 
-    if(currentDiag.notes.length==this.chordSize){
-     
+    if(currentDiag.notes.length==this.chordSize){     
       return true;
     }
 

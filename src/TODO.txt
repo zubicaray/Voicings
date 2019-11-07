@@ -8,7 +8,7 @@ A CREER:
 
 A AMELIORER:
 
-
+* gestion des accords à 4 mandatory notes en cas de three note chord
 * message sur accords infaisables
 * tir des accords générés: mettre en bas ceux avec 2 muted strings in between
 + ceux qui ne sont pas des renversements sur septième, quinte ou tierce

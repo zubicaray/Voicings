@@ -48,6 +48,19 @@ export class ChordCanvas implements OnChanges{
 	  return min;
 	};
 
+	leftestStringFret(tab:number[]) :number {
+		let res=0
+		for(var i=0;i<tab.length;i++){
+			if(tab[i]!= null && tab[i]!=0) {
+				res=tab[i];
+				break;
+			}
+
+		}
+		
+		return res;
+	  };
+
 	chordMin(tab:number[]) :number {
 	  var min = Math.min.apply(Math, tab.map(function(o) 
 	  {
@@ -91,16 +104,17 @@ export class ChordCanvas implements OnChanges{
 		return str;
 	}
 
-
 	drawChord(){
 
 		var fontSize:number=15;
-		var coeffStringOffset=2.7;
-		var coeffIntervalW=7.7;
+		var coeffStringOffset:number=2.7;
+		var coeffIntervalW:number=7.7;
+		var yOffsetRoman:number=5;
 		if(this.typeDisplay==2){// vue en grille sur EditVoicing.html
 			fontSize=9;
 			coeffStringOffset=2.5	;
 			coeffIntervalW=7.3;
+			yOffsetRoman=2;
 		}
 		
 
@@ -118,7 +132,9 @@ export class ChordCanvas implements OnChanges{
 		if(this.diagram.frets.every(elem=>elem==null) ) return;
 		if(this.diagram.frets.length ==0) return;
 
+		//debugger
 		var lowerFret=this.chordMin(this.diagram.frets);
+		var leftestStringFret=this.leftestStringFret(this.diagram.frets);
 		var higherFret=this.max(this.diagram.frets);
 		//console.log(this.frets);
 		//console.log('lowerFretscope='+lowerFret);
@@ -137,11 +153,11 @@ export class ChordCanvas implements OnChanges{
 		var stringOffset=intervalW*coeffStringOffset;
 		var noteOffset=intervalH*1.5;
 		context.font = fontSize+'pt Calibri';
-		var romanNumber=this.AtoR(lowerFret)
-		context.fillText(romanNumber, 0, intervalH*1.8);
-		var romanOffset=0
+		var romanNumber=this.AtoR(leftestStringFret)//lowerFret+stretch)
+		context.fillText(romanNumber, 0, (2+leftestStringFret-lowerFret)*intervalH-yOffsetRoman);
+		var romanOffset=1
 		if(romanNumber.length>3)
-			romanOffset=5;
+			romanOffset=6;
 
 		var X,Y:number;
 		var radius=intervalW*0.4;
