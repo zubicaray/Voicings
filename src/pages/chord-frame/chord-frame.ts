@@ -71,7 +71,7 @@ export class ChordFramePage {
     for(var i:number =this.settings.chordRangeForLine.begin;i<=this.settings.chordRangeForLine.end;i++)
     {
       this.selectedChords.push(this.chords[i]);
-      console.log("this.selectedChords has "+this.selectedChords.length+ "chords")
+     // console.log("this.selectedChords has "+this.selectedChords.length+ "chords")
     }
     this.viewCtrl.dismiss();
 

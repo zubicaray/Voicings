@@ -13,11 +13,11 @@ import { TranslationProvider } from '../../providers/translation/translation';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { ChooseTonePage } from '../choose-tone/choose-tone';
 
-
-
 @Component({
 	selector: 'page-voicings-list',
-	templateUrl: 'voicings-list.html',
+	templateUrl: 'voicings-list.html'
+
+
 })
 
 
@@ -26,6 +26,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 	VoicingsList:SongType[];
 
 	loading:any;	
+
 
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
@@ -90,15 +91,21 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		this.storage.get("VoicingsList").then( 
 
 			list => {
-				//console.log(list)
+				
 
 				if(  list == null  || list===[] || list.length==0){
+					console.log("loading from config !!")
 					this.VoicingsList=[
+						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_pedal()),
+						
 						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())	,
-						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_triad())
+						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_triads()),						
+						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_bass())
+						
+						
 					];
 				}
 				else{
@@ -134,8 +141,9 @@ export class VoicingsListPage extends LoadingCtrlPage{
 							song.chords.push(chord);
 
 						});
-						
-						//console.log(JSON.stringify(song))
+					
+						//var text=song.songName+"():any { return "+ JSON.stringify(song)    +"\n}\n\n"
+						//console.log( JSON.stringify(song))
 						lVL.push(song);
 
 					});
