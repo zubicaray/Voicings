@@ -1,4 +1,13 @@
 
+
+GIT 
+
+https://levelup.gitconnected.com/fix-password-authentication-github-3395e579ce74
+
+git remote set-url origin  https://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@github.com/zubicaray/Voicings.git
+
+
+
 **********************************************************************
 ** IONIC
 **********************************************************************
