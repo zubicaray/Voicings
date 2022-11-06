@@ -15,7 +15,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
  	ChordFamilyList:{name:string,chords:ChordSettings[]}[]=ChordFamilyList;
  	ChordSettings:ChordSettings[];
- 	Keys:any=Keys;
+ 	Keys:any=null;
  	OctavesNotes:any=OctavesNotes;
 
  	guidingNoteOctave:number=null;
@@ -39,6 +39,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		if(navParams.get('chord') != undefined){
  			this.chord=navParams.get('chord');
  			this.init();
+			
  		} 
  		else this.ChordSettings=this.ChordFamilyList[0].chords;
 
@@ -54,7 +55,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		else{
  			this.Octaves=[];
  		}
-
+		this.Keys=this.chord.ScaleNotes;
  		this.ChordSettings=this.ChordFamilyList[this.chord.idFamily].chords;
  		
  	}
