@@ -20,6 +20,7 @@ import { ChordPage}  from    '../pages/chord/chord'
 import { GuidingLinePage} from '../pages/guiding-line/guiding-line';
 import { RegisterPage} from '../pages/register/register';
 
+
 import { ChordFramePage} from '../pages/chord-frame/chord-frame';
 import { ModalChooseOctavePage} from '../pages/modal-choose-octave/modal-choose-octave';
 import { ChooseTonePage} from '../pages/choose-tone/choose-tone';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,LoadingController,AlertController,ToastController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
-import { ChordFamilyList,ChordSettings,Keys,KeysId,OctavesNotes,ConfigurationProvider}  from    '../../providers/configuration/configuration' 
+import { ChordFamilyList,ChordSettings,KeysId,OctavesNotes,ConfigurationProvider}  from    '../../providers/configuration/configuration' 
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { mod}   from    '../../providers/tools/tools' 
 import { TranslationProvider } from '../../providers/translation/translation';

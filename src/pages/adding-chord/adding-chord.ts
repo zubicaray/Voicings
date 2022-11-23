@@ -47,15 +47,12 @@ import * as cloneDeep from 'lodash/cloneDeep';
 	add(){
 
 		this.chords.push(this.chord);
-		var idfam=this.chord.idFamily;
-		var idtype=this.chord.idtype;
-		var idKey=this.chord.keyid;
+	
+		
 		
 		var clone = cloneDeep(this.chord);
 		this.chord=clone;
-		//this.chord.idFamily=idfam;
-		//this.chord.idtype=idtype;
-		//this.chord.keyid=idKey;
+	
 		//debugger
 		//this.init();
 		this.presentToast();

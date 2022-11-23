@@ -441,9 +441,9 @@ export class ChordModel {
         return 0
     }
     //cas exemple  5x5x55 A-7 ou x3x5x5 ou xx5x5x
-    for(var i=0;i<3;i++){
+    for(var k=0;k<3;k++){
       if ( 
-        (d.frets[i]!=null && d.frets[i+1]==null && d.frets[i+2]!=null && d.frets[i+3]==null)  
+        (d.frets[k]!=null && d.frets[k+1]==null && d.frets[k+2]!=null && d.frets[k+3]==null)  
       )
         return 1
     }

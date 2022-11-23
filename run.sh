@@ -3,11 +3,11 @@
 
 function build {
     cordova build android --prod --release 
-    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
-    rm JazzGuitarVoicings.apk;zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk JazzGuitarVoicings.apk
-
-
-
+    #jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
+    rm -f JazzGuitarVoicings.apk
+    zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk JazzGuitarVoicings.apk
+    apksigner sign --ks keystore.jks  JazzGuitarVoicings.apk
+   
 }
 
 echo '**************************************************************************************'

@@ -5,19 +5,16 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>{{ 'Register this app' | translate }}</ion-title>
+		<ion-title>{{ 'Paypal donation' | translate }}</ion-title>
 	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<button ion-button full (click)="purchase()">{{ 'PURCHASE' | translate }}</button>
-	<button ion-button full (click)="restorepurchase()">{{ 'RESTORE' | translate }}</button>
 
-	<p>
-		{{ErrorMsg}}
-	</p>
+
+	<div #paypalbutton id="paypal-button-container">YO !!</div>
 	
 		
 	

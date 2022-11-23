@@ -65,19 +65,36 @@ npm install --save uglify-js
 ***********************************************************************************************
 *****************          BUILD RELEASE                       ********************************
 *********************************************************************************************** 
+AVOIR iNSTALLE LE SDK ANDROID !!
+
 Define <preference name="android-minSdkVersion" value="19" /> in config.xml file.
+
+
+sudo npm install -g  cordova@7.0.0  ou @latest ??
+
+pour éviter le bug TypeError: env.runcmd is not a function
+npm install @ionic/cli-plugin-cordova@1.4.1
 
 --SIGNED RELEASE FOR PLAY STORE
 
+CF script run.sh
+
 keytool -genkey -v -keystore my-release-key.keystore -alias JazzGuitarVoicings -keyalg RSA -keysize 2048 -validity 10000
+
+
+-- UTILE ENCORE ? -> apksigner instead
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore  app-release-unsigned.apk JazzGuitarVoicings
+
+
 zipalign -v 4 app-release-unsigned.apk JazzGuitarVoicings.apk
 
 
+le keystrore est sur mon drive
+https://drive.google.com/file/d/13L3tMxjDt8EpCaOGstzg_7SKZnrTAnWe/view?usp=share_link
+apksigner sign --ks my-release-key.keystore JazzGuitarVoicings.apk
+mdp:*oil_6.!...   
 
-
-ionic cordova build android --prod --minify -
---buildConfig
+ionic cordova build android --prod --minify --buildConfig
 
 ionic cordova build android --prod --release -- -- --keystore=PATH--alias=ALIAS
 
@@ -106,13 +123,7 @@ RMDIR /Q/S foldername
 ***********************************************************************************************
 *****************           ISSUES !!!!!!!!!!!!!!!!!           ********************************
 ***********************************************************************************************
-******** PURCHASE ************
-******************************
-So basically make the following folder structure:
 
-\platforms\android\app\src\main\aidl\com\android\vending\billing\
-
-and put the IInAppBillingService.aidl file in there.
 
 **************
 

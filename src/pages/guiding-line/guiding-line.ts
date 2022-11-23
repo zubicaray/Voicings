@@ -125,7 +125,6 @@ export class GuidingLinePage  extends LoadingCtrlPage  {
     const shouldLeave = await this.confirmSaveGuitar();
     if(shouldLeave){
       // sauvegarde des contraintes "physiques", celles liées à la guitare
-      var chords=this.selectedChords;
       var settings=this.settings;
       var activeStrings:boolean[]=[
       settings.string1,settings.string2,settings.string3,

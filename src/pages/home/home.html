@@ -8,12 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>{{ 'Find interesting new chord ideas on your own' | translate }}</h3>
-
+  <h2>{{ 'Find interesting new chord ideas on your own' | translate }}</h2>
   <p>
-    {{ 'Visit the tutorial page:' | translate }}
-    <a href="http://ionicframework.com/docs/v2">ZDEV</a> .
+    {{ 'Visit the demo and tutorials pages:' | translate }}
+  </p>
+  <p>
+    <button  style="color:red" (click)="openURL()">
+      {{ 'JazzGuitarVoicing Youtube channel' | translate }}</button>
+    
   </p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  
 </ion-content>
