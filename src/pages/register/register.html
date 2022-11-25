@@ -11,12 +11,17 @@
 </ion-header>
 
 
+
 <ion-content padding>
-
-
-	<div #paypalbutton id="paypal-button-container">YO !!</div>
+	<ion-list>
+		<ion-item>
+		<ion-label floating>Enter amount</ion-label>
+		<ion-input type="text" [(ngModel)]="amount"></ion-input>
+		</ion-item>
 	
+		<button ion-button block (click)="pay()">Make Payment</button>
+	</ion-list>
+	</ion-content>
+
 		
 	
-
-</ion-content>

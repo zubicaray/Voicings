@@ -25,7 +25,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 	ScaleNotes:string[];
 
 	showReOrder:boolean=false;
-	editView:boolean=true;
+	editView:boolean=false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController, 
 		public toastCtrl: ToastController,public alertCtrl: AlertController,

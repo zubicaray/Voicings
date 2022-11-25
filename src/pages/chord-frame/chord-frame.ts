@@ -23,7 +23,7 @@ export class ChordFramePage {
   
    
   }
-/*
+
   private setIndex(index:number){
 
     let begin=this.settings.chordRangeForLine.begin;
@@ -61,7 +61,7 @@ export class ChordFramePage {
 
 
   }
- */
+ 
   public closeModal(index:number){
 
     this.selectedChords=[];  

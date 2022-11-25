@@ -7,9 +7,11 @@ import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule,HttpClient} from '@angular/common/http';
+
 import { Globalization } from '@ionic-native/globalization/ngx'
 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 // PAGES ***********************************************************
@@ -89,7 +91,7 @@ export function createTranslateLoader(http: HttpClient) {
     
     ComputationProvider,ConfigurationProvider,
     ToolsProvider,InAppPurchase2,BackgroundMode,Globalization,
-    TranslationProvider
+    TranslationProvider,InAppBrowser,HttpClientModule
   ]
 })
 export class AppModule {}

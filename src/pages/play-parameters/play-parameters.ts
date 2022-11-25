@@ -16,7 +16,7 @@ export class PlayParametersPage {
   notes:string[][];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-		private TP: TranslationProvider,public alertCtrl: AlertController) {
+		private TP: TranslationProvider,public alertCtrl: AlertController,public toolsProvider:ToolsProvider) {
 
   	this.player = navParams.get('player');
     this.notes = navParams.get('notes');
@@ -38,14 +38,14 @@ export class PlayParametersPage {
      // Show the alert
      alertPopup.present();
   }
-/*
+
   private playSound(){
     if(!this.toolsProvider.isLoaded)
       this.alert(this.TP.tr('Instruments are loading'),this.TP.tr("Wait few seconds and try again."))
     else
       this.toolsProvider.playProgression(this.notes,this.player);
   }
-*/
+
   ionViewDidLoad() {
   }
 
