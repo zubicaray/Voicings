@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
-import {  HttpClient,HttpHeaders} from '@angular/common/http';
-
-
-import 'rxjs/add/operator/map';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { LoadingController } from 'ionic-angular';
 import { TranslationProvider } from '../../providers/translation/translation';
+import { PayPal,PayPalPayment,PayPalConfiguration} from '@ionic-native/paypal';
 
 
 @Component({
@@ -19,65 +14,72 @@ import { TranslationProvider } from '../../providers/translation/translation';
 export class RegisterPage  {
 
   constructor(public navCtrl: NavController, 
-    public http: HttpClient  , 
-    private iab: InAppBrowser, 
-    private ionLoading: LoadingController) {
+    public payPal: PayPal  , 
+    private ionLoading: LoadingController,
+    private TP: TranslationProvider) {
+  
   }
 
   amount: any;
+
   pay(){
-    let data = {
-      amount: this.amount
-    }
 
     let loader = this.ionLoading.create({
-      content: 'Please Wait...'
+      content: this.TP.tr('Please Wait ...')
     });
 
-    loader.present();
 
-   
-    //send desired amount to server for payment
-
-    var formData=new FormData();
-    formData.append('amount',this.amount);
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'responseType': 'json'
-      })
-    };
-
-    this.http.post('http://localhost:3000/createPayment',  JSON.stringify(data)  ,httpOptions   )
-
-    .subscribe(
-      (val) => {
-          console.log("POST call successful value returned in body", 
-                      val['links'][1]['href']  );
-
-          this.iab.create( val['links'][1]['href']);
-            loader.dismiss().then(value => {
-              console.log("dismiss worked!");
-          }, reason => {
-              console.log("dismiss rejected!");
-          });
-          this.amount = ""  
-         
-          //var browser = this.iab.create(es.links[1].href);
-      },
-      response => {
-          console.log("POST call in error", response);
-      },
-      () => {
-          console.log("The POST observable is now completed.");
-
-        
-      
-
+    this.payPal.init({
+      PayPalEnvironmentProduction: 'zubicaray@gmail.com',
+      PayPalEnvironmentSandbox: 'AcjInm0WPRMWkQcyVi0mFdmR-jQCU5R5uH-7wS_yAyWpNBU35D5BIk2E6EjuHuGsnX29oGBE_qVmMD6F'
+    }).then(() => {
+      // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+      this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+        // Only needed if you get an "Internal Service Error" after PayPal login!
+        //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+      })).then(() => {
+        let payment = new PayPalPayment('3.33', 'EUR', 'Description', 'sale');
+        this.payPal.renderSinglePaymentUI(payment).then((res) => {
+          console.log(res);
+          // Successfully paid
+          console.log(res);
+          loader.dismiss();
+          this.amount = "";
+          // Example sandbox response
+          //
+          // {
+          //   "client": {
+          //     "environment": "sandbox",
+          //     "product_name": "PayPal iOS SDK",
+          //     "paypal_sdk_version": "2.16.0",
+          //     "platform": "iOS"
+          //   },
+          //   "response_type": "payment",
+          //   "response": {
+          //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+          //     "state": "approved",
+          //     "create_time": "2016-10-03T13:33:33Z",
+          //     "intent": "sale"
+          //   }
+          // }
+        }, (err) => {
+          console.log(err);
+          loader.dismiss();
+          this.amount = "";
+        });
+      }, (err) => {
+        console.log("ici"+err);
+        loader.dismiss();
+      this.amount = "";
       });
-   
+    }, (err) => {
+      console.log("ici 2"+err);
+      loader.dismiss();
+      this.amount = "";
+    });
+    
     
   }
+
 
 }

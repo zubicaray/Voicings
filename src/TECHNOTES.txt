@@ -5,7 +5,7 @@ GIT
 https://levelup.gitconnected.com/fix-password-authentication-github-3395e579ce74
 
 générer token et mettre ici
-git remote set-url origin  https://gze_Lf2XaCPlogCBAsLA0Xg8Y3k4WLgfuU3P7pYh@github.com/zubicaray/Voicings.git
+git remote set-url origin  https://"token"@github.com/zubicaray/Voicings.git
 
 
 
@@ -161,5 +161,59 @@ function print({name1,name2,...){
 }
 
 
+REST CALL:
 
+see:
+https://www.youtube.com/watch?v=vTxw9xtIiME
 
+in register:
+import {  HttpClient,HttpHeaders} from '@angular/common/http';
+
+in app.module add only HttpClient to providers  !!!
+
+pay(){
+-    let data = {
+-      amount: this.amount
+-    }
+-
+-    let loader = this.ionLoading.create({
+-      content: 'Please Wait...'
+-    });
+-
+-    loader.present();
+-
+-   
+-    //send desired amount to server for payment
+-
+-    var formData=new FormData();
+-    formData.append('amount',this.amount);
+-
+-    const httpOptions = {
+-      headers: new HttpHeaders({
+-        'Content-Type':  'application/json',
+-        'responseType': 'json'
+-      })
+-    };
+ 
+-    this.http.post('http://localhost:3000/createPayment',  JSON.stringify(data)  ,httpOptions   )
+-
+-    .subscribe(
+-      (val) => {
+-          console.log("POST call successful value returned in body", 
+-                      val['links'][1]['href']  );
+-
+-          this.iab.create( val['links'][1]['href']);
+-            loader.dismiss().then(value => {
+-              console.log("dismiss worked!");
+-          }, reason => {
+-              console.log("dismiss rejected!");
+-          });
+-          this.amount = ""  
+-         
+-          //var browser = this.iab.create(es.links[1].href);
+-      },
+-      response => {
+-          console.log("POST call in error", response);
+-      },
+-      () => {
+-          console.log("The POST observable is now completed.");

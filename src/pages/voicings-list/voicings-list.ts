@@ -93,12 +93,12 @@ export class VoicingsListPage extends LoadingCtrlPage{
 			list => {
 				
 
-				if(  list == null  || list===[] || list.length==0){
+				if(  list == null  || list==[] || list.length==0){
 					console.log("loading from config !!")
 					this.VoicingsList=[
-						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_pedal()),
-						
+						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_pedal()),						
 						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
+						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_2()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
 						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())	,

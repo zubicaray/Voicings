@@ -1,7 +1,8 @@
 {
-  "Instruments are loading ...":"Chargement des instruments ...",
+"Please Wait ...":"Patientez ...",
+"Instruments are loading ...":"Chargement des instruments ...",
 "Wait few seconds and try again.":"Patientez quelques secondes",	
-  "Starts at:":"départ à:",
+"Starts at:":"départ à:",
 "Ends at:":"arrêt à:",	
 "Loading voicings list ...":"Chargement des grilles",
 "Cannot building diagrams":"Recherche d'accord impossible.",
@@ -109,6 +110,7 @@
 "Error Ordering " :"Erreur de commande",
 "An Error Occured" :"Une erreur est survenue", 
 "Finished Restore":"Restauration terminée.",
+"Support my work if you want that project to be maintained":"Pour supporter ce projet et récompenser des années d'efforts",
 "Saving voicings list ...":"Sauvegarde ...",
 "New":"Nouveau",
 "Name is  empty!":"Le nom est vide",
