@@ -49,7 +49,7 @@
     "ionic-angular": "3.9.2",
     "ionic-native": "^2.9.0",
     "ionicons": "3.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "ng2-charts": "^1.6.0",
     "paypal-rest-sdk": "^1.8.1",
     "remove": "^0.1.5",
