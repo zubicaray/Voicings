@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { TranslationProvider } from '../../providers/translation/translation';
 import { PayPal,PayPalPayment,PayPalConfiguration} from '@ionic-native/paypal';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-register',
@@ -14,7 +14,7 @@ import { PayPal,PayPalPayment,PayPalConfiguration} from '@ionic-native/paypal';
 export class RegisterPage  {
 
   constructor(public navCtrl: NavController, 
-    public payPal: PayPal  , 
+    private storage: Storage, public payPal: PayPal  , 
     private ionLoading: LoadingController,
     private TP: TranslationProvider) {
   
@@ -76,6 +76,7 @@ export class RegisterPage  {
       console.log("ici 2"+err);
       loader.dismiss();
       this.amount = "";
+      this.storage.set("PAID","DONE");
     });
     
     

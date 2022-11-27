@@ -39,7 +39,7 @@
 		<ion-fab-list side="left"  >
 			
 			<button ion-fab  style="background-color:orange;color:white"   (click)="add($event)"><ion-icon name="add"></ion-icon></button>
-			<button ion-fab  style="background-color:orange;color:white"   (click)="order()" ><i class="fa fa-sort fa-2x" ></i></button>						
+			<button ion-fab  style="background-color:orange;color:white"  *ngIf="editView"  (click)="order()" ><i class="fa fa-sort fa-2x" ></i></button>						
 		</ion-fab-list>
 		
 	</ion-fab>
