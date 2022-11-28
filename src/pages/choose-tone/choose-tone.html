@@ -1,7 +1,7 @@
 <ion-header>
 
 		<ion-navbar>
-		  <ion-title>{{ 'Set tune scale' | translate }}</ion-title>			  
+		  <ion-title>{{ 'Set scale and tunning' | translate }}</ion-title>			  
 		</ion-navbar>
 	  
 	  
@@ -22,8 +22,20 @@
 			</ion-row>
 		</ion-grid>
 	</div>		
-	
 
 
+	<div class="div-item">
+		<ion-label>{{ 'Guitar tunning:' | translate }}</ion-label>
+		
 
+		 <ion-select  class="center cookie20center " [(ngModel)]="mTunning" [compareWith]="compareFn" interface="popover" >
+			<ion-option  class="center  cookie20center" *ngFor="let tunning of TunningList" [value] = "tunning" 
+			
+			>{{tunning.name}}</ion-option>
+		</ion-select>
+	</div>		
 </ion-content>
+
+
+
+

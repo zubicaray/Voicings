@@ -105,20 +105,6 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 				if(  list == null  || list==[] || list.length==0){
 					console.log("loading from config !!")
-					/*
-					this.VoicingsList=[
-						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_pedal()),						
-						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
-						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_2()),
-						VoicingsListPage.fromJSON(this.configurationProvider.ThereWill()),
-						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillStrech()),
-						VoicingsListPage.fromJSON(this.configurationProvider.ThereWillHighMelody())	,
-						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_triads()),						
-						VoicingsListPage.fromJSON(this.configurationProvider.wittcl_bass())
-						
-						
-					];
-					*/
 					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);
 				}
 				else{
@@ -127,7 +113,8 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						//debugger
 						
 						if(songRes.settings.tunning==null){
-							songRes.settings.tunning=STANDARD_TUNNING
+							debugger
+							//songRes.settings.tunning=STANDARD_TUNNING
 						}
 
 						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:number[],settings:Settings}=

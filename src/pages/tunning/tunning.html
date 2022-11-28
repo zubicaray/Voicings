@@ -9,11 +9,8 @@
 
 
 <ion-content padding>
-	<ion-fab bottom right>
-	    <button ion-fab color="danger" (click)="save()">
-	      <i class="fa fa-save fa-2x" ></i>
-	    </button>
-  	</ion-fab>
+
+	
 	<ion-item *ngFor="let stringPitch   of tunning; let i = index;">
 		<ion-label color="black" >{{ 'String' | translate }} {{6-i}}:</ion-label>
 		<ion-select [(ngModel)]="tunning[5-i]" interface="popover" >

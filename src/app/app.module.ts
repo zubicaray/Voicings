@@ -27,6 +27,7 @@ import { ChooseTonePage} from '../pages/choose-tone/choose-tone';
 import { DiagramsPage} from '../pages/diagrams/diagrams';
 import { AddingChordPage} from '../pages/adding-chord/adding-chord';
 import { TunningPage } from '../pages/tunning/tunning';
+import { TunningListPage } from '../pages/tunning-list/tunning-list';
 import { LoadingCtrlPage} from '../pages/loading-ctrl/loading-ctrl';
 import { ChooseGuidingLinePage}  from    '../pages/choose-guiding-line/choose-guiding-line';
 import { PlayParametersPage}  from    '../pages/play-parameters/play-parameters';
@@ -57,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
     HomePage, 
     VoicingsListPage,EditVoicingPage,ChordPage,
-    GuidingLinePage,
+    GuidingLinePage,TunningListPage,TunningPage,
     ChordCanvas,DiagramsPage,AddingChordPage,TunningPage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   imports: [
@@ -79,7 +80,7 @@ export function createTranslateLoader(http: HttpClient) {
     MyApp,
     HomePage,
     VoicingsListPage,EditVoicingPage,ChordPage,
-    GuidingLinePage,DiagramsPage,
+    GuidingLinePage,DiagramsPage,TunningListPage,TunningPage,
     AddingChordPage,TunningPage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   providers: [

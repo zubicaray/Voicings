@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title >{{ 'tunnings list' | translate }}</ion-title>    
+    <ion-title >{{ 'tunning list' | translate }}</ion-title>    
   </ion-navbar> 
 
 </ion-header>
@@ -22,7 +22,7 @@
  
 
   <ion-list>
-    <ion-item-sliding *ngFor="let tunning of tunningList" >
+    <ion-item-sliding *ngFor="let tunning of TunningList" >
       <ion-item   (click)="itemTapped( tunning)">
           <div class="item-note cookie40center div-item"  >
             <div style="margin-bottom:7px" >{{tunning.name}}</div>
@@ -38,10 +38,7 @@
           <ion-icon id="iconTrash" large name="md-text">            
           </ion-icon>
          </button>
-         <button maxi danger (click)="setKey(tunning)">
-            <ion-icon id="iconTrash"   large name="key">            
-            </ion-icon>
-        </button>
+       
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

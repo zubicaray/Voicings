@@ -105,7 +105,7 @@ export class ChordModel {
     idDiag_Y=0;
     
     if(tunning==null){
-      //tunning=STANDARD_TUNNING;
+      debugger//tunning=STANDARD_TUNNING;
     }
     this.tunning=tunning;
     

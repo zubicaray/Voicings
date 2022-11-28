@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController, NavParams , LoadingController,ToastController} from 'ionic-angular';
+import { NavController, NavParams ,AlertController, LoadingController,ToastController} from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { TunningType,ConfigurationProvider} from    '../../providers/configuration/configuration'
+import { TunningType,ConfigurationProvider,STANDARD_TUNNING} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { TunningPage}  from    '../tunning/tunning';
 import { TranslationProvider } from '../../providers/translation/translation';
-
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-tunning-list',
@@ -16,7 +16,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
 export class TunningListPage extends LoadingCtrlPage{
 
-	tunningList:TunningType[];
+	TunningList:TunningType[];
 
 	loading:any;	
 
@@ -28,13 +28,39 @@ export class TunningListPage extends LoadingCtrlPage{
 		private TP: TranslationProvider) {
 
 		super(loadingCtrl);		
-		
 		this.showLoader(this.TP.tr("Loading tunning list ..."));
 		setTimeout(() => {
 			//this.load();
 		}, 100);
-
-
+		
+		this.storage.get("PAID").then( 
+			(res)=>{
+				
+				console.log("res="+res);
+				if (res==null){
+					this.alert(this.TP.tr("Réservé à la version payante"),this.TP.tr("Vous devez avoir un compte PayPal pour ce faire."))
+					this.navCtrl.setRoot(HomePage);
+				}
+				else{
+					this.storage.get("TunningList").then(
+						TunningList => {
+							//TODO
+							if(TunningList == null){
+								this.TunningList =[];
+							}
+							else{		
+								this.TunningList=TunningList;
+							}
+						})
+				}
+			}
+			,
+			()=> {
+			
+				this.alert(this.TP.tr("Erreur en base de donnée"),this.TP.tr("Contactez le développeur ;-)."))
+				this.navCtrl.setRoot(HomePage);
+			}
+		);
 	}
 
 
@@ -43,12 +69,28 @@ export class TunningListPage extends LoadingCtrlPage{
 	save(){
 		this.showLoader(this.TP.tr("Saving tunning list ..."));
 		setTimeout(() => {
-			this.storage.set("tunningList",this.tunningList);
+			
+			this.storage.set("TunningList",this.TunningList);
 
 		}, 100)
 
 	}
+	alert(inTitle:string,msg:string){	
+		let alertPopup = this.alertCtrl.create({
+			title: inTitle,
+			cssClass: 'alertCustomCss',
+			message: msg,
+			buttons: [
+			{
+				text: this.TP.tr('Ok'),			
+				handler: () => {
+				}
+			}]
+		});
 
+		// Show the alert
+		alertPopup.present();
+	}
 
 
 	public newtunning(){
@@ -74,16 +116,13 @@ export class TunningListPage extends LoadingCtrlPage{
 			{
 				text: this.TP.tr('New'),
 				handler: data => {
-				
-					
-					var newtunning :TunningType= {name:"",strings:[]};
-
+									
+					var newtunning :TunningType= {name:"",strings:STANDARD_TUNNING};
 					
 					if(this.validation(data.Name,newtunning)){
 						this.navCtrl.push(TunningPage, {
 							tunning: newtunning
-						});
-						
+						});		
 						
 					}
 					
@@ -120,14 +159,14 @@ export class TunningListPage extends LoadingCtrlPage{
 		else{
 
 
-			if(this.tunningList.every( s => { return s.name != inVal}) ==false) {
+			if(this.TunningList.every( s => { return s.name != inVal}) ==false) {
 				inVal=""; 
 				this.presentToast(this.TP.tr('tunning name already exists !'));
 				return false;
 			}
 			else{
 				tunningClone.name=inVal;
-				if(!rename) this.tunningList.push(tunningClone);
+				if(!rename) this.TunningList.push(tunningClone);
 				return true;
 
 			}
@@ -178,10 +217,10 @@ export class TunningListPage extends LoadingCtrlPage{
 			buttons: [{
 				text: this.TP.tr('Yes'),
 				handler: () =>  {
-					for(var i:number = 0; i < this.tunningList.length; i++) {
+					for(var i:number = 0; i < this.TunningList.length; i++) {
 
-						if(this.tunningList[i] == chords){
-							this.tunningList.splice(i, 1);
+						if(this.TunningList[i] == chords){
+							this.TunningList.splice(i, 1);
 						}
 
 					}
@@ -201,10 +240,10 @@ export class TunningListPage extends LoadingCtrlPage{
 	}
 
 
-	itemTapped( tunningtunning) {    
+	itemTapped( tunning) {    
 
-		this.navCtrl.push(EditVoicingPage, {
-			tunningtunning: tunningtunning
+		this.navCtrl.push(TunningPage, {
+			tunning: tunning
 		});
 
 
