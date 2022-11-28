@@ -26,7 +26,7 @@ import { ModalChooseOctavePage} from '../pages/modal-choose-octave/modal-choose-
 import { ChooseTonePage} from '../pages/choose-tone/choose-tone';
 import { DiagramsPage} from '../pages/diagrams/diagrams';
 import { AddingChordPage} from '../pages/adding-chord/adding-chord';
-import { ChordagePage } from '../pages/chordage/chordage';
+import { TunningPage } from '../pages/tunning/tunning';
 import { LoadingCtrlPage} from '../pages/loading-ctrl/loading-ctrl';
 import { ChooseGuidingLinePage}  from    '../pages/choose-guiding-line/choose-guiding-line';
 import { PlayParametersPage}  from    '../pages/play-parameters/play-parameters';
@@ -58,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage, 
     VoicingsListPage,EditVoicingPage,ChordPage,
     GuidingLinePage,
-    ChordCanvas,DiagramsPage,AddingChordPage,ChordagePage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
+    ChordCanvas,DiagramsPage,AddingChordPage,TunningPage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +80,7 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage,
     VoicingsListPage,EditVoicingPage,ChordPage,
     GuidingLinePage,DiagramsPage,
-    AddingChordPage,ChordagePage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
+    AddingChordPage,TunningPage,LoadingCtrlPage,ChooseTonePage,ChordFramePage,ModalChooseOctavePage,ChooseGuidingLinePage,RegisterPage,PlayParametersPage
   ],
   providers: [
     StatusBar,

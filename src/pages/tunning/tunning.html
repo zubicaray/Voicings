@@ -1,18 +1,10 @@
-<!--
-  Generated template for the ChordagePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
 	<ion-navbar>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
 		<ion-title>{{ 'Set guitar tunning' | translate }}</ion-title>
 	</ion-navbar>
-
 </ion-header>
 
 
@@ -22,9 +14,9 @@
 	      <i class="fa fa-save fa-2x" ></i>
 	    </button>
   	</ion-fab>
-	<ion-item *ngFor="let stringPitch   of Chordage; let i = index;">
+	<ion-item *ngFor="let stringPitch   of tunning; let i = index;">
 		<ion-label color="black" >{{ 'String' | translate }} {{6-i}}:</ion-label>
-		<ion-select [(ngModel)]="Chordage[5-i]" interface="popover" >
+		<ion-select [(ngModel)]="tunning[5-i]" interface="popover" >
 			<ion-option style="width:50% " *ngFor="let note  of OctavesNotes" [value] = "note.pitch" >{{note.label}}</ion-option>
 		</ion-select>
 	</ion-item>

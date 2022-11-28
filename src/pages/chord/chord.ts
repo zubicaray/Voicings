@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,LoadingController,AlertController,ToastController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
-import { ChordFamilyList,ChordSettings,KeysId,OctavesNotes,ConfigurationProvider}  from    '../../providers/configuration/configuration' 
+import { ChordFamilyList,ChordSettings,KeysId,NB_FRETTES,SongType,OctavesNotes,ConfigurationProvider}  from    '../../providers/configuration/configuration' 
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { mod}   from    '../../providers/tools/tools' 
 import { TranslationProvider } from '../../providers/translation/translation';
@@ -22,6 +22,8 @@ import { TranslationProvider } from '../../providers/translation/translation';
  	guidingNote:number=null;
  	mNoteOctaves:number[][]=[];
  	Octaves:number[];
+	Tunning:number[];
+	ScaleNotes:string[];
 
  	chord:ChordModel;
  	
@@ -32,18 +34,58 @@ import { TranslationProvider } from '../../providers/translation/translation';
  	) 
  	{
  		super(loadingCtrl);
-
- 		for(var i:number=0;i<KeysId.length;i++){
- 			this.mNoteOctaves.push(this.configurationProvider.Octaves(i));
- 		}
+		var voicings:SongType=navParams.get('Voicings')
+		
+		
+		this.Tunning=voicings.settings.tunning
+		this.ScaleNotes=voicings.ScaleNotes;
+ 		
  		if(navParams.get('chord') != undefined){
  			this.chord=navParams.get('chord');
+
  			this.init();
 			
  		} 
- 		else this.ChordSettings=this.ChordFamilyList[0].chords;
+ 		else {
+			
+			//PAS D'ACCORD PASSE => on est un mode add new
+			//l'accord sera initialisé dans adding-chord
+			this.ChordSettings=this.ChordFamilyList[0].chords;
+			
+		}
 
  	}
+
+	/**
+	* returns the possible octaves list on the neck for a given note
+	*/
+	getOctaves(note:number):number[]{
+		
+		let sortedStrings=this.chord.tunning.sort();
+		let min=sortedStrings[0];
+		let max=sortedStrings[sortedStrings.length-1];
+		var res:number[]=[];
+		var o,octaveOffset:number=0;
+		o=0;
+		// octave la plus basse sur l'accordage
+		for(var i:number=0;i<OctavesNotes.length;i++){
+			if( mod(i,12) == note &&OctavesNotes[i].pitch>=min)
+			{
+				octaveOffset=~~(OctavesNotes[i].pitch/12)-1;
+				break;
+			}
+		}
+
+		for(i=min;i<=max+NB_FRETTES;i++){
+			if( mod(i,12) == note ){
+				res.push(octaveOffset+o);
+				o++;
+				i+=11;
+			}
+		}
+		return res;
+	}
+
 
  	init(){
 
@@ -57,11 +99,13 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		}
 		this.Keys=this.chord.ScaleNotes;
  		this.ChordSettings=this.ChordFamilyList[this.chord.idFamily].chords;
- 		
+ 		for(var i:number=0;i<KeysId.length;i++){
+ 			this.mNoteOctaves.push(this.getOctaves(i));
+ 		}
  	}
 
  	updateChordNotes(){ 		
- 		this.chord.init();
+ 		this.chord.init(this.Tunning);
  		this.checkPossible();
  	}
 
@@ -157,13 +201,13 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		//debugger
  		this.chord.guidingPitch=(this.guidingNoteOctave+1)*12+this.guidingNote;
 
- 		this.chord.init();
+ 		this.chord.init(this.Tunning);
  		
  	}
  	setKey(i){
  		
  		this.chord.keyid=i;
- 		this.chord.init();
+ 		this.chord.init(this.Tunning);
 
 
  		if( !this.chord.isGuidingNoteStillOk() ){
@@ -176,7 +220,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
  		
  		this.chord.idFamily=i;
  		this.chord.idtype=0;
- 		this.chord.init();
+ 		this.chord.init(this.Tunning);
  		this.ChordSettings=this.ChordFamilyList[this.chord.idFamily].chords;
  		if( !this.chord.isGuidingNoteStillOk() ){
  			this.guidingNote=null;
@@ -187,7 +231,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
  	setType(i){
  		
  		this.chord.idtype=i;
- 		this.chord.init();
+ 		this.chord.init(this.Tunning);
  		if( !this.chord.isGuidingNoteStillOk() ){
  			this.guidingNote=null;
  			this.guidingNoteOctave=null;

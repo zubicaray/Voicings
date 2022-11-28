@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams ,LoadingController,ToastController ,AlertController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
 import { ChordPage}  from    '../chord/chord';
-import { ConfigurationProvider} from    '../../providers/configuration/configuration'
+import { ConfigurationProvider,SongType} from    '../../providers/configuration/configuration'
 import { TranslationProvider } from '../../providers/translation/translation';
 import * as cloneDeep from 'lodash/cloneDeep';
 
@@ -13,9 +13,8 @@ import * as cloneDeep from 'lodash/cloneDeep';
  export class AddingChordPage extends ChordPage {
 
 
-	 chords:ChordModel[];
-	 ScaleNotes:string[];
-
+	chords:ChordModel[];
+	
  	constructor(public navCtrl: NavController, public navParams: NavParams,
  		public toastCtrl: ToastController,public loadingCtrl: LoadingController,
  		public alertCtrl: AlertController,public configurationProvider:ConfigurationProvider,
@@ -23,9 +22,12 @@ import * as cloneDeep from 'lodash/cloneDeep';
  		
  		super(navCtrl, navParams,loadingCtrl,toastCtrl,alertCtrl,configurationProvider,TP); 
 
- 		this.chords=navParams.get('chords');
- 		this.ScaleNotes=navParams.get('ScaleNotes');
-		this.chord=ChordModel.new(this.ScaleNotes);
+		debugger
+		var voicing:SongType=navParams.get('Voicings');
+ 		this.chords=voicing.chords;
+ 		this.ScaleNotes=voicing.ScaleNotes;
+		this.Tunning=voicing.settings.tunning;
+		this.chord=ChordModel.new(this.ScaleNotes,this.Tunning);
 		this.init();
  	}
 

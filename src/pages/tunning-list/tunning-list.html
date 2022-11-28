@@ -1,0 +1,49 @@
+<ion-header >
+  <ion-navbar  >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title >{{ 'tunnings list' | translate }}</ion-title>    
+  </ion-navbar> 
+
+</ion-header>
+
+<ion-content >
+  <ion-fab bottom left>
+    <button ion-fab color="danger" (click)="save()">
+      <i class="fa fa-save fa-2x" ></i>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right  >
+    <button ion-fab  (click)="newtunning()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+ 
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let tunning of tunningList" >
+      <ion-item   (click)="itemTapped( tunning)">
+          <div class="item-note cookie40center div-item"  >
+            <div style="margin-bottom:7px" >{{tunning.name}}</div>
+          </div>
+      </ion-item>
+
+      <ion-item-options side="right" >
+        <button maxi danger (click)="remove(tunning)">
+          <ion-icon  id="iconTrash" large name="ios-trash">            
+          </ion-icon>
+        </button>
+         <button maxi danger (click)="rename(tunning)">
+          <ion-icon id="iconTrash" large name="md-text">            
+          </ion-icon>
+         </button>
+         <button maxi danger (click)="setKey(tunning)">
+            <ion-icon id="iconTrash"   large name="key">            
+            </ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+ 
+</ion-content>

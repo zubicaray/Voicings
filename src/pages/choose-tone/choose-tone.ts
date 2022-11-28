@@ -45,7 +45,7 @@ import { EditVoicingPage}  from    '../edit-voicing/edit-voicing'
     });
 
     if(this.isNew) 
-      this.navCtrl.push(AddingChordPage, { chords: this.Voicings.chords,ScaleNotes: this.Voicings.ScaleNotes	 });
+      this.navCtrl.push(AddingChordPage, { Voicings: this.Voicings	 });
 	}
 
  	ionViewDidLoad() {

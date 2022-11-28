@@ -1,5 +1,5 @@
 
-import {NB_FRETTES,OctavesOffset,ConfigurationProvider,GuitarString,OctavesNotes,Chordage}   from    '../providers/configuration/configuration' 
+import {NB_FRETTES,OctavesOffset,STANDARD_TUNNING,ConfigurationProvider,GuitarString,OctavesNotes}   from    '../providers/configuration/configuration' 
 import {mod,clone}   from    '../providers/tools/tools' 
 
 /**
@@ -46,11 +46,13 @@ export class ChordModel {
   /* chosen diagram chord on the fretboard */
   canvas:DiagramType;
 
-  chordage:GuitarString[]=ChordModel.configurationProvider.getOrderedChordage();
+  ChordModelTunning:GuitarString[];
 
 
-  static new(ScaleNotes:string[]):ChordModel{//ChordModel.newEmptyDiagram()
-    return new ChordModel(1,0,ScaleNotes,0,0,0,0,[ ], false, false, 5, 1,0,true,[true,true,true,true,true,true],false,4);
+  static new(ScaleNotes:string[],tunning:number[]):ChordModel{//ChordModel.newEmptyDiagram()
+    return new ChordModel(1,0,ScaleNotes,0,0,0,0,[ ], false, false, 5, 1,0,true,
+      [true,true,true,true,true,true],false,4,
+      tunning);
   }
 
   
@@ -94,6 +96,7 @@ export class ChordModel {
     public stringDispo:boolean[],
     public allowOctaves:boolean,
     public chordSize:number,
+    public tunning:number[]
     )
   {
     this.canvas =diagrams.length>0 ?diagrams[idDiag]:undefined;   
@@ -101,24 +104,51 @@ export class ChordModel {
     this.allowOctaves= allowOctaves== null ? false :allowOctaves;
     idDiag_Y=0;
     
-    this.init();  
+    if(tunning==null){
+      //tunning=STANDARD_TUNNING;
+    }
+    this.tunning=tunning;
+    
+    this.ChordModelTunning=this.getOrderedTunning(tunning);
+
+    this.init(tunning);  
 
   }
+
+  /**
+	* @ignore
+	*/
+	getOrderedTunning(tunning:number[]) :GuitarString[]{
+
+		var lOrderedChordage:GuitarString[]=[];
+		var i:number;
+
+		for( i=0;i < tunning.length;i++ )
+		{
+			lOrderedChordage.push({Id:i,pitch:tunning[i]})
+		}
+
+		lOrderedChordage.sort(function (a, b) {  return b.pitch - a.pitch;	});
+
+		return lOrderedChordage;
+	}
   /**
 
   * given key and chord type, computes all notes possible
 
   */
-  init(){
+  init(intunning:number[]){
 
     delete this.mandatory;
     delete this.natural;
     delete this.modern;
 
+    this.tunning=intunning;
+
     this.mandatory=[];
     this.natural=[];
     this.modern=[];
-
+    
 
 
     if( this.keyid != null && this.getType() != null ){
@@ -178,11 +208,11 @@ export class ChordModel {
       this.errorMsg="Guiding note unset.";
       return false;
     }
-
-    let stringsAvailable=[];
+    
+    let stringsAvailable:number[]=[];
     for(var i:number=0;i<this.stringDispo.length;i++){
       if(this.stringDispo[i])
-        stringsAvailable.push(Chordage[i]);
+        stringsAvailable.push(this.tunning[i]);
     }
     stringsAvailable.sort();
     let max=stringsAvailable[stringsAvailable.length-1]+NB_FRETTES;
@@ -486,7 +516,7 @@ export class ChordModel {
   * @ignore
   */
   getPitch(itString:number,itFrette:number):number{
-    return this.chordage[itString].pitch+itFrette;
+    return this.ChordModelTunning[itString].pitch+itFrette;
   }
   /**
   * @ignore
@@ -500,8 +530,8 @@ export class ChordModel {
   */
   getStringLeft(itString:number):number{
     var res:number=0;
-    for(var i:number=itString;i<this.chordage.length;i++){
-      if(this.stringDispo[this.chordage[itString].Id]) res++;
+    for(var i:number=itString;i<this.ChordModelTunning.length;i++){
+      if(this.stringDispo[this.ChordModelTunning[itString].Id]) res++;
     }
     return res;
 
@@ -618,7 +648,7 @@ export class ChordModel {
 
     var startfrette:number=this.openStrings?0:1;
 
-    if(this.stringDispo[this.chordage[itString].Id])
+    if(this.stringDispo[this.ChordModelTunning[itString].Id])
     {
 
       // on va toujours dans le sens aigue-> grave
@@ -667,11 +697,11 @@ export class ChordModel {
 
           let clonedDiag=clone(currentDiag);
 
-          clonedDiag.frets[this.chordage[itString].Id]=itFrette;
+          clonedDiag.frets[this.ChordModelTunning[itString].Id]=itFrette;
           clonedDiag.notes.push({note:currentNote,pitch:currentPitch});
 
           if( currentPitch == this.guidingPitch){
-            clonedDiag.guidingString=this.chordage[itString].Id;
+            clonedDiag.guidingString=this.ChordModelTunning[itString].Id;
           }
 
           if(newMandatory.length==0 && clonedDiag.guidingString>-1 && clonedDiag.notes.length>2){
@@ -686,7 +716,7 @@ export class ChordModel {
             // si on vient d'ajouter la guiding, elle devra rester la note la lus grave 
             break;
           }
-          if(copyIt<this.chordage.length) {
+          if(copyIt<this.ChordModelTunning.length) {
             // que l'accord en cours fut ajouté à "result" ou pas
             // on continue de construire l'accord où vient d'être ajouté "currentNote"
             this.innerFindChorDiagrams(newMandatory,newPossible,copyIt,clonedDiag,result);
@@ -699,7 +729,7 @@ export class ChordModel {
     }
     // parcours des cordes triées dans l'ordre décroissant de leur hauteur à vide, ie dans le sens aigue-> grave 
     itString++;
-    if(itString<this.chordage.length) 
+    if(itString<this.ChordModelTunning.length) 
       this.innerFindChorDiagrams(mandatory,possible,itString,currentDiag,result);
   }
 }

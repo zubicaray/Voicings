@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController} from 'ionic-angular';
-import { Chordage as DEFAULT_CHORDAGE }       from    '../../providers/configuration/configuration' 
 import { OctavesNotes }       from    '../../providers/configuration/configuration' 
 import { Storage } from '@ionic/storage';
 import { TranslationProvider } from '../../providers/translation/translation';
 import { HomePage } from '../home/home';
 
 @Component({
-  selector: 'page-chordage',
-  templateUrl: 'chordage.html',
+  selector: 'page-tunning',
+  templateUrl: 'tunning.html',
 })
-export class ChordagePage {
+export class TunningPage {
 
-	Chordage:number[]=[];
+	tunning:number[]=[];
 	OctavesNotes:{pitch:number,key:string,label:string}[]=OctavesNotes;
   	constructor(
   		public navCtrl: NavController, private storage: Storage,public navParams: NavParams,
@@ -27,16 +26,16 @@ export class ChordagePage {
 					this.navCtrl.setRoot(HomePage);
 				}
 				else{
-					this.storage.get("Chordage").then(
+					this.storage.get("TunningList").then(
 			
 
-						tunning => {
-							
-							if(tunning == null){
-								this.Chordage=DEFAULT_CHORDAGE;
+						TunningList => {
+							//TODO
+							if(TunningList == null){
+								//this.tunning=DEFAULT_tunning;
 							}
 							else{		
-								this.Chordage=tunning;
+								//this.tunning=tunning;
 							}
 						})
 				}
@@ -44,7 +43,7 @@ export class ChordagePage {
 			,
 			()=> {
 			
-				this.alert(this.TP.tr("Réservé à la version payante"),this.TP.tr("Vous devez avoir un compte PayPal pour ce faire."))
+				this.alert(this.TP.tr("Erreur en base de donnée"),this.TP.tr("Contactez le développeur ;-)."))
 				this.navCtrl.setRoot(HomePage);
 			}
 			);
@@ -53,7 +52,7 @@ export class ChordagePage {
 		
 	}
 	save() {
-		this.storage.set("Chordage",this.Chordage);
+		this.storage.set("tunning",this.tunning);
 	}
 
 

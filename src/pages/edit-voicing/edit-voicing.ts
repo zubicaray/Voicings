@@ -23,6 +23,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 	chords:ChordModel[];
 	settings:Settings;
 	ScaleNotes:string[];
+	Voicings:SongType
 
 	showReOrder:boolean=false;
 	editView:boolean=false;
@@ -33,11 +34,12 @@ export class EditVoicingPage extends LoadingCtrlPage {
 
 		super(loadingCtrl);
 
-		var Voicings:SongType = navParams.get('songVoicings');
-		this.songName=Voicings.songName;
-		this.chords=Voicings.chords;
-		this.settings=Voicings.settings; 
-		this.ScaleNotes=Voicings.ScaleNotes;
+		this.Voicings = navParams.get('songVoicings');
+		this.songName=this.Voicings.songName;
+		console.log(this.songName);
+		this.chords=this.Voicings.chords;
+		this.settings=this.Voicings.settings; 
+		this.ScaleNotes=this.Voicings.ScaleNotes;
 
 	}
 
@@ -209,11 +211,13 @@ export class EditVoicingPage extends LoadingCtrlPage {
  	}
 
 	itemTapped(event, chord) {   		
-	   	this.navCtrl.push(ChordPage, {chord: chord}); 	   	 	
+		//debugger
+	   	this.navCtrl.push(ChordPage, {Voicings: this.Voicings,chord: chord}); 	   	 	
 	}
 
 	add(event){		
-		this.navCtrl.push(AddingChordPage, { chords: this.chords ,ScaleNotes: this.ScaleNotes});
+		//debugger
+		this.navCtrl.push(AddingChordPage, { Voicings: this.Voicings});
 	}
 	
 

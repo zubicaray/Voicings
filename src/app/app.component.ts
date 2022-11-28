@@ -9,7 +9,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 import { HomePage } from '../pages/home/home';
 import { VoicingsListPage } from '../pages/voicings-list/voicings-list';
-import { ChordagePage } from '../pages/chordage/chordage';
+import { TunningPage } from '../pages/tunning/tunning';
 import { RegisterPage } from '../pages/register/register';
 
 
@@ -56,8 +56,8 @@ export class MyApp {
     this.nav.setRoot(VoicingsListPage);
   }
 
-  openChordagePage() {
-    this.nav.setRoot(ChordagePage);
+  openTunningPage() {
+    this.nav.setRoot(TunningPage);
   }
   openPurchasePage() {
     this.nav.setRoot(RegisterPage);

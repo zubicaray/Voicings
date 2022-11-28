@@ -1,4 +1,4 @@
-import { OctavesNotes, Chordage,NB_FRETTES } from '../../providers/configuration/configuration';
+import { OctavesNotes, NB_FRETTES } from '../../providers/configuration/configuration';
 import { ChordModel} from '../../models/chordModel';
 import { ConfigurationProvider} from    '../../providers/configuration/configuration'
 import { mod }   from    '../../providers/tools/tools' 
@@ -176,7 +176,7 @@ export class ComputationProvider {
 	*	find all octaves possible of the guiding pitches
 	*	according to each chord settings 
 	*/
-	findOctaves(descente:number[],chords:ChordModel[]):number[][]{
+	findOctaves(descente:number[],tunning:number[],chords:ChordModel[]):number[][]{
 
 		var listePitch:number[][]=[];
 
@@ -185,7 +185,7 @@ export class ComputationProvider {
 		var oNoteList:{pitch:number,key:string,label:string}[]=OctavesNotes;
 
 
-		let sortedStrings=Chordage.sort();
+		let sortedStrings=tunning.sort();
 		let minGuitar=sortedStrings[0];
 		let maxGuitar=sortedStrings[sortedStrings.length-1]+NB_FRETTES;
 

@@ -3,10 +3,10 @@ import { NavController,AlertController, NavParams , LoadingController,ToastContr
 import { ModalController } from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
 import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { Settings  ,SongType,DEFAULT_SETTINGS,ConfigurationProvider} from    '../../providers/configuration/configuration'
+import { Settings  ,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS,ConfigurationProvider} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
-
+import { SONGS } from '../../assets/songs';
 import { TranslationProvider } from '../../providers/translation/translation';
 
 
@@ -44,43 +44,53 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	}
 
-	static fromJSON(inSong:SongType)
+	static fromJSON(inRawSongs:any[])
 	{
-		var song:SongType
-		inSong.chords.forEach(function(element) {
+		var songs:SongType[]=[];
 
-			song=
-			{songName:inSong.songName,chords:[],ScaleNotesId:inSong.ScaleNotesId,ScaleNotes:inSong.ScaleNotes,settings:inSong.settings};
-
+		inRawSongs.forEach( (inSong)=>{
+			var song:SongType
 			inSong.chords.forEach(function(element) {
 
-				var chord:ChordModel= new ChordModel(
-					element.Id, 
-					element.keyid,
-					element.ScaleNotes,						        
-					element.idFamily,
-					element.idtype,
-					element.idDiag, element.idDiag_Y,
-					element.diagrams,
-					element.HasRoot,
-					element.HasFifth,
-					element.maxStretch,
-					element.melodyType,
-					element.guidingPitch,
-					element.openStrings,
-					element.stringDispo,
-					element.allowOctaves,
-					element.chordSize
-					);
+				song=
+				{songName:inSong.songName,chords:[],ScaleNotesId:inSong.ScaleNotesId,ScaleNotes:inSong.ScaleNotes,settings:inSong.settings};
 
-				song.chords.push(chord);
+				inSong.chords.forEach(function(element) {
 
-			});
+					var chord:ChordModel= new ChordModel(
+						element.Id, 
+						element.keyid,
+						element.ScaleNotes,						        
+						element.idFamily,
+						element.idtype,
+						element.idDiag, element.idDiag_Y,
+						element.diagrams,
+						element.HasRoot,
+						element.HasFifth,
+						element.maxStretch,
+						element.melodyType,
+						element.guidingPitch,
+						element.openStrings,
+						element.stringDispo,
+						element.allowOctaves,
+						element.chordSize,
+						element.tunning
 
+						);
+
+					song.chords.push(chord);
+
+					})
+				
+				})
+			songs.push(song);
 		})
-		return song;
-	}
+			
 
+
+		
+		return songs;
+	}
 
 
 	load(){
@@ -95,6 +105,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 				if(  list == null  || list==[] || list.length==0){
 					console.log("loading from config !!")
+					/*
 					this.VoicingsList=[
 						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie_pedal()),						
 						VoicingsListPage.fromJSON(this.configurationProvider.Djangologie()),
@@ -107,15 +118,28 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						
 						
 					];
+					*/
+					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);
 				}
 				else{
 					var lVL:any=[];
 					list.forEach(songRes=> {
 						//debugger
+						
+						if(songRes.settings.tunning==null){
+							songRes.settings.tunning=STANDARD_TUNNING
+						}
+
 						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:number[],settings:Settings}=
-						{songName:songRes.songName,chords:[],ScaleNotesId:songRes.ScaleNotesId,ScaleNotes:songRes.ScaleNotes,settings:songRes.settings};
+						{songName:songRes.songName,chords:[],ScaleNotesId:songRes.ScaleNotesId,
+							ScaleNotes:songRes.ScaleNotes,settings:songRes.settings};
 
 						songRes.chords.forEach(function(element) {
+
+							if(element.tunning == null)
+							{
+								debugger
+							}
 
 							var chord:ChordModel= new ChordModel(
 								element.Id, 
@@ -134,7 +158,8 @@ export class VoicingsListPage extends LoadingCtrlPage{
 								element.openStrings,
 								element.stringDispo,
 								element.allowOctaves,
-								element.chordSize
+								element.chordSize,
+								element.tunning
 								);
 
 							
@@ -147,6 +172,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						lVL.push(song);
 
 					});
+					//console.log( JSON.stringify(lVL));
 					lVL.sort( (a,b) => a.songName<b.songName? -1:1);
 					this.VoicingsList=lVL;	
 				}
