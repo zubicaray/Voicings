@@ -16,7 +16,7 @@ import { HomePage } from '../home/home';
    ScaleNotes:string[];
    ScaleKeyId:number;
    Voicings:SongType ;
-   Tunning:number[]=[];
+  
    mTunning:TunningType;
    private isNew:boolean=true;
    TunningList:TunningType[];
@@ -31,17 +31,22 @@ import { HomePage } from '../home/home';
       this.Keys=Keys;
       this.Voicings = navParams.get('songVoicings');
 
-      //debugger
+      
       if(this.Voicings !=undefined){
         this.ScaleNotes = this.Voicings.ScaleNotes;
         this.ScaleKeyId = this.Voicings.ScaleNotesId;
-        this.Tunning = this.Voicings.settings.tunning;
+        this.mTunning = this.Voicings.settings.mTunning;
 
       }
 
       
       
-      if(this.ScaleNotes.length>0) this.isNew=false;
+      if(this.ScaleNotes.length>0) {
+        this.isNew=false;
+      }
+      else{
+          this.mTunning = this.Standard;
+      }
 
       this.storage.get("PAID").then( 
         (res)=>{
@@ -55,13 +60,14 @@ import { HomePage } from '../home/home';
                 //TODO
                 if(inTunningList == null){
                   this.TunningList =[this.Standard];
+                  this.mTunning=this.TunningList[0];
                 }
                 else{		
                   this.TunningList=inTunningList;
-                  (this.TunningList.unshift(this.Standard));
+                  this.TunningList.unshift(this.Standard);
 
                 }
-                this.mTunning=this.TunningList[0];
+                
               })
           }
         }
@@ -99,7 +105,8 @@ import { HomePage } from '../home/home';
 	}
  	public closeModal(key:number){
 
-    
+    this.ScaleKeyId=key;
+    this.Voicings.ScaleNotesId=key;
     if(isBemol(key)){
       this.Voicings.ScaleNotes=Keys;
     }
@@ -107,21 +114,32 @@ import { HomePage } from '../home/home';
     {
       this.Voicings.ScaleNotes=SharpKeys;
     }
-    this.Voicings.settings.tunning=this.mTunning.strings;
-    this.Voicings.ScaleNotesId=key;
-    this.Voicings.chords.forEach(c=>c.setScaleNotes(this.Voicings.ScaleNotes))
+    
 
-    this.viewCtrl.dismiss();
-    this.navCtrl.push(EditVoicingPage, {
-      songVoicings: this.Voicings
-    });
+   
 
-    if(this.isNew) 
+    if(this.isNew) {
+      this.viewCtrl.dismiss();
+      this.navCtrl.push(EditVoicingPage, {
+        songVoicings: this.Voicings
+      });
       this.navCtrl.push(AddingChordPage, { Voicings: this.Voicings	 });
+    }
+      
 	}
 
- 	ionViewDidLoad() {
+ 	ionViewDidLeave() {
+    
+    this.Voicings.settings.mTunning=this.mTunning;
+    
+    ///propagation aux accords
+    this.Voicings.chords.forEach(c=>{
 
-   }
+      c.setScaleNotes(this.Voicings.ScaleNotes);
+      c.setTunning(this.mTunning.strings);
+    }
+     
+    )
+  }
    
   }

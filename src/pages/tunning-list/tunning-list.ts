@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController, LoadingController,ToastController} from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { TunningType,ConfigurationProvider,STANDARD_TUNNING} from    '../../providers/configuration/configuration'
+import { TunningType,ConfigurationProvider,STANDARD_TUNNING,DADGAD_TUNNING,DADGBE_TUNNING,OPEN_A_TUNNING} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { TunningPage}  from    '../tunning/tunning';
@@ -44,9 +43,9 @@ export class TunningListPage extends LoadingCtrlPage{
 				else{
 					this.storage.get("TunningList").then(
 						TunningList => {
-							//TODO
-							if(TunningList == null){
-								this.TunningList =[];
+							//TODO							
+							if(TunningList == null || TunningList.length ==0){							
+								this.TunningList =[DADGAD_TUNNING,DADGBE_TUNNING,OPEN_A_TUNNING];
 							}
 							else{		
 								this.TunningList=TunningList;

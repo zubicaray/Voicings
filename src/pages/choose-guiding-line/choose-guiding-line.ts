@@ -201,7 +201,7 @@ export class ChooseGuidingLinePage extends LoadingCtrlPage {
     this.settings.guidingLine.IdKey=firstAndLastKeyIndex;
     this.settings.guidingLine.IdLine=lineIndex;
 
-    var pitches:number[][]=this.computationProvider.findOctaves(guidingNotes,this.settings.tunning,this.chords)
+    var pitches:number[][]=this.computationProvider.findOctaves(guidingNotes,this.settings.mTunning.strings,this.chords)
     if(pitches.length>0)
       return await this.presentModal(pitches);     
     else{

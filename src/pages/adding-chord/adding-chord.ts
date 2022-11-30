@@ -26,7 +26,7 @@ import * as cloneDeep from 'lodash/cloneDeep';
 		var voicing:SongType=navParams.get('Voicings');
  		this.chords=voicing.chords;
  		this.ScaleNotes=voicing.ScaleNotes;
-		this.Tunning=voicing.settings.tunning;
+		this.Tunning=voicing.settings.mTunning.strings;
 		this.chord=ChordModel.new(this.ScaleNotes,this.Tunning);
 		this.init();
  	}

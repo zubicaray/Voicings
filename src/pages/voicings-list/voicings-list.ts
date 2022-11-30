@@ -112,9 +112,10 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					list.forEach(songRes=> {
 						//debugger
 						
-						if(songRes.settings.tunning==null){
-							debugger
-							//songRes.settings.tunning=STANDARD_TUNNING
+						if(songRes.settings.mTunning==null){
+							
+							songRes.settings.mTunning={name:'Standard',strings:STANDARD_TUNNING}
+							delete songRes.settings.tunning
 						}
 
 						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:number[],settings:Settings}=
@@ -159,7 +160,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						lVL.push(song);
 
 					});
-					//console.log( JSON.stringify(lVL));
+					console.log( JSON.stringify(lVL));
 					lVL.sort( (a,b) => a.songName<b.songName? -1:1);
 					this.VoicingsList=lVL;	
 				}

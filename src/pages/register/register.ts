@@ -20,7 +20,7 @@ export class RegisterPage  {
   payPalConfig: any;
   PAYPAL_CLIENT_ID_TEST = "9L776DDJ2C4Y2"
   PAYPAL_CLIENT_ID_LIVE = "AcjInm0WPRMWkQcyVi0mFdmR-jQCU5R5uH-7wS_yAyWpNBU35D5BIk2E6EjuHuGsnX29oGBE_qVmMD6F"
-  PAYPAL_CLIENT_ID = this.PAYPAL_CLIENT_ID_TEST
+  PAYPAL_CLIENT_ID = this.PAYPAL_CLIENT_ID_LIVE 
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
     private storage: Storage , 

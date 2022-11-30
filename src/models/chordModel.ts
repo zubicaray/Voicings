@@ -109,7 +109,7 @@ export class ChordModel {
     }
     this.tunning=tunning;
     
-    this.ChordModelTunning=this.getOrderedTunning(tunning);
+    
 
     this.init(tunning);  
 
@@ -144,6 +144,8 @@ export class ChordModel {
     delete this.modern;
 
     this.tunning=intunning;
+    this.ChordModelTunning=this.getOrderedTunning(this.tunning);
+    
 
     this.mandatory=[];
     this.natural=[];
@@ -160,6 +162,9 @@ export class ChordModel {
 
   public setScaleNotes(scaleN:string[]){
     this.ScaleNotes=scaleN
+  }
+  public setTunning(inTu:number[]){
+    this.tunning=inTu
   }
 
   public getError():string{

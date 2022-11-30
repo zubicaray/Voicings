@@ -26,7 +26,7 @@
 	<div class="div-item" *ngIf="displayTunning">
 		<ion-label>{{ 'Guitar tunning:' | translate }}</ion-label>
 		<ion-item>
-			<ion-select  [(ngModel)]="mTunning" [compareWith]="compareFn" interface="popover" class="center cookie20center " >
+			<ion-select  [(ngModel)]="mTunning" [compareWith]="compareFn" interface="popover" class="center cookie25center " >
 				<ion-option  class="center  cookie20center" *ngFor="let tunning of TunningList" [value] = "tunning" >
 					{{tunning.name}}
 				</ion-option>

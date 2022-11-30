@@ -37,7 +37,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 		var voicings:SongType=navParams.get('Voicings')
 		
 		
-		this.Tunning=voicings.settings.tunning
+		this.Tunning=voicings.settings.mTunning.strings
 		
 		this.ScaleNotes=voicings.ScaleNotes;
  		

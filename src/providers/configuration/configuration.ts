@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {mod}   from    '../../providers/tools/tools' 
 import { ChordModel} from '../../models/chordModel';
 
 // on considère que la guitare possède 24 ou 17 cases utilisablepour les accords
@@ -56,13 +55,16 @@ export type Settings={
 	allowOctaves:boolean,
 	chordSize:number,
 	player:PlayerSettings,
-	tunning:number[]
+	mTunning:TunningType
 };
 
 /**
 * Default guitar chordage: pitch of each strings
 */
 export const STANDARD_TUNNING:number[]=[52,57,62,67,71,76];
+export const DADGAD_TUNNING:TunningType={name:'DADGAD',strings:[50,57,62,67,69,74]};
+export const DADGBE_TUNNING:TunningType={name:'DADGBE',strings:[50,57,62,67,71,76]};
+export const OPEN_A_TUNNING:TunningType={name:'OPEN A',strings:[50,57,60,65,69,76]};
 
 
 
