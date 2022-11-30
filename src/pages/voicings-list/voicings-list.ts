@@ -103,7 +103,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 			list => {
 				
 
-				if(  list == null  || list==[] || list.length==0){
+				if(  list == null  || list==undefined || list.length==0){
 					console.log("loading from config !!")
 					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);
 				}

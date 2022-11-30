@@ -3,12 +3,12 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule  } from '@ionic/storage';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule,HttpClient} from '@angular/common/http';
-import { Globalization } from '@ionic-native/globalization/ngx'
-import { PayPal} from '@ionic-native/paypal';
+import { Globalization } from '@ionic-native/globalization'
+
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
@@ -90,7 +90,7 @@ export function createTranslateLoader(http: HttpClient) {
     
     ComputationProvider,ConfigurationProvider,
     ToolsProvider,BackgroundMode,Globalization,
-    TranslationProvider,InAppBrowser,HttpClientModule,PayPal
+    TranslationProvider,InAppBrowser,HttpClientModule
   ]
 })
 export class AppModule {}

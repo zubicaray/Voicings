@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Globalization } from '@ionic-native/globalization/ngx';
+import { Globalization } from '@ionic-native/globalization';
 import { Platform } from 'ionic-angular';
 /*
   Generated class for the TranslationProvider provider.

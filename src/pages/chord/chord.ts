@@ -38,6 +38,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 		
 		
 		this.Tunning=voicings.settings.tunning
+		
 		this.ScaleNotes=voicings.ScaleNotes;
  		
  		if(navParams.get('chord') != undefined){

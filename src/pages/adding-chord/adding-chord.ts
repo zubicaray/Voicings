@@ -22,7 +22,7 @@ import * as cloneDeep from 'lodash/cloneDeep';
  		
  		super(navCtrl, navParams,loadingCtrl,toastCtrl,alertCtrl,configurationProvider,TP); 
 
-		debugger
+		
 		var voicing:SongType=navParams.get('Voicings');
  		this.chords=voicing.chords;
  		this.ScaleNotes=voicing.ScaleNotes;

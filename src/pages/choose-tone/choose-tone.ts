@@ -20,6 +20,8 @@ import { HomePage } from '../home/home';
    mTunning:TunningType;
    private isNew:boolean=true;
    TunningList:TunningType[];
+   private displayTunning:boolean=false;
+
    private  Standard:TunningType={name:"standard",strings:STANDARD_TUNNING};
 
  	constructor(public navCtrl: NavController, public navParams: NavParams, 
@@ -46,6 +48,7 @@ import { HomePage } from '../home/home';
           
           console.log("res="+res);
           if (res!=null){
+            this.displayTunning=true;
             //debugger
             this.storage.get("TunningList").then(
               inTunningList => {
@@ -96,7 +99,7 @@ import { HomePage } from '../home/home';
 	}
  	public closeModal(key:number){
 
-    debugger
+    
     if(isBemol(key)){
       this.Voicings.ScaleNotes=Keys;
     }

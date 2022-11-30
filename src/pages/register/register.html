@@ -19,11 +19,15 @@
 			
 		</h3>
 		<ion-item>
-		<ion-label floating>Enter Amount</ion-label>
+		<ion-label floating>{{ 'Enter Amount' | translate }}</ion-label>
 		<ion-input type="text" [(ngModel)]="amount"></ion-input>
 		</ion-item>
+		<ion-item>
+			<div id="paypal-button"></div>
+		</ion-item>
 
-		<button ion-button block (click)="pay()">Make Payment</button>
+		
+		
 
 	</ion-list>
 	
