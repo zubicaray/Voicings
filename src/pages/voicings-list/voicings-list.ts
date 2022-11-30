@@ -160,7 +160,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						lVL.push(song);
 
 					});
-					console.log( JSON.stringify(lVL));
+					//console.log( JSON.stringify(lVL));
 					lVL.sort( (a,b) => a.songName<b.songName? -1:1);
 					this.VoicingsList=lVL;	
 				}

@@ -90,7 +90,7 @@ export const DEFAULT_SETTINGS={
 	chordSize:4,
 	allowOctaves:true,
 	player:{bassPlayer:false,rhythmType:ARPEGIOS,beatPerChord:2,tempo:180},
-	tunning:STANDARD_TUNNING
+	mTunning:{name:"standard",strings:STANDARD_TUNNING}
 
 };
 /**

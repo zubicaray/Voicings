@@ -20,7 +20,7 @@ import * as cloneDeep from 'lodash/cloneDeep';
  		public alertCtrl: AlertController,public configurationProvider:ConfigurationProvider,
 		protected TP: TranslationProvider) {	
  		
- 		super(navCtrl, navParams,loadingCtrl,toastCtrl,alertCtrl,configurationProvider,TP); 
+ 		super(navCtrl, navParams,loadingCtrl,toastCtrl,alertCtrl,TP); 
 
 		
 		var voicing:SongType=navParams.get('Voicings');

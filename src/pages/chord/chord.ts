@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,LoadingController,AlertController,ToastController} from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
-import { ChordFamilyList,ChordSettings,KeysId,NB_FRETTES,SongType,OctavesNotes,ConfigurationProvider}  from    '../../providers/configuration/configuration' 
+import { ChordFamilyList,ChordSettings,KeysId,NB_FRETTES,SongType,OctavesNotes}  from    '../../providers/configuration/configuration' 
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { mod}   from    '../../providers/tools/tools' 
 import { TranslationProvider } from '../../providers/translation/translation';
@@ -29,8 +29,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
  	
  	constructor(public navCtrl: NavController, public navParams: NavParams,
  		public loadingCtrl: LoadingController,public toastCtrl: ToastController,public alertCtrl: AlertController,
- 		public configurationProvider:ConfigurationProvider,
-		protected TP: TranslationProvider
+ 		protected TP: TranslationProvider
  	) 
  	{
  		super(loadingCtrl);
