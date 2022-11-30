@@ -1,5 +1,4 @@
-
-import {NB_FRETTES,OctavesOffset,STANDARD_TUNNING,ConfigurationProvider,GuitarString,OctavesNotes}   from    '../providers/configuration/configuration' 
+import {NB_FRETTES,OctavesOffset,ConfigurationProvider,GuitarString,OctavesNotes}   from    '../providers/configuration/configuration' 
 import {mod,clone}   from    '../providers/tools/tools' 
 
 /**
@@ -165,6 +164,7 @@ export class ChordModel {
   }
   public setTunning(inTu:number[]){
     this.tunning=inTu
+    this.ChordModelTunning=this.getOrderedTunning(this.tunning);
   }
 
   public getError():string{

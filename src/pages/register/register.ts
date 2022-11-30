@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController,AlertController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
 import { TranslationProvider } from '../../providers/translation/translation';
 
 import { Storage } from '@ionic/storage';
@@ -23,8 +22,7 @@ export class RegisterPage  {
   PAYPAL_CLIENT_ID = this.PAYPAL_CLIENT_ID_LIVE 
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
-    private storage: Storage , 
-    private ionLoading: LoadingController,
+    private storage: Storage ,     
     private TP: TranslationProvider) {
 
       this.amount="3";

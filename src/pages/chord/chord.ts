@@ -89,19 +89,20 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
  	init(){
 
- 		if(this.chord.guidingPitch!=0){
- 			this.guidingNoteOctave= ~~(this.chord.guidingPitch/12) -1
-	 		this.guidingNote=mod(this.chord.guidingPitch,12);
-	 		this.Octaves=this.mNoteOctaves[this.guidingNote];	 		
- 		}
- 		else{
- 			this.Octaves=[];
- 		}
+ 		
 		this.Keys=this.chord.ScaleNotes;
  		this.ChordSettings=this.ChordFamilyList[this.chord.idFamily].chords;
  		for(var i:number=0;i<KeysId.length;i++){
  			this.mNoteOctaves.push(this.getOctaves(i));
  		}
+		if(this.chord.guidingPitch!=0){
+			this.guidingNoteOctave= ~~(this.chord.guidingPitch/12) -1
+			this.guidingNote=mod(this.chord.guidingPitch,12);
+			this.Octaves=this.mNoteOctaves[this.guidingNote];	 		
+		}
+		else{
+			this.Octaves=[];
+		}
  	}
 
  	updateChordNotes(){ 		

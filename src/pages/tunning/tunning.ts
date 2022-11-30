@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController} from 'ionic-angular';
 import { OctavesNotes,TunningType }       from    '../../providers/configuration/configuration' 
-import { Storage } from '@ionic/storage';
 import { TranslationProvider } from '../../providers/translation/translation';
 
 
@@ -17,7 +16,7 @@ export class TunningPage {
 	toAdd:boolean=false;
 	OctavesNotes:{pitch:number,key:string,label:string}[]=OctavesNotes;
   	constructor(
-  		public navCtrl: NavController, private storage: Storage,public navParams: NavParams,
+  		public navCtrl: NavController,public navParams: NavParams,
 		private TP: TranslationProvider,public alertCtrl: AlertController) {
 
 				

@@ -23,7 +23,7 @@ export class TunningListPage extends LoadingCtrlPage{
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
 		public navCtrl: NavController, public navParams: NavParams,private storage: Storage, public toastCtrl: ToastController,
-		public loadingCtrl: LoadingController,private configurationProvider:ConfigurationProvider,
+		public loadingCtrl: LoadingController,
 		private TP: TranslationProvider) {
 
 		super(loadingCtrl);		
@@ -37,7 +37,8 @@ export class TunningListPage extends LoadingCtrlPage{
 				
 				console.log("res="+res);
 				if (res==null){
-					this.alert(this.TP.tr("Réservé à la version payante"),this.TP.tr("Vous devez avoir un compte PayPal pour ce faire."))
+					this.alert(this.TP.tr("Sorry, only available in paid version."),
+						this.TP.tr("Use PayPal to do so."))
 					this.navCtrl.setRoot(HomePage);
 				}
 				else{
