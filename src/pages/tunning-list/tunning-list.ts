@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,AlertController, LoadingController,ToastController} from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { TunningType,ConfigurationProvider,STANDARD_TUNNING,DADGAD_TUNNING,DADGBE_TUNNING,OPEN_A_TUNNING} from    '../../providers/configuration/configuration'
+import { TunningType,STANDARD_TUNNING,DADGAD_TUNNING,DADGBE_TUNNING,OPEN_A_TUNNING} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { TunningPage}  from    '../tunning/tunning';
 import { TranslationProvider } from '../../providers/translation/translation';
-import { HomePage } from '../home/home';
+import { VoicingsListPage } from '../voicings-list/voicings-list';
 
 @Component({
   selector: 'page-tunning-list',
@@ -39,7 +39,7 @@ export class TunningListPage extends LoadingCtrlPage{
 				if (res==null){
 					this.alert(this.TP.tr("Sorry, only available in paid version."),
 						this.TP.tr("Use PayPal to do so."))
-					this.navCtrl.setRoot(HomePage);
+					this.navCtrl.setRoot(VoicingsListPage);
 				}
 				else{
 					this.storage.get("TunningList").then(
@@ -58,7 +58,7 @@ export class TunningListPage extends LoadingCtrlPage{
 			()=> {
 			
 				this.alert(this.TP.tr("Erreur en base de donnée"),this.TP.tr("Contactez le développeur ;-)."))
-				this.navCtrl.setRoot(HomePage);
+				this.navCtrl.setRoot(VoicingsListPage);
 			}
 		);
 	}

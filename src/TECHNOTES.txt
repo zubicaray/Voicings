@@ -1,3 +1,28 @@
+Ok SDK 31
+cli packages: (/home/iron-man/Voicings/node_modules)
+
+    @ionic/cli-utils  : 1.9.0
+    ionic (Ionic CLI) : 3.9.0
+
+global packages:
+
+    Cordova CLI : 10.0.0 (cordova-lib@10.1.0) 
+
+local packages:
+
+    @ionic/app-scripts : 3.2.4
+    Cordova Platforms  : android 9.1.0
+    Ionic Framework    : ionic-angular 3.9.2
+
+System:
+
+    Android SDK Tools : 26.1.1
+    Node              : v12.13.0
+    npm               : 6.12.0 
+    OS                : Linux 5.15
+
+
+
 
 
 GIT 
@@ -71,8 +96,13 @@ npm install --save uglify-js
 *********************************************************************************************** 
 AVOIR iNSTALLE LE SDK ANDROID !!
 
+cordova plugin list
+
+
 Define <preference name="android-minSdkVersion" value="19" /> in config.xml file.
 
+// corrupted sdk tools
+https://ourcodeworld.com/articles/read/1591/how-to-solve-android-studio-error-installed-build-tools-revision-3100-is-corrupted-remove-and-install-again-using-the-sdk-manager
 
 sudo npm install -g  cordova@7.0.0  ou @latest ??
 

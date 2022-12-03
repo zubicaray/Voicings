@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule  } from '@ionic/storage';
-import { BackgroundMode } from '@ionic-native/background-mode';
+//import { BackgroundMode } from '@ionic-native/background-mode';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule,HttpClient} from '@angular/common/http';
@@ -89,7 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
     ComputationProvider,ConfigurationProvider,
-    ToolsProvider,BackgroundMode,Globalization,
+    ToolsProvider,Globalization,
     TranslationProvider,InAppBrowser,HttpClientModule
   ]
 })

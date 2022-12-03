@@ -1,93 +1,91 @@
 {
-  "name": "JazzGuitarVoicings",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
-  "scripts": {
-    "start": "ionic-app-scripts serve",
-    "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
-    "compodoc": "npx compodoc -p tsconfig.doc.json"
-  },
-  "config": {
-    "ionic_copy": "./config/copy.config.js"
-  },
-  "dependencies": {
-    "@angular/animations": "5.2.11",
-    "@angular/common": "5.2.11",
-    "@angular/compiler": "5.2.11",
-    "@angular/compiler-cli": "5.2.11",
-    "@angular/core": "5.2.11",
-    "@angular/forms": "5.2.11",
-    "@angular/platform-browser": "5.2.11",
-    "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/background-mode": "^4.20.0",
-    "@ionic-native/core": "~4.12.0",
-    "@ionic-native/file": "^5.16.0",
-    "@ionic-native/globalization": "^4.20.0",
-    "@ionic-native/in-app-browser": "^4.20.0",
-    "@ionic-native/in-app-purchase-2": "^5.16.0",
-    "@ionic-native/native-storage": "^4.19.0",
-    "@ionic-native/splash-screen": "~4.12.0",
-    "@ionic-native/status-bar": "~4.12.0",
-    "@ionic/pro": "2.0.3",
-    "@ionic/storage": "2.1.3",
-    "@ngx-translate/core": "^9.1.1",
-    "@ngx-translate/http-loader": "^4.0.0",
-    "@types/node": "^12.12.6",
-    "chart.js": "^2.7.2",
-    "cordova-android": "^8.1.0",
-    "cordova-plugin-device": "^2.0.3",
-    "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-globalization": "1.11.0",
-    "cordova-plugin-inapppurchase": "1.2.0",
-    "cordova-plugin-ionic-webview": "^4.1.2",
-    "font-awesome": "^4.7.0",
-    "ionic": "3.6.0",
-    "ionic-angular": "3.9.2",
-    "ionic-native": "^2.9.0",
-    "ionicons": "3.0.0",
-    "lodash": "^4.17.15",
-    "ng2-charts": "^1.6.0",
-    "paypal-rest-sdk": "^1.8.1",
-    "remove": "^0.1.5",
-    "rxjs": "^5.5.11",
-    "sw-toolbox": "3.6.0",
-    "uglify-js": "^3.6.5",
-    "zone.js": "0.8.26"
-  },
-  "devDependencies": {
-    "@compodoc/compodoc": "^1.1.19",
-    "@ionic/app-scripts": "^3.2.4",
-    "@ionic/cli-plugin-cordova": "^1.6.2",
-    "@ionic/cli-plugin-ionic-angular": "1.4.1",
-    "@ionic/lab": "1.0.9",
-    "cordova-plugin-background-mode": "^0.7.3",
-    "cordova-plugin-splashscreen": "github:apache/cordova-plugin-splashscreen",
-    "cordova-plugin-whitelist": "^1.3.1",
-    "cordova-uglify": "^0.3.4",
-    "ionic-plugin-keyboard": "^2.2.1",
-    "typescript": "~2.6.2"
-  },
-  "description": "An Ionic project",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-background-mode": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
-      "cordova-plugin-file": {},
-      "cordova-plugin-globalization": {}
+    "name": "JazzGuitarVoicings",
+    "version": "0.0.1",
+    "author": "Ionic Framework",
+    "homepage": "http://ionicframework.com/",
+    "private": true,
+    "scripts": {
+        "start": "ionic-app-scripts serve",
+        "clean": "ionic-app-scripts clean",
+        "build": "ionic-app-scripts build",
+        "lint": "ionic-app-scripts lint",
+        "compodoc": "npx compodoc -p tsconfig.doc.json"
     },
-    "platforms": [
-      "android",
-      "browser"
-    ]
-  }
+    "config": {
+        "ionic_copy": "./config/copy.config.js"
+    },
+    "dependencies": {
+        "@angular/animations": "5.2.11",
+        "@angular/common": "5.2.11",
+        "@angular/compiler": "5.2.11",
+        "@angular/compiler-cli": "5.2.11",
+        "@angular/core": "5.2.11",
+        "@angular/forms": "5.2.11",
+        "@angular/platform-browser": "5.2.11",
+        "@angular/platform-browser-dynamic": "5.2.11",
+        "@ionic-native/core": "~4.12.0",
+        "@ionic-native/file": "^5.16.0",
+        "@ionic-native/globalization": "^4.20.0",
+        "@ionic-native/in-app-browser": "^4.20.0",
+        "@ionic-native/in-app-purchase-2": "^5.16.0",
+        "@ionic-native/native-storage": "^4.19.0",
+        "@ionic-native/splash-screen": "~4.12.0",
+        "@ionic-native/status-bar": "~4.12.0",
+        "@ionic/pro": "2.0.3",
+        "@ionic/storage": "2.1.3",
+        "@ngx-translate/core": "^9.1.1",
+        "@ngx-translate/http-loader": "^4.0.0",
+        "@types/node": "^12.12.6",
+        "chart.js": "^2.7.2",
+        "cordova-android": "10.0.0",
+        "cordova-plugin-device": "^2.0.3",
+        "cordova-plugin-file": "6.0.2",
+        "cordova-plugin-globalization": "1.11.0",
+        "cordova-plugin-inapppurchase": "1.2.0",
+        "cordova-plugin-ionic-webview": "^4.1.2",
+        "cordova-plugin-whitelist": "1.3.1",
+        "font-awesome": "^4.7.0",
+        "ionic": "^3.9.0",
+        "ionic-angular": "3.9.2",
+        "ionic-native": "^2.9.0",
+        "ionic-plugin-keyboard": "~2.2.1",
+        "ionicons": "3.0.0",
+        "lodash": "^4.17.15",
+        "ng2-charts": "^1.6.0",
+        "paypal-rest-sdk": "^1.8.1",
+        "remove": "^0.1.5",
+        "rxjs": "^5.5.11",
+        "sw-toolbox": "3.6.0",
+        "uglify-js": "^3.6.5",
+        "zone.js": "0.8.26"
+    },
+    "devDependencies": {
+        "@compodoc/compodoc": "^1.1.19",
+        "@ionic/app-scripts": "^3.2.4",
+        "@ionic/cli-plugin-cordova": "^1.6.2",
+        "@ionic/cli-plugin-ionic-angular": "1.4.1",
+        "@ionic/lab": "1.0.9",
+        "cordova-plugin-splashscreen": "github:apache/cordova-plugin-splashscreen",
+        "cordova-plugin-whitelist": "^1.3.1",
+        "cordova-uglify": "^0.3.4",
+        "ionic-plugin-keyboard": "^2.2.1",
+        "typescript": "~2.6.2"
+    },
+    "description": "An Ionic project",
+    "cordova": {
+        "plugins": {
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-ionic-webview": {
+                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+            },
+            "cordova-plugin-file": {},
+            "cordova-plugin-globalization": {}
+        },
+        "platforms": [
+            "android"
+        ]
+    }
 }
