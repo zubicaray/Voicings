@@ -51,6 +51,8 @@ export class TunningListPage extends LoadingCtrlPage{
 							else{		
 								this.TunningList=TunningList;
 							}
+
+							this.storage.set("TunningList",this.TunningList);
 						})
 				}
 			}

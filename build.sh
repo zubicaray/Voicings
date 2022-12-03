@@ -2,12 +2,14 @@
 
 
 function build {
+    sed -i  's/activity android:configChanges/activity android:exported="true" android:configChanges/g'  platforms/android/app/src/main/AndroidManifest.xml 
+
     cordova build android --prod --release 
     #jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
     rm -f JazzGuitarVoicings.apk
     zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk  JazzGuitarVoicings.apk
                   
-    apksigner sign --ks keystore.jks  JazzGuitarVoicings.apk
+    apksigner sign --ks keystore.jks  --ks-pass pass:'poil_69!DEN' JazzGuitarVoicings.apk
    
 }
 
@@ -18,7 +20,8 @@ function build_debug {
     #platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
     rm -f JazzGuitarVoicings.apk
     zipalign -v 4 platforms/android/app/build/outputs/apk/debug/app-debug.apk JazzGuitarVoicings.apk
-    apksigner sign --ks keystore.jks  JazzGuitarVoicings.apk
+    apksigner sign --ks keystore.jks  --ks-pass pass:'poil_69!DEN' JazzGuitarVoicings.apk
+
    
 }
 

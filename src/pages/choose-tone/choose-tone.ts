@@ -47,7 +47,7 @@ import { HomePage } from '../home/home';
       else{
           this.mTunning = this.Standard;
       }
-
+      //debugger
       this.storage.get("PAID").then( 
         (res)=>{
           
