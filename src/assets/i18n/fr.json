@@ -1,6 +1,10 @@
 {
 "Please Wait ...":"Patientez ...",
+"You have unsaved changes !":"Changements non sauvés!",
+"Do not save":"Ne pas sauver",
+"Save ...":"Sauvegarder ...",
 "Thanks a lot!":"Merci pour votre don !",
+"Leave the app ?":"Quitter l'application ?",
 "Sorry, available in paid version":"Réservé à la version payante",
 "Use PayPal to do so.":"Utiliser PayPal pour ce faire.",
 "tunning list":"Accordages",
@@ -132,7 +136,7 @@
 "NO":"NON",
 "Name:":"Nom:",
 "Name":"Nom",
-"Are you really sure? This can't be undone.":"Etes-vous certain? Ceci ne peut être annulé."
+"Are you really sure?":"Etes-vous certain?"
 
 
 

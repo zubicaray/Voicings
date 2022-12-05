@@ -3,7 +3,7 @@ import { NavController,AlertController, NavParams , LoadingController,ToastContr
 import { ModalController } from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
 import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { Settings  ,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS} from    '../../providers/configuration/configuration'
+import { Settings ,ConfigurationProvider,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { SONGS } from '../../assets/data/songs';
@@ -12,6 +12,7 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
 import * as cloneDeep from 'lodash/cloneDeep';
 import { ChooseTonePage } from '../choose-tone/choose-tone';
+
 
 @Component({
 	selector: 'page-voicings-list',
@@ -26,15 +27,19 @@ export class VoicingsListPage extends LoadingCtrlPage{
 	VoicingsList:SongType[];
 
 	loading:any;	
+	FirstMD5:string
+	LastMD5:string
 
 
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
 		public navCtrl: NavController, public navParams: NavParams,private storage: Storage, public toastCtrl: ToastController,
 		public loadingCtrl: LoadingController,
-		private TP: TranslationProvider) {
+		private TP: TranslationProvider, private configurationProvider:ConfigurationProvider) {
 
 		super(loadingCtrl);		
+
+	
 		
 		this.showLoader(this.TP.tr("Loading voicings list ..."));
 		setTimeout(() => {
@@ -102,13 +107,16 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		//this.storage.remove("TunningList");
 		this.storage.get("VoicingsList").then( 
 
-			list => {
+			(list:SongType[])=> {
 				
 
 				if(  list == null  || list==undefined || list.length==0){
 					console.log("loading from config !!")
 
 					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);
+					this.configurationProvider.setFirstCheckSum(this.VoicingsList);
+					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+					this.storage.set("VoicingsList",this.VoicingsList);
 				}
 				else{
 					var lVL:any=[];
@@ -118,10 +126,10 @@ export class VoicingsListPage extends LoadingCtrlPage{
 						if(songRes.settings.mTunning==null){
 							
 							songRes.settings.mTunning={name:'Standard',strings:STANDARD_TUNNING}
-							delete songRes.settings.tunning
+							delete songRes.settings.mTunning
 						}
 
-						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:number[],settings:Settings}=
+						var song:{songName:string,chords:ChordModel[],ScaleNotesId:number,ScaleNotes:string[],settings:Settings}=
 						{songName:songRes.songName,chords:[],ScaleNotesId:songRes.ScaleNotesId,
 							ScaleNotes:songRes.ScaleNotes,settings:songRes.settings};
 
@@ -167,6 +175,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					//console.log( JSON.stringify(lVL));
 					lVL.sort( (a,b) => a.songName<b.songName? -1:1);
 					this.VoicingsList=lVL;	
+					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
 				}
 			});
 
@@ -174,13 +183,61 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 
 
+
 	save(){
+
 		this.showLoader(this.TP.tr("Saving voicings list ..."));
 		setTimeout(() => {
 			this.storage.set("VoicingsList",this.VoicingsList);
+			this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+			console.log("this.FirstMD5="+this.FirstMD5)
+
 
 		}, 100)
 
+	}
+
+	async ionViewCanLeave() {
+	
+		let lastMD5=this.configurationProvider.getMD5(this.VoicingsList);
+		console.log("lastMD5="+lastMD5+"   this.FirstMD5="+this.FirstMD5);
+		if(this.FirstMD5 !=lastMD5){
+			this.saveBeforeQuitting();
+		}
+	
+		
+	}
+
+
+	public saveBeforeQuitting(){
+		
+
+		let alert = this.alertCtrl.create({
+			title: this.TP.tr('You have unsaved changes !'),
+			cssClass: 'alertCustomCss',
+			
+			buttons: [
+      		{
+				text: this.TP.tr('Save ...'),
+				role: 'save',
+				handler: data => {
+					this.storage.set("VoicingsList",this.VoicingsList);
+					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+					console.log("this.FirstMD5="+this.FirstMD5)
+                }
+			}
+          	,
+			{
+				text: this.TP.tr('Do not save'),
+				role: 'cancel',
+				handler: data => {
+					
+
+					
+				}
+			}
+		]});
+		alert.present();	
 	}
 
 
@@ -354,7 +411,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		let alertPopup = this.alertCtrl.create({
 			title: this.TP.tr('Remove'),
 			cssClass: 'alertCustomCss',
-			message: this.TP.tr('Are you really sure? This can\'t be undone.'),
+			message: this.TP.tr('Are you really sure?'),
 			buttons: [{
 				text: this.TP.tr('Yes'),
 				handler: () =>  {

@@ -26,11 +26,13 @@ export class TunningListPage extends LoadingCtrlPage{
 		public loadingCtrl: LoadingController,
 		private TP: TranslationProvider) {
 
-		super(loadingCtrl);		
+		super(loadingCtrl);	
+		/*	
 		this.showLoader(this.TP.tr("Loading tunning list ..."));
 		setTimeout(() => {
 			//this.load();
 		}, 100);
+		*/
 		
 		this.storage.get("PAID").then( 
 			(res)=>{

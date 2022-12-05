@@ -1,5 +1,6 @@
-import {NB_FRETTES,OctavesOffset,ConfigurationProvider,GuitarString,OctavesNotes}   from    '../providers/configuration/configuration' 
+import {NB_FRETTES,OctavesOffset,ChordSettings,GuitarString,ChordFamilyList,OctavesNotes}   from    '../providers/configuration/configuration' 
 import {mod,clone}   from    '../providers/tools/tools' 
+
 
 /**
 * Type for representing an instance of chord that has its own diagram,
@@ -27,7 +28,8 @@ export const GUIDING_NOTE_ANTWHERE=3;
  */
 export class ChordModel {
 
-  static configurationProvider:ConfigurationProvider=new ConfigurationProvider();
+  static storage: Storage ;
+ 
 
 
   /** mandatory, as regard harmony, notes of the chord  */
@@ -342,10 +344,17 @@ export class ChordModel {
   }
   /**
   * @ignore
-  */
+  
   getType():{name:string, mandatory:number[], natural:number[], modern:number[]} {
     return ChordModel.configurationProvider.getType(this.idFamily,this.idtype);
   }
+*/
+  	/**
+	* @ignore
+	*/
+	getType():ChordSettings {
+		return ChordFamilyList[this.idFamily].chords[this.idtype];
+	}
   /**
   * @ignore
   */
