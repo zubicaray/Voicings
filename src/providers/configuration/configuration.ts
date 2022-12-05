@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ChordModel} from '../../models/chordModel';
 import { Storage } from '@ionic/storage';
 import sum from 'hash-sum/hash-sum';
-
+import MD5 from 'crypto-js/md5';
 // on considère que la guitare possède 24 ou 17 cases utilisablepour les accords
 export const NB_FRETTES = 17;
   /**
@@ -232,18 +232,17 @@ export class ConfigurationProvider {
 	
 
 	public getMD5(inVoicingsList:SongType[]):string{
-		return sum(inVoicingsList); 
+		return sum(MD5(JSON.stringify(inVoicingsList))).toString(); 
 	}
-	
 
 	public setFirstCheckSum(inVoicingsList:SongType[]){
-		let checkSum=sum(inVoicingsList);    
+		let checkSum=sum(MD5(JSON.stringify(inVoicingsList)));    
 		this.storage.set("FirstMD5VoicingsList",checkSum);      
 		console.log("First MD5 VoicingsList="+checkSum)	
 	}
 	
-	setLastCheckSum(inVoicingsList:SongType[]){
-		let checkSum=sum(inVoicingsList);   
+	public setLastCheckSum(inVoicingsList:SongType[]){
+		let checkSum=sum(MD5(JSON.stringify(inVoicingsList)));   
 		this.storage.set("LastMD5VoicingsList",checkSum);      
 		console.log("Last MD5 VoicingsList="+checkSum)
 	
@@ -266,31 +265,7 @@ export class ConfigurationProvider {
 	     return Keys[keys[0]]+ " -> " + Keys[keys[keys.length-1]];
 	}
 
-	equalCheckSums(VoicingsList:SongType[]){
-		var res:boolean=true;
-		this.storage.get("FirstMD5VoicingsList").then( 
 
-            FirstMD5=> {
-              this.storage.get("LastMD5VoicingsList").then( 
-                LastMD5 =>{
-
-					console.log("FirstMD5="+FirstMD5+"  LastMD5="+LastMD5);
-					if(FirstMD5!=LastMD5)
-					{
-						this.storage.set("VoicingsListTmp",VoicingsList);
-						console.log("ionViewCanLeave LastMD5 VoicingsList");
-					}else{
-						console.log("ionViewCanLeave EQUALS LastMD5 VoicingsList");
-					}
-
-                }
-              
-              )
-            }
-          )
-
-
-	}
 
 
 }
