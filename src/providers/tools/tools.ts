@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//import Tone from '../../assets/midi/Tone.min.js'
 import { PlayerSettings,ARPEGIOS,SWING,TREMOLO } from    '../../providers/configuration/configuration';
 
 

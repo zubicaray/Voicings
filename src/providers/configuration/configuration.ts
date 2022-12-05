@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChordModel} from '../../models/chordModel';
 import { Storage } from '@ionic/storage';
-import sum from 'hash-sum/hash-sum';
-import MD5 from 'crypto-js/md5';
+
 // on considère que la guitare possède 24 ou 17 cases utilisablepour les accords
 export const NB_FRETTES = 17;
   /**
@@ -219,7 +218,20 @@ export function isBemol (i:number): boolean {
     return [1,3,6,8,10].includes(i,0)   
 }
 
-
+function serialize (obj) {
+	if (Array.isArray(obj)) {
+	  return JSON.stringify(obj.map(i => serialize(i)))
+	} else if(typeof obj === 'string') {
+	  return `"${obj}"`
+	} else if (typeof obj === 'object' && obj !== null) {
+	  return Object.keys(obj)
+		.sort()
+		.map(k => `${k}:${serialize(obj[k])}`)
+		.join('|')
+	}
+  
+	return obj
+  }
 /**
  * provider for getting configuration
 */
@@ -231,23 +243,6 @@ export class ConfigurationProvider {
 	}
 	
 
-	public getMD5(inVoicingsList:SongType[]):string{
-		return sum(MD5(JSON.stringify(inVoicingsList))).toString(); 
-	}
-
-	public setFirstCheckSum(inVoicingsList:SongType[]){
-		let checkSum=sum(MD5(JSON.stringify(inVoicingsList)));    
-		this.storage.set("FirstMD5VoicingsList",checkSum);      
-		console.log("First MD5 VoicingsList="+checkSum)	
-	}
-	
-	public setLastCheckSum(inVoicingsList:SongType[]){
-		let checkSum=sum(MD5(JSON.stringify(inVoicingsList)));   
-		this.storage.set("LastMD5VoicingsList",checkSum);      
-		console.log("Last MD5 VoicingsList="+checkSum)
-	
-	
-	}
 	/**
 	* make a string from guiding line
 	*/

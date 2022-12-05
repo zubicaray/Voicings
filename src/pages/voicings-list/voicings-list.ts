@@ -113,9 +113,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				if(  list == null  || list==undefined || list.length==0){
 					console.log("loading from config !!")
 
-					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);
-					this.configurationProvider.setFirstCheckSum(this.VoicingsList);
-					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);					
 					this.storage.set("VoicingsList",this.VoicingsList);
 				}
 				else{
@@ -175,7 +173,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					//console.log( JSON.stringify(lVL));
 					lVL.sort( (a,b) => a.songName<b.songName? -1:1);
 					this.VoicingsList=lVL;	
-					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+					
 				}
 			});
 
@@ -189,14 +187,14 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		this.showLoader(this.TP.tr("Saving voicings list ..."));
 		setTimeout(() => {
 			this.storage.set("VoicingsList",this.VoicingsList);
-			this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
-			console.log("this.FirstMD5="+this.FirstMD5)
+			//this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
+			//sconsole.log("this.FirstMD5="+this.FirstMD5)
 
 
 		}, 100)
 
 	}
-
+/*
 	async ionViewCanLeave() {
 	
 		let lastMD5=this.configurationProvider.getMD5(this.VoicingsList);
@@ -239,7 +237,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		]});
 		alert.present();	
 	}
-
+*/
 
 	setGuidingLine(line:number[],chords:ChordModel[]){
 		for(let i in line){
@@ -282,13 +280,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 							songVoicings: newSong,ScaleNotes:[]
 						});
 						
-						/*
-						this.navCtrl.push(EditVoicingPage, {
-							songVoicings: newSong
-						});
-
-						this.navCtrl.push(AddingChordPage, { chords: newSong.chords,ScaleNotes: ScaleNotes	 });
-						*/
+					
 					}
 					
 				}

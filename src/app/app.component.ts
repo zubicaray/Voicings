@@ -11,14 +11,6 @@ import { HomePage } from '../pages/home/home';
 import { VoicingsListPage } from '../pages/voicings-list/voicings-list';
 import { TunningListPage } from '../pages/tunning-list/tunning-list';
 import { RegisterPage } from '../pages/register/register';
-import { SongType,ConfigurationProvider} from    '../providers/configuration/configuration'
-
-
-
-
-
-declare var digest;
-
 
 
 @Component({
@@ -34,22 +26,11 @@ export class MyApp {
 
 
   constructor(private TP: TranslationProvider, private alertCtrl: AlertController,public storage :Storage,public app:App,public platform: Platform, public statusBar: StatusBar, 
-    public splashScreen: SplashScreen, private configurationProvider:ConfigurationProvider) {
+    public splashScreen: SplashScreen) {
     this.initializeApp();
 
     
-    this.storage.get("VoicingsList").then( 
-
-      (list:SongType[])=> {
-        console.log("MODULE checkSum deb")
-        
-        this.configurationProvider.setFirstCheckSum(list);
-
-        
-
-      }
-    )
-
+   
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage }
@@ -96,7 +77,7 @@ export class MyApp {
   }
   confirmQuitting(){	
 		let alertPopup = this.alertCtrl.create({
-      title: this.TP.tr('Leave the app ?'),
+      title: this.TP.tr('Leave the app ?No changes to save?'),
 			cssClass: 'alertCustomCss',
 	
 			buttons: [

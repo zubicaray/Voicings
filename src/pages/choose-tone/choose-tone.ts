@@ -51,7 +51,7 @@ import { HomePage } from '../home/home';
       this.storage.get("PAID").then( 
         (res)=>{
           
-          console.log("res="+res);
+          //console.log("res="+res);
           if (res!=null){
             this.displayTunning=true;
             //debugger
