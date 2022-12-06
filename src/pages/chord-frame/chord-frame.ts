@@ -23,7 +23,7 @@ export class ChordFramePage {
   
    
   }
-
+  //@ts-ignore
   private setIndex(index:number){
 
     let begin=this.settings.chordRangeForLine.begin;

@@ -20,6 +20,7 @@ import { HomePage } from '../home/home';
    mTunning:TunningType;
    private isNew:boolean=true;
    TunningList:TunningType[];
+   //@ts-ignore
    private displayTunning:boolean=false;
 
    private  Standard:TunningType={name:"standard",strings:STANDARD_TUNNING};

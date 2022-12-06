@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChordModel} from '../../models/chordModel';
-import { Storage } from '@ionic/storage';
+
 
 // on considère que la guitare possède 24 ou 17 cases utilisablepour les accords
 export const NB_FRETTES = 17;
@@ -193,6 +193,17 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 			{ name:"Ø",		mandatory:[3,6,10], natural:[0,1,8],  modern:[]}         
 		]
 	}
+	,
+	{
+		name:"SUS",
+		chords:[
+			{ name:"sus2",   	mandatory:[2],  natural:[0,4,5,7,9,11],  modern:[]},
+			{ name:"sus4",		mandatory:[4],  natural:[0,2,5,7,9,11],  modern:[]},
+			{ name:"7sus2",   	mandatory:[2,10],  natural:[0,5,7,9],  modern:[]},
+			{ name:"7sus4",		mandatory:[4,10],  natural:[0,2,5,7,9],  modern:[]},
+			{ name:"sus9b",   	mandatory:[1],  natural:[0,4,5,7,8,10],  modern:[]}       
+		]
+	}
 ];
 /**
 * @ignore
@@ -218,27 +229,13 @@ export function isBemol (i:number): boolean {
     return [1,3,6,8,10].includes(i,0)   
 }
 
-function serialize (obj) {
-	if (Array.isArray(obj)) {
-	  return JSON.stringify(obj.map(i => serialize(i)))
-	} else if(typeof obj === 'string') {
-	  return `"${obj}"`
-	} else if (typeof obj === 'object' && obj !== null) {
-	  return Object.keys(obj)
-		.sort()
-		.map(k => `${k}:${serialize(obj[k])}`)
-		.join('|')
-	}
-  
-	return obj
-  }
 /**
  * provider for getting configuration
 */
 @Injectable()
 export class ConfigurationProvider {
 
-	constructor(private storage: Storage) {
+	constructor() {
 
 	}
 	

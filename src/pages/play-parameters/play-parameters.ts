@@ -38,7 +38,7 @@ export class PlayParametersPage {
      // Show the alert
      alertPopup.present();
   }
-
+  //@ts-ignore
   private playSound(){
     if(!this.toolsProvider.isLoaded)
       this.alert(this.TP.tr('Instruments are loading'),this.TP.tr("Wait few seconds and try again."))

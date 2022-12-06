@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { TranslationProvider } from '../../providers/translation/translation';
+
 
 
 
@@ -10,13 +10,12 @@ import { TranslationProvider } from '../../providers/translation/translation';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController,
-		private TP: TranslationProvider) {
+  constructor(public navCtrl: NavController) {
 
       
 
   }
-
+  //@ts-ignore
   private openURL(){
     window.open('https://www.youtube.com/channel/UC2S0nC_cM0HtrRYD4flUz2w','_system');
   }

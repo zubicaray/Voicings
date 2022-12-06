@@ -3,7 +3,7 @@ import { NavController,AlertController, NavParams , LoadingController,ToastContr
 import { ModalController } from 'ionic-angular';
 import { ChordModel} from '../../models/chordModel';
 import { EditVoicingPage}  from    '../edit-voicing/edit-voicing' 
-import { Settings ,ConfigurationProvider,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS} from    '../../providers/configuration/configuration'
+import { Settings ,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { SONGS } from '../../assets/data/songs';
@@ -35,7 +35,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		public modalCtrl : ModalController,
 		public navCtrl: NavController, public navParams: NavParams,private storage: Storage, public toastCtrl: ToastController,
 		public loadingCtrl: LoadingController,
-		private TP: TranslationProvider, private configurationProvider:ConfigurationProvider) {
+		private TP: TranslationProvider) {
 
 		super(loadingCtrl);		
 

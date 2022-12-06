@@ -77,12 +77,12 @@ export class MyApp {
   }
   confirmQuitting(){	
 		let alertPopup = this.alertCtrl.create({
-      title: this.TP.tr('Leave the app ?No changes to save?'),
+      title: this.TP.tr('Leave the app? No changes to save?'),
 			cssClass: 'alertCustomCss',
 	
 			buttons: [
 			{
-				text: this.TP.tr('Ok'),			
+				text: this.TP.tr('Quit'),			
 				handler: () => {
           this.platform.exitApp();
 				}
