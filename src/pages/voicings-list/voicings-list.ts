@@ -10,61 +10,13 @@ import { SONGS } from '../../assets/data/songs';
 import { TranslationProvider } from '../../providers/translation/translation';
 
 
+
 import * as cloneDeep from 'lodash/cloneDeep';
 import { ChooseTonePage } from '../choose-tone/choose-tone';
-//import { deepEqual } from 'ionic-angular/umd/util/util';
 
-import * as deepEqualAncular from 'deep-equal';
+import * as deepEqual from 'fast-deep-equal';
 
 
-const deepEqual = (objA, objB, map = new WeakMap()) => {
-	// P1
-	if (Object.is(objA, objB)) return true;
-  
-	// P2
-	if (objA instanceof Date && objB instanceof Date) {
-	  return objA.getTime() === objB.getTime();
-	}
-	if (objA instanceof RegExp && objB instanceof RegExp) {
-	  return objA.toString() === objB.toString();
-	}
-  
-	// P3
-	if (
-	  typeof objA !== 'object' ||
-	  objA === null ||
-	  typeof objB !== 'object' ||
-	  objB === null
-	) {
-		//console.log(objA+"  NOT  "+objB)
-	  return false;
-	}
-  
-	// P4
-	if (map.get(objA) === objB) return true;
-	map.set(objA, objB);
-  
-	// P5
-	const keysA = Reflect.ownKeys(objA);
-	const keysB = Reflect.ownKeys(objB);
-  
-	if (keysA.length !== keysB.length) {
-		//console.log(keysA+"  NOT  "+keysB)
-	  return false;
-	}
-  
-	for (let i = 0; i < keysA.length; i++) {
-	  if (
-		!Reflect.has(objB, keysA[i]) ||
-		!deepEqual(objA[keysA[i]], objB[keysA[i]], map)
-	  ) {
-		//console.log(objA[keysA[i]]+"  NOT  "+objB[keysA[i]])
-		return false;
-	  }
-	}
-  
-	return true;
-  };
 
 @Component({
 	selector: 'page-voicings-list',
@@ -80,9 +32,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 	VoicingsListLastSaved:SongType[];
 
 	loading:any;	
-	FirstMD5:string
-	LastMD5:string
-
+	innerPages:boolean=false;
 
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
@@ -216,9 +166,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 							song.chords.push(chord);
 
 						});
-					
-						//var text=song.songName+"():any { return "+ JSON.stringify(song)    +"\n}\n\n"
-						//console.log( JSON.stringify(song))
+
 						lVL.push(song);
 
 					});
@@ -245,10 +193,6 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		setTimeout(() => {
 			this.storage.set("VoicingsList",this.VoicingsList);
 			this.VoicingsListLastSaved== cloneDeep(this.VoicingsList);
-			//this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
-			//sconsole.log("this.FirstMD5="+this.FirstMD5)
-
-
 		}, 100)
 
 	}
@@ -294,9 +238,11 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 					
 					if(this.validation(data.Name,newSong)){
+						this.innerPages=true;
 						this.navCtrl.push(ChooseTonePage, {
 							songVoicings: newSong,ScaleNotes:[]
 						});
+						
 						
 					
 					}
@@ -309,9 +255,11 @@ export class VoicingsListPage extends LoadingCtrlPage{
 	}
 
 	setKey(song){
+		this.innerPages=true;
 		this.navCtrl.push(ChooseTonePage, {
 			songVoicings: song
 		});
+		
 	}	
 	presentToast(msg:string) {
 		let toast = this.toastCtrl.create({
@@ -447,18 +395,28 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	}
 
-	itemTapped( songVoicings) {    
+	itemTapped( songVoicings) { 
+		this.innerPages=true;   
 		this.navCtrl.push(EditVoicingPage, {
 			songVoicings: songVoicings
 		});
+		
 	}
 
 	async ionViewCanLeave() {
 
-		if(! deepEqualAncular(this.VoicingsList,this.VoicingsListLastSaved)){
-			this.saveBeforeQuitting();
-		}
+		//if ( view.instance instanceof MyPage ){
+	
 
+		if(this.innerPages == false ){
+			//this.innerPages == false
+			if( ! deepEqual(this.VoicingsList,this.VoicingsListLastSaved)){						
+				this.saveBeforeQuitting();			
+			}
+		}
+		this.innerPages = false
+		
+		
 	}
 	public saveBeforeQuitting(){
 		
@@ -474,7 +432,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				handler: data => {
 					this.storage.set("VoicingsList",this.VoicingsList);
 					this.VoicingsListLastSaved= cloneDeep(this.VoicingsList);
-					console.log("this.FirstMD5="+this.FirstMD5)
+					
                 }
 			}
           	,

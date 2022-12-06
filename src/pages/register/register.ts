@@ -26,7 +26,6 @@ export class RegisterPage  {
     private TP: TranslationProvider) {
 
       
-      debugger 
       this.amount="3";
       let enviroment = ""
       if (this.PAYPAL_CLIENT_ID == this.PAYPAL_CLIENT_ID_TEST) {
