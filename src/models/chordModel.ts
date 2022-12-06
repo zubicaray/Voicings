@@ -42,7 +42,7 @@ export class ChordModel {
   /** notes of the tune scale */
   //private ScaleNotes:string[]; // ""
 
-  private errorMsg:string;
+  private errorMsg:string="";
   
   /* chosen diagram chord on the fretboard */
   canvas:DiagramType;

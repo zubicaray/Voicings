@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChordModel} from '../../models/chordModel';
-
+//import * as equalObjects from 'lodash/_equalObjects';
 
 // on considère que la guitare possède 24 ou 17 cases utilisablepour les accords
 export const NB_FRETTES = 17;
@@ -229,6 +229,31 @@ export function isBemol (i:number): boolean {
     return [1,3,6,8,10].includes(i,0)   
 }
 
+
+function deepEqual(object1, object2) {
+	const keys1 = Object.keys(object1);
+	const keys2 = Object.keys(object2);
+	if (keys1.length !== keys2.length) {
+	  return false;
+	}
+	for (const key of keys1) {
+	  const val1 = object1[key];
+	  const val2 = object2[key];
+	  const areObjects = isObject(val1) && isObject(val2);
+	  if (
+		areObjects && !deepEqual(val1, val2) ||
+		!areObjects && val1 !== val2
+	  ) {
+		return false;
+	  }
+	}
+	return true;
+  }
+  function isObject(object) {
+	return object != null && typeof object === 'object';
+  }
+
+
 /**
  * provider for getting configuration
 */
@@ -240,9 +265,16 @@ export class ConfigurationProvider {
 	}
 	
 
+	hasChanges(s1:SongType[],s2:SongType[]):boolean{
+
+		return true;
+		//deepEqual(s1,s2)
+
+	}
+
 	/**
 	* make a string from guiding line
-	*/
+	*/	
 	printNotes(guidingLine:number[]) :string{
 
 		return guidingLine.reduce( (acc,note) => {

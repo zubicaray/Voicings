@@ -12,7 +12,59 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
 import * as cloneDeep from 'lodash/cloneDeep';
 import { ChooseTonePage } from '../choose-tone/choose-tone';
+//import { deepEqual } from 'ionic-angular/umd/util/util';
 
+import * as deepEqualAncular from 'deep-equal';
+
+
+const deepEqual = (objA, objB, map = new WeakMap()) => {
+	// P1
+	if (Object.is(objA, objB)) return true;
+  
+	// P2
+	if (objA instanceof Date && objB instanceof Date) {
+	  return objA.getTime() === objB.getTime();
+	}
+	if (objA instanceof RegExp && objB instanceof RegExp) {
+	  return objA.toString() === objB.toString();
+	}
+  
+	// P3
+	if (
+	  typeof objA !== 'object' ||
+	  objA === null ||
+	  typeof objB !== 'object' ||
+	  objB === null
+	) {
+		//console.log(objA+"  NOT  "+objB)
+	  return false;
+	}
+  
+	// P4
+	if (map.get(objA) === objB) return true;
+	map.set(objA, objB);
+  
+	// P5
+	const keysA = Reflect.ownKeys(objA);
+	const keysB = Reflect.ownKeys(objB);
+  
+	if (keysA.length !== keysB.length) {
+		//console.log(keysA+"  NOT  "+keysB)
+	  return false;
+	}
+  
+	for (let i = 0; i < keysA.length; i++) {
+	  if (
+		!Reflect.has(objB, keysA[i]) ||
+		!deepEqual(objA[keysA[i]], objB[keysA[i]], map)
+	  ) {
+		//console.log(objA[keysA[i]]+"  NOT  "+objB[keysA[i]])
+		return false;
+	  }
+	}
+  
+	return true;
+  };
 
 @Component({
 	selector: 'page-voicings-list',
@@ -25,6 +77,7 @@ import { ChooseTonePage } from '../choose-tone/choose-tone';
 export class VoicingsListPage extends LoadingCtrlPage{
 
 	VoicingsList:SongType[];
+	VoicingsListLastSaved:SongType[];
 
 	loading:any;	
 	FirstMD5:string
@@ -175,7 +228,11 @@ export class VoicingsListPage extends LoadingCtrlPage{
 					this.VoicingsList=lVL;	
 					
 				}
+
+				//debugger
+				this.VoicingsListLastSaved= cloneDeep(this.VoicingsList);
 			});
+
 
 	}
 
@@ -187,6 +244,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		this.showLoader(this.TP.tr("Saving voicings list ..."));
 		setTimeout(() => {
 			this.storage.set("VoicingsList",this.VoicingsList);
+			this.VoicingsListLastSaved== cloneDeep(this.VoicingsList);
 			//this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
 			//sconsole.log("this.FirstMD5="+this.FirstMD5)
 
@@ -194,50 +252,10 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		}, 100)
 
 	}
-/*
-	async ionViewCanLeave() {
+
+
 	
-		let lastMD5=this.configurationProvider.getMD5(this.VoicingsList);
-		console.log("lastMD5="+lastMD5+"   this.FirstMD5="+this.FirstMD5);
-		if(this.FirstMD5 !=lastMD5){
-			this.saveBeforeQuitting();
-		}
-	
-		
-	}
 
-
-	public saveBeforeQuitting(){
-		
-
-		let alert = this.alertCtrl.create({
-			title: this.TP.tr('You have unsaved changes !'),
-			cssClass: 'alertCustomCss',
-			
-			buttons: [
-      		{
-				text: this.TP.tr('Save ...'),
-				role: 'save',
-				handler: data => {
-					this.storage.set("VoicingsList",this.VoicingsList);
-					this.FirstMD5=this.configurationProvider.getMD5(this.VoicingsList);
-					console.log("this.FirstMD5="+this.FirstMD5)
-                }
-			}
-          	,
-			{
-				text: this.TP.tr('Do not save'),
-				role: 'cancel',
-				handler: data => {
-					
-
-					
-				}
-			}
-		]});
-		alert.present();	
-	}
-*/
 
 	setGuidingLine(line:number[],chords:ChordModel[]){
 		for(let i in line){
@@ -429,15 +447,47 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	}
 
-
 	itemTapped( songVoicings) {    
-
 		this.navCtrl.push(EditVoicingPage, {
 			songVoicings: songVoicings
 		});
-
-
 	}
 
+	async ionViewCanLeave() {
 
+		if(! deepEqualAncular(this.VoicingsList,this.VoicingsListLastSaved)){
+			this.saveBeforeQuitting();
+		}
+
+	}
+	public saveBeforeQuitting(){
+		
+
+		let alert = this.alertCtrl.create({
+			title: this.TP.tr('You have unsaved changes !'),
+			cssClass: 'alertCustomCss',
+			
+			buttons: [
+      		{
+				text: this.TP.tr('Save ...'),
+				role: 'save',
+				handler: data => {
+					this.storage.set("VoicingsList",this.VoicingsList);
+					this.VoicingsListLastSaved= cloneDeep(this.VoicingsList);
+					console.log("this.FirstMD5="+this.FirstMD5)
+                }
+			}
+          	,
+			{
+				text: this.TP.tr('Do not save'),
+				role: 'cancel',
+				handler: data => {
+					
+
+					
+				}
+			}
+		]});
+		alert.present();	
+	}
 }
