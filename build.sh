@@ -2,14 +2,14 @@
 
 
 function build {
-    ionic build
+    #ionic build
     cordova build android --prod --release 
     #jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'' \
-         --ks-key-alias=upload --key-pass=pass:'' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
+         --ks-key-alias=upload --key-pass=pass:'phase 6' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
@@ -25,8 +25,8 @@ function buildNoIonic {
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'poil_69!DEN' \
-         --ks-key-alias=upload --key-pass=pass:'poil_69!DEN' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
+         --ks-key-alias=upload --key-pass=pass:'phase 6' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
@@ -38,14 +38,14 @@ function buildNoIonic {
 
 
 function build_debug {
-    ionic build
-     cordova build android 
+    #ionic build
+    cordova build android 
     #jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk upload
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'poil_69!DEN' \
-         --ks-key-alias=upload --key-pass=pass:'poil_69!DEN' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
+         --ks-key-alias=upload --key-pass=pass:'phase 6' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
@@ -69,8 +69,8 @@ do
         "DEEP REBUILD") ionic cordova platform remove  android;ionic cordova platform add  android@latest ;	build	break;;
         "DEEP CLEAN") ionic cordova platform remove  android;ionic cordova platform add  android@latest ;	break;;
         "CLEAN")  cordova clean android ;	break;;
-        "BUILD")  build	break;;
-        "BUILD WITHOUT IONIC")  buildNoIonic	break;;
+        "BUILD")  cordova clean android ; build	break;;
+        "BUILD WITHOUT IONIC")  cordova clean android ;buildNoIonic	break;;
         "BUILD_DEBUG")  build_debug	break;;
         "EMULATE ANDROID") ionic cordova run android ; break;;	
         "SERVE")  ionic serve --lab --no-interactive -v   break;;			            

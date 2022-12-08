@@ -28,7 +28,7 @@ export class HomePage {
      });
     
     let email = {
-      to: 'JazzGuitarVoicnings@gmail.com',
+      to: 'JazzGuitarVoicings@gmail.com',
       cc: '',
       bcc: [],
       attachments: [
