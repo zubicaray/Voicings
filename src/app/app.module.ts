@@ -3,13 +3,14 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule  } from '@ionic/storage';
-//import { BackgroundMode } from '@ionic-native/background-mode';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule,HttpClient} from '@angular/common/http';
 import { Globalization } from '@ionic-native/globalization'
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { StatusBar } from '@ionic-native/status-bar';
 
 
 // PAGES ***********************************************************
@@ -33,8 +34,7 @@ import { ChooseGuidingLinePage}  from    '../pages/choose-guiding-line/choose-gu
 import { PlayParametersPage}  from    '../pages/play-parameters/play-parameters';
 
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 
 // DIRECTIVES    ***********************************************************
@@ -63,7 +63,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpClientModule,
@@ -85,11 +84,10 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     StatusBar,
-    SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
     ComputationProvider,ConfigurationProvider,
-    ToolsProvider,Globalization,
+    ToolsProvider,Globalization,EmailComposer,
     TranslationProvider,InAppBrowser,HttpClientModule
   ]
 })

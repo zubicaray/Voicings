@@ -8,12 +8,13 @@ function build {
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'poil_69!DEN' \
-         --ks-key-alias=upload --key-pass=pass:'poil_69!DEN' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'' \
+         --ks-key-alias=upload --key-pass=pass:'' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
     rm  toc.pb
+    touch JazzGuitarVoicings.apk
    
 }
 function buildNoIonic {
@@ -30,6 +31,7 @@ function buildNoIonic {
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
     rm  toc.pb
+    touch JazzGuitarVoicings.apk
 
    
 }
@@ -61,9 +63,10 @@ fi
 echo '**************************************************************************************'
 echo "Choose operation"
 echo '**************************************************************************************'
-select objet in "DEEP CLEAN" "CLEAN" "BUILD" "BUILD WITHOUT IONIC" "BUILD_DEBUG" "EMULATE ANDROID" "SERVE";
+select objet in "DEEP REBUILD" "DEEP CLEAN" "CLEAN" "BUILD" "BUILD WITHOUT IONIC" "BUILD_DEBUG" "EMULATE ANDROID" "SERVE";
 do
     case $objet in 
+        "DEEP REBUILD") ionic cordova platform remove  android;ionic cordova platform add  android@latest ;	build	break;;
         "DEEP CLEAN") ionic cordova platform remove  android;ionic cordova platform add  android@latest ;	break;;
         "CLEAN")  cordova clean android ;	break;;
         "BUILD")  build	break;;

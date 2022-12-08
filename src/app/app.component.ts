@@ -1,16 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform,AlertController, App  } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-
-
-
 import { TranslationProvider } from '../providers/translation/translation';
 import { HomePage } from '../pages/home/home';
 import { VoicingsListPage } from '../pages/voicings-list/voicings-list';
 import { TunningListPage } from '../pages/tunning-list/tunning-list';
 import { RegisterPage } from '../pages/register/register';
+
+
 
 
 @Component({
@@ -25,8 +23,9 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
 
-  constructor(private TP: TranslationProvider, private alertCtrl: AlertController,public storage :Storage,public app:App,public platform: Platform, public statusBar: StatusBar, 
-    public splashScreen: SplashScreen) {
+  constructor(private TP: TranslationProvider, private alertCtrl: AlertController,public storage :Storage,
+    public app:App,public platform: Platform, public statusBar: StatusBar) {
+    //this.splashScreen.show();
     this.initializeApp();
 
     
@@ -48,7 +47,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       // if (this.platform.is('cordova')) { 
       // this.backgroundMode.enable(); }
-      this.splashScreen.hide();
+      
+      
 
 
 
@@ -57,7 +57,6 @@ export class MyApp {
         const nav = this.app.getActiveNav();
       
         if(overlay && overlay.dismiss) {
-          alert("dismiss")
           overlay.dismiss();
         } else if(nav.canGoBack()){
           //alert("go back")
@@ -68,9 +67,10 @@ export class MyApp {
           this.confirmQuitting();
          
         }
+        //this.splashScreen.hide();
        
       });
-
+     
 
     });
    

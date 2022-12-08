@@ -24,6 +24,7 @@
         "@angular/platform-browser": "5.2.11",
         "@angular/platform-browser-dynamic": "5.2.11",
         "@ionic-native/core": "~4.12.0",
+        "@ionic-native/email-composer": "^4.20.0",
         "@ionic-native/file": "^5.16.0",
         "@ionic-native/globalization": "^4.20.0",
         "@ionic-native/in-app-browser": "^4.20.0",
@@ -69,6 +70,7 @@
         "@ionic/app-scripts": "^3.2.4",
         "@ionic/cli-plugin-ionic-angular": "1.4.1",
         "@ionic/lab": "1.0.9",
+        "cordova-plugin-email-composer": "^0.10.1",
         "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
         "cordova-plugin-splashscreen": "github:apache/cordova-plugin-splashscreen",
         "cordova-uglify": "^0.3.4",
@@ -87,7 +89,8 @@
             "cordova-plugin-file": {},
             "cordova-plugin-globalization": {},
             "cordova-plugin-androidx": {},
-            "cordova-plugin-androidx-adapter": {}
+            "cordova-plugin-androidx-adapter": {},
+            "cordova-plugin-email-composer": {}
         },
         "platforms": [
             "android"

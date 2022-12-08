@@ -405,9 +405,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	async ionViewCanLeave() {
 
-		//if ( view.instance instanceof MyPage ){
-	
-
+		//UGLY : on désactive le check pour les pages internee
 		if(this.innerPages == false ){
 			//this.innerPages == false
 			if( ! deepEqual(this.VoicingsList,this.VoicingsListLastSaved)){						
