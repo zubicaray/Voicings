@@ -35,6 +35,7 @@ export class EditVoicingPage extends LoadingCtrlPage {
 		super(loadingCtrl);
 
 		this.Voicings = navParams.get('songVoicings');
+		
 		this.songName=this.Voicings.songName;
 		//console.log(this.songName);
 		this.chords=this.Voicings.chords;

@@ -33,6 +33,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 	loading:any;	
 	innerPages:boolean=false;
+	isNewSong:boolean=false;
 
 	constructor(private alertCtrl: AlertController,
 		public modalCtrl : ModalController,
@@ -238,11 +239,12 @@ export class VoicingsListPage extends LoadingCtrlPage{
 
 					
 					if(this.validation(data.Name,newSong)){
-						this.innerPages=true;
+						
 						this.navCtrl.push(ChooseTonePage, {
 							songVoicings: newSong,ScaleNotes:[]
 						});
-						
+						this.innerPages=true;
+						this.isNewSong=true;
 						
 					
 					}
@@ -403,7 +405,7 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		
 	}
 
-	async ionViewCanLeave() {
+	ionViewWillLeave() {
 
 		//UGLY : on désactive le check pour les pages internee
 		if(this.innerPages == false ){
@@ -412,10 +414,23 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				this.saveBeforeQuitting();			
 			}
 		}
-		this.innerPages = false
+		
 		
 		
 	}
+
+	ionViewWillEnter() {
+
+		
+		if(this.isNewSong){
+			this.innerPages = true
+			this.isNewSong=false
+		}
+		else this.innerPages = false
+		
+		
+	}
+
 	public saveBeforeQuitting(){
 		
 
