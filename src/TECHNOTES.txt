@@ -1,4 +1,5 @@
-Ok SDK 31
+
+IONIC INFO LAST OK !!
 cli packages: (/home/iron-man/Voicings/node_modules)
 
     @ionic/cli-utils  : 1.9.0
@@ -11,25 +12,7 @@ global packages:
 local packages:
 
     @ionic/app-scripts : 3.2.4
-    Cordova Platforms  : android 9.1.0
-    Ionic Framework    : ionic-angular 3.9.2
-
-System:
-
-    
-cli packages: (/home/iron-man/Voicings/node_modules)
-
-    @ionic/cli-utils  : 1.9.0
-    ionic (Ionic CLI) : 3.9.0
-
-global packages:
-
-    Cordova CLI : 10.0.0 (cordova-lib@10.1.0) 
-
-local packages:
-
-    @ionic/app-scripts : 3.2.4
-    Cordova Platforms  : android 9.1.0
+    Cordova Platforms  : none
     Ionic Framework    : ionic-angular 3.9.2
 
 System:
@@ -39,10 +22,11 @@ System:
     npm               : 6.12.0 
     OS                : Linux 5.15
 
-    Node              : v12.13.0
-    npm               : 6.12.0 
-    OS                : Linux 5.15
 
+
+SDK 32 min SDK 21
+openjdk version "11.0.17" 
+gradle-7.6
 
 
 

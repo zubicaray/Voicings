@@ -19,7 +19,7 @@
 <ion-content>
 
 	
-	<ion-fab bottom center >
+	<ion-fab bottom center #fab >
 		
 		<button ion-fab><ion-icon name="md-list"></ion-icon></button>
 
@@ -30,7 +30,7 @@
 		</ion-fab-list>
 
 		<ion-fab-list side="top"  >
-			<button ion-fab   style="background-color:orange;color:white"   (click)="changeView()" >
+			<button ion-fab   style="background-color:orange;color:white"   (click)="changeView(fab)" >
 					<ion-icon [name]="!editView ? 'ios-build' : 'md-eye'"></ion-icon>
 			</button>
 			<button ion-fab  style="background-color:orange;color:white"   (click)="setPlayer()"><i class="fa fa-music fa-1x" ></i></button>			
@@ -39,7 +39,9 @@
 		<ion-fab-list side="left"  >
 			
 			<button ion-fab  style="background-color:orange;color:white"   (click)="add($event)"><ion-icon name="add"></ion-icon></button>
-			<button ion-fab  style="background-color:orange;color:white"  *ngIf="editView"  (click)="order()" ><i class="fa fa-sort fa-2x" ></i></button>						
+			<button #orderButton ion-fab  style="background-color:orange;color:white"  *ngIf="editView"  (click)="order()" >
+				<i class="fa fa-sort fa-2x" *ngIf="editView" ></i>
+			</button>						
 		</ion-fab-list>
 		
 	</ion-fab>

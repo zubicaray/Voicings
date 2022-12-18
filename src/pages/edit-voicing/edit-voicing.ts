@@ -12,6 +12,7 @@ import { AddingChordPage }from    '../adding-chord/adding-chord';
 import { DiagramsPage}  from    '../diagrams/diagrams';
 import { TranslationProvider } from '../../providers/translation/translation';
 import { ToolsProvider}   from    '../../providers/tools/tools' 
+import { FabContainer } from 'ionic-angular';
 
 @Component({
   selector: 'page-edit-voicing',
@@ -69,7 +70,8 @@ export class EditVoicingPage extends LoadingCtrlPage {
 		return  '#F0E68C'; else return 'white';
 
 	} 
-	changeView(){
+	changeView(fab: FabContainer){
+		fab.close();
 		this.editView=!this.editView;
 	}
 	presentToast(msg:string) {

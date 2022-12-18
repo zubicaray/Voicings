@@ -8,8 +8,8 @@ function build {
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
-         --ks-key-alias=upload --key-pass=pass:'phase 6' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'totoComme d hab' \
+         --ks-key-alias=upload --key-pass=pass:'totoComme d hab' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
@@ -25,8 +25,8 @@ function buildNoIonic {
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
-         --ks-key-alias=upload --key-pass=pass:'phase 6' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'totoComme d hab' \
+         --ks-key-alias=upload --key-pass=pass:'totoComme d hab' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
@@ -44,8 +44,8 @@ function build_debug {
     rm -f JazzGuitarVoicings.apks
     
     java -jar  bundletool-all-1.13.1.jar build-apks --bundle=platforms/android/app/build/outputs/bundle/release/app-release.aab   \
-         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'phase 6' \
-         --ks-key-alias=upload --key-pass=pass:'phase 6' \
+         --output=JazzGuitarVoicings.apks --ks="./keystore.jks" --ks-pass=pass:'totoComme d hab' \
+         --ks-key-alias=upload --key-pass=pass:'totoComme d hab' \
          --mode=universal
     unzip -j JazzGuitarVoicings.apks
     mv universal.apk JazzGuitarVoicings.apk
