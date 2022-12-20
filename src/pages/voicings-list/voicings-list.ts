@@ -6,7 +6,6 @@ import { EditVoicingPage}  from    '../edit-voicing/edit-voicing'
 import { Settings ,SongType,STANDARD_TUNNING,DEFAULT_SETTINGS} from    '../../providers/configuration/configuration'
 import { Storage } from '@ionic/storage';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
-import { SONGS } from '../../assets/data/songs';
 import { TranslationProvider } from '../../providers/translation/translation';
 
 
@@ -107,6 +106,8 @@ export class VoicingsListPage extends LoadingCtrlPage{
 		
 		//console.log(this.storage)
 		//this.storage.remove("VoicingsList");
+		//debugger;
+		
 		//this.storage.remove("PAID");
 		//this.storage.remove("TunningList");
 		this.storage.get("VoicingsList").then( 
@@ -117,7 +118,14 @@ export class VoicingsListPage extends LoadingCtrlPage{
 				if(  list == null  || list==undefined || list.length==0){
 					console.log("loading from config !!")
 
-					this.VoicingsList=VoicingsListPage.fromJSON(SONGS);					
+					//this.VoicingsList=VoicingsListPage.fromJSON(SONGS);		
+					 
+						fetch("../../assets/data/songs.json").then(res=>res.json()).then(json=>{
+							//console.log("OUTPUT: ", json);
+							this.VoicingsList=VoicingsListPage.fromJSON(json);	
+							//DO YOUR STAFF
+						});
+								
 					this.storage.set("VoicingsList",this.VoicingsList);
 				}
 				else{

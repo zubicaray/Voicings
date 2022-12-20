@@ -8,7 +8,7 @@ import {mod,clone}   from    '../providers/tools/tools'
 *
 */
 export type DiagramType ={  
-  /** tells whoch strings holds the guiding note */
+  /** tells which strings holds the guiding note */
   guidingString:number, 
   frets:number[],
   /** difference betwwen the higher and lower frets */
@@ -625,7 +625,7 @@ export class ChordModel {
    /**
   * checks if the stretch is not too high
   */
-  ecartOk(currentDiag:DiagramType,itFrette:number):boolean{
+  ecartOk(currentDiag:DiagramType,itFrette:number,outEcart:{ecart:number}):boolean{
     var ecart : number=0;
     if(itFrette ==0) return true;
     for(var i:number =0;i<currentDiag.frets.length;i++)
@@ -640,7 +640,8 @@ export class ChordModel {
       } 
       else{
         if(ecart >currentDiag.stretch){
-          currentDiag.stretch=ecart;
+          outEcart.ecart=ecart;
+          
         }
       }
 
@@ -669,7 +670,8 @@ export class ChordModel {
       for(var itFrette:number=NB_FRETTES;itFrette>=startfrette;itFrette--)
       {
 
-        if(! this.ecartOk(currentDiag,itFrette))   continue;
+        let outEcart={ecart:0}; 
+        if(! this.ecartOk(currentDiag,itFrette,outEcart))   continue;
 
         let currentPitch=this.getPitch(itString,itFrette);
 
@@ -713,6 +715,7 @@ export class ChordModel {
 
           clonedDiag.frets[this.ChordModelTunning[itString].Id]=itFrette;
           clonedDiag.notes.push({note:currentNote,pitch:currentPitch});
+          clonedDiag.stretch=outEcart.ecart;
 
           if( currentPitch == this.guidingPitch){
             clonedDiag.guidingString=this.ChordModelTunning[itString].Id;
@@ -722,9 +725,11 @@ export class ChordModel {
             //toutes les notes obligatoires sont là et la guiding note aussi
             //-> on ajoute l'accord en cours
             // todo: set lowest and highest note
+            
             result.push(clonedDiag);
           }
 
+         
           if(this.melodyType==GUIDING_NOTE_ON_BASS && currentPitch == this.guidingPitch ){
             // comme le parcours se fait du plus aigue vers le plus grave
             // si on vient d'ajouter la guiding, elle devra rester la note la lus grave 

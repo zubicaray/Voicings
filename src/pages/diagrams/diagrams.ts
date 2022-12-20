@@ -4,12 +4,7 @@ import { ChordModel} from '../../models/chordModel';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { ToolsProvider}   from    '../../providers/tools/tools'; 
 
-/**
- * Generated class for the DiagramsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
  @Component({
  	selector: 'page-diagrams',
@@ -22,39 +17,57 @@ import { ToolsProvider}   from    '../../providers/tools/tools';
 	
 	chord:ChordModel;
 	diagYs:number[]=[];
+	
  	constructor(public navCtrl: NavController,public navParams: NavParams,public loadingCtrl: LoadingController,private toolsProvider:ToolsProvider) {
  		super(loadingCtrl);
  		this.chord=navParams.get('chord');
 
+		var intervalH = 85/7;
+		var offset=12.5;
+		var cpt:number=0;
+		
+		var max:number=0;
+		var summax:number=0;
+		var T:number;
 		
 		//TODO: store this in model
 		this.chord.diagrams.forEach(  (d,idx) =>
 			{
-			
-				if(idx==0)
-				{
-					this.diagYs.push( (d.stretch+1)*22+44);
-				} 
-				else 
-				{
-					this.diagYs.push( (d.stretch+1)*22+45+this.diagYs[idx-1]);
+				T=(3+d.stretch)*intervalH+offset;
+				//console.log("d.stretch="+d.stretch);
+				max=Math.max(max,T);
+				if(cpt==4)
+				{					
+					summax+=max;
+					//console.log("max="+max);
+					this.diagYs.push( summax);					
+					max=0;
+					cpt=0;
 				}
+				cpt++;
 				
 			}
 		);
+
+		
+		
 		
  	}
 
  	ionViewDidEnter() {
  		
- 		//trick so as to refresh:
-	    this.content.scrollTo(0, this.chord.idDiag_Y-400, 0);
-	    this.content.scrollTo(0, this.chord.idDiag_Y-400, 1000);
+ 		//debugger
+	    this.content.scrollTo(0, this.chord.idDiag_Y-200, 0);
+		//trick so as to refresh:
+	    //this.content.scrollTo(0, this.chord.idDiag_Y-2, 100);
+		
+	
     	
  	}
  	chooseDiag(event:MouseEvent,idDiag:number){
  		
 		this.chord.idDiag=idDiag;
+		
 		
 		/*
 		console.log("event.clientY:"+event.clientY)
@@ -62,11 +75,12 @@ import { ToolsProvider}   from    '../../providers/tools/tools';
 		console.log("event.offsetY:"+event.offsetY)
 		*/
 		//console.log("event.layerY:"+event.layerY)
-		
-		this.chord.idDiag_Y=this.diagYs[idDiag];
+		let d:number=Math.floor(idDiag/4);
+		this.chord.idDiag_Y=this.diagYs[d];
 		//console.log("this.chord.idDiag_Y:"+this.chord.idDiag_Y)
-
-		 
+		//debugger
+		//this.content.scrollTo(0,event.clientY, 10);
+		
  		//this.content.scrollTo(0, this.chord.idDiag_Y-400, 100);
  		this.chord.canvas=this.chord.diagrams[idDiag];
  		var ptiches:string[]=this.chord.getCanvasPitches();

@@ -1,9 +1,23 @@
 page-diagrams {
  
-canvas {
-    padding: 0;
-    margin: auto;
-    display: block;
-    width: 150px;
-}
+
+.myCanvas {
+  width:50%;
+  padding-left: auto; 
+  padding-left: right; 
+  float:right;
+  text-align:center;
+  
+  }
+  .div-item-inner {
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-right:0px;
+    border-radius: 3px;
+  
+  }
+  
+  
 }

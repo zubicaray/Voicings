@@ -20,6 +20,7 @@ export class ChordCanvas implements OnChanges{
 	@Input() diagram: {guidingString:number, frets:number[]};
 	@Input() guidingPitchString: number;
 	@Input() width: number;
+
 	@Input() typeDisplay: number;
 
 	text: string;
@@ -121,6 +122,7 @@ export class ChordCanvas implements OnChanges{
 		var canvas:any = this.nativeCanvas;
 		var context:any= canvas.getContext('2d');
 
+		
 		canvas.width=this.width;
 		//canvas.id=attrs.id;
 		//
@@ -142,12 +144,13 @@ export class ChordCanvas implements OnChanges{
 		// space between two strings
 		var nbFret=7;
 
+		
 		var stretch=higherFret-lowerFret;
 
 		var intervalW = canvas.width/10;
 		// space between two frets
 		var intervalH = canvas.width/nbFret;
-		canvas.height=(Math.max(4,2+stretch))*intervalH;
+		canvas.height=(3+stretch)*intervalH;
 		this.height=canvas.height
 
 		var stringOffset=intervalW*coeffStringOffset;

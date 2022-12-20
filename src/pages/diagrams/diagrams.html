@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content #myContent  padding>
+<ion-content >
 
 	<ion-fab top right>
 		<button ion-fab  (click)="toTop()"><ion-icon name="arrow-dropup-circle"></ion-icon></button>
@@ -20,18 +20,19 @@
 	</ion-label>
 
 
-		<ion-list #virtualScroll [virtualScroll]="chord.diagrams"  [approxItemHeight]=" '200px' ">	
+	<ion-grid >
+		<ion-row  >
+			<ion-col class="div-item-inner "  style="width: 20%" col-3 *ngFor="let diag of chord.diagrams;  let i = index" 
+			[ngStyle]="{'background-color': chord.idDiag==i? 'orange' : 'white'}"	 >												
+     			
+				<div  style = "text-align:center;" (click)="chooseDiag($event,i)"  >
+					<chord-canvas   [diagram]="diag" [width]=85  [typeDisplay]=2 ></chord-canvas>	
+				</div>	
 				
-			<ion-item   *virtualItem="let diag;  let i = index" (click)="chooseDiag($event,i)"  
-			[ngStyle]="{'background-color': chord.idDiag==i? 'orange' : 'white'}"
-			 >
-						
-			<div  class="myCanvas" >				
-				<chord-canvas  [diagram]="diag" [width]=150  ></chord-canvas> 
-			</div>
-			
-		</ion-item>	
-			
-	</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	
 
 </ion-content>
