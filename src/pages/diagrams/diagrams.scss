@@ -1,5 +1,14 @@
 page-diagrams {
- 
+  
+  .row {
+    width: 100%;
+    text-align: center; // center the content of the container
+  }
+  
+  .block {
+    width: 100px;
+    display: inline-block; // display inline with ability to provide width/height
+  }​
 
 .myCanvas {
   width:50%;
