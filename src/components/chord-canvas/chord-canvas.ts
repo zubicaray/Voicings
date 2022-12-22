@@ -168,7 +168,7 @@ export class ChordCanvas implements OnChanges{
 		// draw frets
 		context.beginPath();
 		var i:number; 
-		for (i = 0; i < nbFret; i++) {
+		for (i = 0; i < nbFret+2; i++) {
 			Y = intervalH+i*intervalH;
 			context.moveTo(stringOffset+romanOffset, Y);
 			context.lineTo(intervalW*coeffIntervalW+romanOffset, Y);

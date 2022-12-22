@@ -23,15 +23,16 @@ import { TranslationProvider } from '../../providers/translation/translation';
 	upAThousand:boolean=false;
 	cptTaken:number=0;
 	loading:any;
+	diagLength:number;
 
 	Diagrams: BehaviorSubject<DiagramType[]>;
  	constructor(public navCtrl: NavController,private TP: TranslationProvider,public navParams: NavParams,
 		public loadingCtrl: LoadingController,private toolsProvider:ToolsProvider) {
  		super(loadingCtrl);
  		this.chord=navParams.get('chord');
-
-		 this.cptTaken=this.takeFirst;
-		if(this.chord.diagrams.length>this.takeFirst){
+		this.diagLength=this.chord.diagrams.length;
+		this.cptTaken=this.takeFirst;
+		if(this.diagLength>this.takeFirst){
 			this.upAThousand=true;
 			
 		}
@@ -50,11 +51,15 @@ import { TranslationProvider } from '../../providers/translation/translation';
 			spinner: 'bubbles',
 			content: this.TP.tr('Adding chords ...'),
 			cssClass: "my-loading ",
-			duration: 3000
+			duration: 5000
 		});
 		this.loading.present().then(()=>{ 
 		
 			this.cptTaken+=this.takeFirst;
+
+			if(this.cptTaken>=this.diagLength){
+				this.cptTaken=this.diagLength;
+			}
 			
 			
 		},

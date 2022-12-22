@@ -202,9 +202,9 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 			{ name:"sus4",		mandatory:[5],     natural:[0,2,7,9,11],  modern:[]},
 			{ name:"7sus2",   	mandatory:[2,10],  natural:[0,5,7,9],  modern:[]},
 			{ name:"7sus4",		mandatory:[5,10],  natural:[0,2,7,9],  modern:[]},
-			{ name:"sus9b",   	mandatory:[1,5,10],     natural:[0,7,8],  modern:[]},
-			{ name:"sus13b",   	mandatory:[5,8,10],     natural:[0,7,8],  modern:[]},
-			{ name:"sus13",   	mandatory:[5,9,10],     natural:[0,7,8],  modern:[]}         
+			{ name:"sus9b",   	mandatory:[1,10],  natural:[0,5,7,8],  modern:[]},
+			{ name:"sus13b",   	mandatory:[8,10],  natural:[0,1,5,7],  modern:[]},
+			{ name:"sus13",   	mandatory:[9,10],  natural:[0,2,5,7],  modern:[]}         
 		]
 	}
 ];
