@@ -4,6 +4,9 @@
 		<ion-title>{{ 'Chords list' | translate }}</ion-title>
 		<ion-buttons end >		
 			<div class="row">
+				<button  *ngIf="upAThousand" class="block" ion-fab mini icon-only (click)="add()">				
+					<i class="fa fa-plus fa-1x" ></i>
+				</button>
 				<button  class="block" ion-fab mini icon-only (click)="toTop()">				
 					<i class="fa fa-chevron-circle-up fa-1x" ></i>
 				</button>
@@ -29,7 +32,7 @@
 
 	<ion-grid >
 		<ion-row  >
-			<ion-col   class="div-item-inner "  style="width: 20%" col-3 *ngFor="let diag of chord.diagrams;  let i = index" 
+			<ion-col   class="div-item-inner "  style="width: 20%" col-3 *ngFor="let diag of Diagrams| async | slice:0:cptTaken   ;  let i = index" 
 			[ngStyle]="{'background-color': chord.idDiag==i? 'orange' : 'white'}"	 >												
      			
 				<div id="{{ 'col-' + i }}" style = "text-align:center;" (click)="chooseDiag($event,i)"  >

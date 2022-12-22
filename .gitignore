@@ -13,3 +13,7 @@ src/assets/midi/npm-debug.log
 JazzGuitarVoicings.apk
 documentation
 keystore.jks
+JazzGuitarVoicings.apks
+Voicings.code-workspace
+buildLocal.sh
+piano/
