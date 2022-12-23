@@ -36,7 +36,7 @@ export class ChordModel {
   mandatory:number[]=[];
   /** all ok, as regard harmony, notes of the chord  */
   natural:number[]=[];
-  /** all "sometimes not so good", as regard harmony, notes of the chord  */
+  /** all "sometimes not so bad", as regard harmony, notes of the chord  */
   modern:number[]=[];
   pitch:number=0;
   /** notes of the tune scale */
@@ -475,25 +475,39 @@ export class ChordModel {
     }
     return true;
   } 
-  // a corriger
-  private doubledMuted(d:DiagramType):number{
-    // cas exemle 3xx555 A-/G
+  /** 
+  * on met à la fin du tableau les accords le smoins pertinents
+  * à cause de la disposition peu commune des cordes non jouées
+  */
+  private lowerStrangeMuted(d:DiagramType):number{
+
+
+    var res:number;
+
+    res=d.frets.reduce( (acc,cur) => { if(cur!=null) return acc+1; else return acc; },0);
+
+    return res*10-d.stretch 
+
+    debugger
+    // cas  (_xx)___ | (xx_)___ ,  _(_xx)__ | _(xx_)__ ou _(_xx)___ | (xx_)___
     for(var i=0;i<3;i++){
       if ( 
         (d.frets[i]!=null && d.frets[i+1]==null && d.frets[i+2]==null)  || 
         (d.frets[i+1]==null && d.frets[i+2]==null && d.frets[i+3]!=null)  )
-        return 0
+        res-=10*d.stretch;
     }
-    //cas exemple  5x5x55 A-7 ou x3x5x5 ou xx5x5x
+    //cas   (x_x_)__ , _(x_x_)_ ou __(x_x_)
     for(var k=0;k<3;k++){
       if ( 
         (d.frets[k]!=null && d.frets[k+1]==null && d.frets[k+2]!=null && d.frets[k+3]==null)  
       )
-        return 1
+      res-=5*d.stretch;
     }
 
+
+
   
-      return 2;
+      return res;
   }
   /** 
   * find chord diagrams
@@ -511,7 +525,7 @@ export class ChordModel {
 
       this.innerFindChorDiagrams(mandatories,this.getNotes(), 0,ChordModel.newEmptyDiagram(),res);
       //res.sort( (a,b) => { return b.notes.length-a.notes.length})
-      res.sort( (a,b) => { return this.doubledMuted(b)-  this.doubledMuted(a)        } )
+      res.sort( (a,b) => { return this.lowerStrangeMuted(b)-  this.lowerStrangeMuted(a)        } )
 
       if(res.length==0){
         this.errorMsg="Chords undoable, stretch too high. Unmute one string at least.";
@@ -627,28 +641,34 @@ export class ChordModel {
   */
   ecartOk(currentDiag:DiagramType,itFrette:number,outEcart:{ecart:number}):boolean{
     var ecart : number=0;
-    if(itFrette ==0) return true;
+    var maxEcart : number=currentDiag.stretch;
+    if(itFrette ==0) {
+      outEcart.ecart=currentDiag.stretch;
+      return true;
+    }
     for(var i:number =0;i<currentDiag.frets.length;i++)
     {
       if(currentDiag.frets[i]==null || currentDiag.frets[i]==0) 
         continue;
 
       ecart=Math.abs(currentDiag.frets[i]-itFrette);
-
-      if(ecart> this.maxStretch) {
+      maxEcart=Math.max(ecart,maxEcart);
+      if(maxEcart> this.maxStretch) {
         return false;
       } 
-      else{
-        if(ecart >currentDiag.stretch){
-          outEcart.ecart=ecart;
-          
-        }
-      }
+      
 
     }
+    outEcart.ecart=maxEcart;
     return true;
   }
 
+   arrayEquals(a, b) {
+    return Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length === b.length &&
+        a.every((val, index) => val === b[index]);
+  }
   /**
   * inner recursive function
   *
@@ -662,6 +682,10 @@ export class ChordModel {
   innerFindChorDiagrams(mandatory:Array<number>,possible:Array<number>,itString:number,currentDiag:DiagramType,result:DiagramType[]){
 
     var startfrette:number=this.openStrings?0:1;
+
+    //if (this.arrayEquals(currentDiag.frets,[null, null, 12, 16, 17, 17])){
+    //  debugger
+   // }
 
     if(this.stringDispo[this.ChordModelTunning[itString].Id])
     {

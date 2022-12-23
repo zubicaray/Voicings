@@ -170,11 +170,11 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 			{ name:"7",     mandatory:[4,10],    natural:[0,2,5,7,9],   modern:[1,3,6,8]},
 			{ name:"7(-)",	mandatory:[4,10],    natural:[0,1,5,7,8],   modern:[3,6]},
 			{ name:"13",    mandatory:[4,9,10],  natural:[0,2,5,7],   	modern:[1,3,6,8]},
-			{ name:"9",     mandatory:[2,4,10],  natural:[0,5,7],     	modern:[1,3,6,8]},
-			{ name:"9,13",  mandatory:[2,4,9,10],natural:[0,2,5,7],   	modern:[1,3,6,8]},
-			{ name:"9b",    mandatory:[1,4,10],  natural:[0,5,7], 		modern:[6,9]},
-			{ name:"13b",   mandatory:[6,4,10],  natural:[0,5,7], 		modern:[6,9]},
-			{ name:"9b,13b",mandatory:[1,6,4,10],natural:[0,5,7], 		modern:[6,9]}
+			{ name:"9",     mandatory:[2,4,10],  natural:[0,5,7,9],     modern:[1,3,6,8]},
+			{ name:"9,13",  mandatory:[2,4,9,10],natural:[0,5,7],   	modern:[1,3,6,8]},
+			{ name:"9b",    mandatory:[1,4,10],  natural:[0,5,7,8], 	modern:[6,9]},
+			{ name:"13b",   mandatory:[8,4,10],  natural:[0,1,5,7], 	modern:[6,9]},
+			{ name:"9b,13b",mandatory:[1,8,4,10],natural:[0,5,7], 		modern:[6,9]}
 		]
 	}
 	,
@@ -183,7 +183,7 @@ export const ChordFamilyList:{name:string,chords:ChordSettings[]}[]=[
 		chords:[
 			{ name:"9b,13", mandatory:[1,4,9,10],natural:[0,5,7], 		modern:[6,8]},
 			{ name:"5b",    mandatory:[4,6,10], natural:[0,2,9],   		modern:[1,3,5,6,7,8]},
-			{ name:"alt",   mandatory:[4,10],   natural:[0,1,3,5,6,7,9],modern:[2,8]}
+			{ name:"alt",   mandatory:[4,10],   natural:[0,1,3,6,7,9],  modern:[2,8]}
 		]
 	}
 	,

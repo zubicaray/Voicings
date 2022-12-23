@@ -1,6 +1,6 @@
 import { Component ,ViewChild} from '@angular/core';
 import { BehaviorSubject } from "rxjs"
-import { Content , NavController, NavParams ,LoadingController,VirtualScroll} from 'ionic-angular';
+import { Content , NavController, NavParams ,LoadingController} from 'ionic-angular';
 import { ChordModel,DiagramType} from '../../models/chordModel';
 import { LoadingCtrlPage}  from    '../loading-ctrl/loading-ctrl';
 import { ToolsProvider}   from    '../../providers/tools/tools'; 
@@ -11,10 +11,10 @@ import { TranslationProvider } from '../../providers/translation/translation';
  	selector: 'page-diagrams',
  	templateUrl: 'diagrams.html'
  })
- export class DiagramsPage extends LoadingCtrlPage {
+ export class DiagramsPage extends LoadingCtrlPage  {
 
  	@ViewChild(Content) content: Content;
- 	@ViewChild(VirtualScroll) virtualScroll: VirtualScroll;
+ 	
 	
 	chord:ChordModel;
 	scrollTo:any;
@@ -44,6 +44,8 @@ import { TranslationProvider } from '../../providers/translation/translation';
 
 		
  	}
+
+
 	 
 	add(){
 
@@ -64,33 +66,24 @@ import { TranslationProvider } from '../../providers/translation/translation';
 			
 		},
 		);
-
-		
-		
 	
 		
 	}
 
+	autoScroll(){
+
+		if (this.chord.idDiag < this.cptTaken ) {
+			this.scrollTo = document.getElementById("col-"+this.chord.idDiag);
+			if( this.scrollTo != null){
+				this.scrollTo.scrollIntoView();
+			}
+		}
+			
+	}
+
  	ionViewDidEnter() {
 
-		//this.Diagrams.next(this.chord.diagrams.slice(this.takeFirst));
-
-		/*
-		this.Diagrams.pipe(
-			merge(Observable.of(this.chord.diagrams)))
-		;
-		this.Diagrams.subscribe(t=>
-			{console.log('ici 2')});
-
-		
-		
-		this.scrollTo = document.getElementById("col-"+this.chord.idDiag);
-		if (this.chord.idDiag < this.takeFirst && this.scrollTo != null) 
-			this.scrollTo.scrollIntoView();
-		
-		*/
-			
-	
+		this.autoScroll();
     	
  	}
  	chooseDiag(event:MouseEvent,idDiag:number){
